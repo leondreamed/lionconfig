@@ -1,7 +1,7 @@
 {
 	"name": "@leonzalion/configs",
 	"description": "My configuration files for various tools.",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"license": "MIT",
 	"np": {
 		"contents": "./dist",
