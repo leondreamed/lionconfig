@@ -5,7 +5,7 @@ const { defineConfig } = require('eslint-define-config');
 module.exports = defineConfig({
 	extends: [
 		'xo',
-		'./xo-plugins.js',
+		require.resolve('xo/config/plugins.cjs'),
 		'plugin:vue/vue3-recommended',
 		'prettier',
 		'./global-rules.js',
