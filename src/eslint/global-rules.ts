@@ -14,25 +14,28 @@ module.exports = {
 			},
 		],
 		"@typescript-eslint/naming-convention": [
-			{
-				selector: "default",
-				format: ["camelCase"],
-				leadingUnderscore: "allow",
-				trailingUnderscore: "allow",
-			},
+			"error",
+			[
+				{
+					selector: "default",
+					format: ["camelCase"],
+					leadingUnderscore: "allow",
+					trailingUnderscore: "allow",
+				},
 
-			{
-				selector: "variable",
-				format: ["camelCase", "UPPER_CASE"],
-				leadingUnderscore: "allow",
-				trailingUnderscore: "allow",
-			},
+				{
+					selector: "variable",
+					format: ["camelCase", "UPPER_CASE"],
+					leadingUnderscore: "allow",
+					trailingUnderscore: "allow",
+				},
 
-			{
-				selector: "typeLike",
-				format: ["PascalCase"],
-				leadingUnderscore: "allow", // Sometimes generic type parameters are unused
-			},
+				{
+					selector: "typeLike",
+					format: ["PascalCase"],
+					leadingUnderscore: "allow", // Sometimes generic type parameters are unused
+				},
+			],
 		],
 	},
 };
