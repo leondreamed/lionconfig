@@ -1,0 +1,60 @@
+{
+	"name": "@leonzalion/configs",
+	"description": "My configuration files for various tools.",
+	"version": "1.0.0",
+	"license": "MIT",
+	"np": {
+		"contents": "./dist",
+		"tests": false,
+		"cleanup": false,
+		"publish": false
+	},
+	"scripts": {
+		"version": "pnpm build",
+		"build": "node --loader ts-node/esm ./scripts/build.ts",
+		"release": "pnpm tc && np && pnpm build && pnpm publish",
+		"tc": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@prettier/plugin-pug": "^1.18.0",
+		"@rushstack/eslint-patch": "^1.1.0",
+		"@typescript-eslint/eslint-plugin": "^5.6.0",
+		"@typescript-eslint/parser": "^5.6.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-config-xo": "^0.39.0",
+		"eslint-config-xo-typescript": "^0.47.1",
+		"eslint-define-config": "^1.2.0",
+		"eslint-import-resolver-alias": "^1.1.2",
+		"eslint-plugin-eslint-comments": "^3.2.0",
+		"eslint-plugin-import": "^2.25.3",
+		"eslint-plugin-no-use-extend-native": "^0.5.0",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"eslint-plugin-unicorn": "^39.0.0",
+		"eslint-plugin-vue": "^8.2.0",
+		"xo": "^0.47.0"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.8",
+		"eslint": "^8.6.0",
+		"np": "^7.6.0",
+		"prettier": "^2.5.1",
+		"ts-node": "^10.4.0",
+		"typescript": "^4.5.4"
+	},
+	"peerDependencies": {
+		"eslint": "^8.4.0"
+	},
+	"pnpm": {
+		"packageExtensions": {
+			"eslint-import-resolver-webpack": {
+				"peerDependenciesMeta": {
+					"webpack": {
+						"optional": true
+					}
+				}
+			}
+		}
+	}
+}

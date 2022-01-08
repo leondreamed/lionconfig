@@ -1,0 +1,10 @@
+{
+	"extends": "./src/tsconfig/tsconfig.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"module": "CommonJS"
+	},
+	"exclude": [
+		"scripts"
+	]
+}
