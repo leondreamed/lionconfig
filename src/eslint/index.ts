@@ -40,7 +40,7 @@ module.exports = defineConfig({
 			extends: [
 				'xo',
 				'xo-typescript',
-				'./xo-plugins.js',
+				require.resolve('xo/config/plugins.cjs'),
 				'plugin:vue/vue3-recommended',
 				'prettier',
 				'./global-rules.js',
