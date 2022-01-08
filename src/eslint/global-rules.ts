@@ -18,14 +18,14 @@ module.exports = {
 			{
 				selector: 'default',
 				format: ['camelCase'],
-				leadingUnderscore: 'allow',
+				leadingUnderscore: 'allowSingleOrDouble',
 				trailingUnderscore: 'allow',
 			},
 
 			{
 				selector: 'variable',
 				format: ['camelCase', 'UPPER_CASE'],
-				leadingUnderscore: 'allow',
+				leadingUnderscore: 'allowSingleOrDouble',
 				trailingUnderscore: 'allow',
 			},
 
