@@ -4,7 +4,7 @@
 		"outDir": "dist",
 		"module": "CommonJS"
 	},
-	"exclude": [
-		"scripts"
+	"include": [
+		"src"
 	]
 }

@@ -11,7 +11,7 @@
 	},
 	"scripts": {
 		"version": "pnpm build",
-		"build": "node --loader ts-node/esm ./scripts/build.ts",
+		"build": "pnpm build --filter=./scripts",
 		"release": "pnpm tc && np && pnpm build && pnpm publish",
 		"tc": "tsc --noEmit"
 	},
