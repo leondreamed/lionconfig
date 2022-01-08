@@ -47,14 +47,8 @@
 		"eslint": "^8.4.0"
 	},
 	"pnpm": {
-		"packageExtensions": {
-			"eslint-import-resolver-webpack": {
-				"peerDependenciesMeta": {
-					"webpack": {
-						"optional": true
-					}
-				}
-			}
+		"overrides": {
+			"eslint-import-resolver-webpack": "npm:lodash.noop"
 		}
 	},
 	"publishConfig": {
