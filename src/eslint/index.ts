@@ -10,15 +10,10 @@ module.exports = defineConfig({
 		'prettier',
 		'./global-rules.js',
 	],
-	rules: {
-		'import/extensions': [
-			'error',
-			'ignorePackages',
-			{
-				js: 'never',
-				ts: 'never',
-			},
-		],
+	parserOptions: {
+		parser: '@typescript-eslint/parser',
+		ecmaVersion: 2018,
+		sourceType: 'module',
 	},
 	plugins: ['simple-import-sort', 'vue'],
 	overrides: [
