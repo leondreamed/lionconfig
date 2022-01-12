@@ -16,6 +16,7 @@ module.exports = defineConfig({
 		sourceType: 'module',
 	},
 	plugins: ['simple-import-sort', 'vue'],
+	ignorePatterns: ['dist'],
 	overrides: [
 		{
 			files: '*.vue',
