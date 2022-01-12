@@ -58,5 +58,12 @@ module.exports = defineConfig({
 				],
 			},
 		},
+		{
+			files: ['scripts/**/*.ts'],
+			rules: {
+				'unicorn/no-process-exit': 'off',
+			},
+		},
+
 	],
 });
