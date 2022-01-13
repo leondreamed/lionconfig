@@ -9,4 +9,4 @@ fs.copySync('package.json', 'dist/package.json');
 fs.copySync('src/tsconfig', 'dist/tsconfig');
 
 // Overwrite with ESM loader
-fs.copySync('src/loader.js', 'dist/loader.js');
+fs.copySync('src/loader.mjs', 'dist/loader.mjs');
