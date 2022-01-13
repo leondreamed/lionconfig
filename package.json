@@ -3,16 +3,12 @@
 	"description": "My configuration files for various tools.",
 	"version": "1.0.20",
 	"license": "MIT",
-	"np": {
-		"contents": "./dist",
-		"tests": false,
-		"cleanup": false,
-		"publish": false
+	"lionp": {
+		"tests": false
 	},
 	"scripts": {
-		"version": "pnpm build",
 		"build": "pnpm build --filter=./scripts",
-		"release": "pnpm tc && np && pnpm build && pnpm publish",
+		"release": "lionp",
 		"tc": "tsc --noEmit"
 	},
 	"dependencies": {
@@ -39,7 +35,7 @@
 	"devDependencies": {
 		"@types/node": "^17.0.8",
 		"eslint": "^8.6.0",
-		"np": "^7.6.0",
+		"lionp": "^1.0.9",
 		"prettier": "^2.5.1",
 		"ts-node": "^10.4.0",
 		"tsconfig-paths": "^3.12.0",
