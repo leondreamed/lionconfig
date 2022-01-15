@@ -8,6 +8,7 @@
 	},
 	"bin": {
 		"node-ts": "./tsconfig/node-ts"
+		"node-tsn": "./tsconfig/node-tsn"
 	},
 	"scripts": {
 		"build": "tsm ./scripts/build.mts",

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+node -r @leonzalion/configs/tsconfig/suppress-experimental-loader-warning.cjs --loader ts-node/esm $@
