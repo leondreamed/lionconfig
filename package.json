@@ -7,7 +7,7 @@
 		"tests": false
 	},
 	"bin": {
-		"node-ts": "./tsconfig/node-ts"
+		"node-ts": "./tsconfig/node-ts",
 		"node-tsn": "./tsconfig/node-tsn"
 	},
 	"scripts": {
