@@ -6,6 +6,9 @@
 	"lionp": {
 		"tests": false
 	},
+	"bin": {
+		"node-ts": "./tsconfig/node-ts"
+	},
 	"scripts": {
 		"build": "pnpm build --filter=./scripts",
 		"release": "lionp",

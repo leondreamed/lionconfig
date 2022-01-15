@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+node --loader @leonzalion/configs/loader.mjs $@
