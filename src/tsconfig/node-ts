@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node --loader @leonzalion/configs/loader.mjs $@
+node -r @leonzalion/configs/tsconfig/supress-experimental-loader-warning.cjs --loader @leonzalion/configs/tsconfig/loader.mjs $@
