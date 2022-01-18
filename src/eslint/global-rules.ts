@@ -27,6 +27,10 @@ module.exports = {
 				leadingUnderscore: 'allow', // Sometimes generic type parameters are unused
 			},
 		],
-		'unicorn/prefer-ternary': 'off' // ternaries sometimes make code harder to read
+		'unicorn/prefer-ternary': 'off', // ternaries sometimes make code harder to read
+		'@typescript-eslint/consistent-type-assertions': [
+			'error',
+			{ assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
+		],
 	},
 };

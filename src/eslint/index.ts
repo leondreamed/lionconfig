@@ -64,6 +64,5 @@ module.exports = defineConfig({
 				'unicorn/no-process-exit': 'off',
 			},
 		},
-
 	],
 });

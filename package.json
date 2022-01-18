@@ -8,6 +8,7 @@
 		"node-tsn": "./tsconfig/node-tsn"
 	},
 	"scripts": {
+		"prettier": "prettier --write src", 
 		"build": "tsm ./scripts/build.mts",
 		"release": "lionp",
 		"tc": "tsc --noEmit"

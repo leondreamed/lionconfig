@@ -4,7 +4,7 @@ module.exports = {
 	singleQuote: true,
 	pugSingleFileComponentIndentation: false,
 	pugSingleQuote: false,
-	pugAttributeSeparator: "always",
-	pugWrapAttributesPattern: "1",
-	pugEmptyAttributes: "none"
-}
+	pugAttributeSeparator: 'always',
+	pugWrapAttributesPattern: '1',
+	pugEmptyAttributes: 'none',
+};
