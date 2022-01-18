@@ -29,7 +29,7 @@ importers:
       eslint-plugin-vue: ^8.2.0
       execa: ^6.0.0
       fs-extra: ^10.0.0
-      lionp: ^1.0.9
+      lionp: ^1.0.13
       prettier: ^2.5.1
       ts-node: ^10.4.0
       tsconfig-paths: ^3.12.0
@@ -62,7 +62,7 @@ importers:
       eslint: 8.6.0
       execa: 6.0.0
       fs-extra: 10.0.0
-      lionp: 1.0.9
+      lionp: 1.0.13
       prettier: 2.5.1
       tsconfig-paths: 3.12.0
       tsm: 2.2.1
@@ -859,11 +859,6 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
-
-  /chalk/5.0.0:
-    resolution: {integrity: sha512-/duVOqst+luxCQRKEo4bNxinsOQtMP80ZYm7mMqzuh5PociNL0PvmHFvREJ9ueYL2TxlHjBcmLCdmocx9Vg+IQ==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-    dev: true
 
   /character-parser/2.2.0:
     resolution: {integrity: sha1-x84o821LzZdE5f/CxfzeHHMmH8A=}
@@ -2563,11 +2558,6 @@ packages:
     resolution: {integrity: sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==}
     engines: {node: '>=10'}
 
-  /is-unicode-supported/1.1.0:
-    resolution: {integrity: sha512-lDcxivp8TJpLG75/DpatAqNzOpDPSpED8XNtrpBHTdQ2InQ1PbW78jhwSxyxhhu+xbVSast2X38bwj8atwoUQA==}
-    engines: {node: '>=12'}
-    dev: true
-
   /is-url-superb/4.0.0:
     resolution: {integrity: sha512-GI+WjezhPPcbM+tqE9LnmsY5qqjwHzTvjJ36wxYX5ujNXefSUJ/T17r5bqDV8yLhcgB59KTPNOc9O9cmHTPWsA==}
     engines: {node: '>=10'}
@@ -2701,18 +2691,19 @@ packages:
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  /lionp/1.0.9:
-    resolution: {integrity: sha512-V5ESFqdBur/QYjJ2rgNl6NFHBmoMYSXzugZb9CBH5gzKgWYkQCe4UCG1Gg+3vFKbzMhFBtemxWK+7FbGB4B40A==}
+  /lionp/1.0.13:
+    resolution: {integrity: sha512-pDSi26P/Wo5YrHXOj1Fov2aFoFgvhtNNSeI6f1ZCUdrY6HMyUp38j4FySnIy/z4hwcKKCqGojytcIx538ajLWQ==}
     engines: {git: '>=2.11.0', node: '>=10', npm: '>=6.8.0'}
     hasBin: true
     dependencies:
       async-exit-hook: 2.0.1
-      chalk: 5.0.0
+      chalk: 4.1.2
       cosmiconfig: 7.0.1
       del: 6.0.0
       enquirer: 2.3.6
       escape-goat: 4.0.0
       escape-string-regexp: 5.0.0
+      execa: 6.0.0
       github-url-from-git: 1.5.0
       hosted-git-info: 4.1.0
       ignore-walk: 4.0.1
@@ -2721,7 +2712,7 @@ packages:
       is-scoped: 3.0.0
       issue-regex: 4.0.0
       listr2: 3.14.0_enquirer@2.3.6
-      log-symbols: 5.1.0
+      log-symbols: 4.1.0
       meow: 10.1.2
       minimatch: 3.0.4
       new-github-release-url: 2.0.0
@@ -2810,14 +2801,6 @@ packages:
     dependencies:
       chalk: 4.1.2
       is-unicode-supported: 0.1.0
-
-  /log-symbols/5.1.0:
-    resolution: {integrity: sha512-l0x2DvrW294C9uDCoQe1VSU4gf529FkSZ6leBl4TiqZH/e+0R7hSfHQBNut2mNygDgHwvYHfFLn6Oxb3VWj2rA==}
-    engines: {node: '>=12'}
-    dependencies:
-      chalk: 5.0.0
-      is-unicode-supported: 1.1.0
-    dev: true
 
   /log-update/4.0.0:
     resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}

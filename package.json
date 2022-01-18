@@ -3,9 +3,6 @@
 	"description": "My configuration files for various tools.",
 	"version": "1.0.31",
 	"license": "MIT",
-	"lionp": {
-		"tests": false
-	},
 	"bin": {
 		"node-ts": "./tsconfig/node-ts",
 		"node-tsn": "./tsconfig/node-tsn"
@@ -42,7 +39,7 @@
 		"eslint": "^8.6.0",
 		"execa": "^6.0.0",
 		"fs-extra": "^10.0.0",
-		"lionp": "^1.0.9",
+		"lionp": "^1.0.13",
 		"prettier": "^2.5.1",
 		"tsconfig-paths": "^3.12.0",
 		"tsm": "^2.2.1",
