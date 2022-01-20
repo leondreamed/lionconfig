@@ -29,7 +29,7 @@ importers:
       eslint-plugin-vue: ^8.2.0
       execa: ^6.0.0
       fs-extra: ^10.0.0
-      lionp: ^1.0.13
+      lionp: ^1.0.14
       prettier: ^2.5.1
       ts-node: ^10.4.0
       tsconfig-paths: ^3.12.0
@@ -62,7 +62,7 @@ importers:
       eslint: 8.6.0
       execa: 6.0.0
       fs-extra: 10.0.0
-      lionp: 1.0.13
+      lionp: 1.0.14
       prettier: 2.5.1
       tsconfig-paths: 3.12.0
       tsm: 2.2.1
@@ -2691,8 +2691,8 @@ packages:
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  /lionp/1.0.13:
-    resolution: {integrity: sha512-pDSi26P/Wo5YrHXOj1Fov2aFoFgvhtNNSeI6f1ZCUdrY6HMyUp38j4FySnIy/z4hwcKKCqGojytcIx538ajLWQ==}
+  /lionp/1.0.14:
+    resolution: {integrity: sha512-q/g72J4XLuQ/BpTor1PWWwEVis+sw2/dJA0LycRdT1v/OXuZa5j8sq/EW5+AA7lNEyWuA27xipfRQry2rtpWvw==}
     engines: {git: '>=2.11.0', node: '>=10', npm: '>=6.8.0'}
     hasBin: true
     dependencies:
