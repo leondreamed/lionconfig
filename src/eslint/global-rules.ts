@@ -13,7 +13,6 @@ module.exports = {
 				leadingUnderscore: 'allowSingleOrDouble',
 				trailingUnderscore: 'allow',
 			},
-
 			{
 				selector: 'variable',
 				format: ['camelCase', 'UPPER_CASE'],
@@ -31,6 +30,12 @@ module.exports = {
 		'@typescript-eslint/consistent-type-assertions': [
 			'error',
 			{ assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
+		],
+		'import/no-extraneous-dependencies': [
+			'error',
+			{
+				devDependencies: true,
+			},
 		],
 	},
 };

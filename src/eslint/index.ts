@@ -64,5 +64,14 @@ module.exports = defineConfig({
 				'unicorn/no-process-exit': 'off',
 			},
 		},
+		{
+			files: ['src/**/*.*'],
+			rules: {
+				'import/no-extraneous-dependencies': [
+					'error',
+					{ devDependencies: false },
+				],
+			},
+		},
 	],
 });
