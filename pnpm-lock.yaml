@@ -31,6 +31,7 @@ importers:
       eslint-plugin-vue: ^8.2.0
       execa: ^6.0.0
       fs-extra: ^10.0.0
+      lion-system: ^1.0.5
       lionp: ^1.0.14
       prettier: ^2.5.1
       ts-node: ^10.4.0
@@ -66,6 +67,7 @@ importers:
       eslint: 8.6.0
       execa: 6.0.0
       fs-extra: 10.0.0
+      lion-system: 1.0.5
       lionp: 1.0.14
       prettier: 2.5.1
       tsconfig-paths: 3.12.0
@@ -2834,6 +2836,10 @@ packages:
 
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
+
+  /lion-system/1.0.5:
+    resolution: {integrity: sha512-d2f22LuSdJKO3Ak1NlOssaQXsq6w31SP2taAb/aBSd5yXjnqHl66VreioFF3qQUNDNizWJ8NueocKnMcOM2LpQ==}
+    dev: true
 
   /lionp/1.0.14:
     resolution: {integrity: sha512-q/g72J4XLuQ/BpTor1PWWwEVis+sw2/dJA0LycRdT1v/OXuZa5j8sq/EW5+AA7lNEyWuA27xipfRQry2rtpWvw==}

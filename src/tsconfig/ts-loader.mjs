@@ -3,7 +3,7 @@ import * as tsConfigPaths from 'tsconfig-paths';
 import { pathToFileURL } from 'url';
 
 const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig();
-const matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
+const matchPath = paths === undefined ? () => false : tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
 
 export function resolve(specifier, ctx, defaultResolve) {
 	if (specifier.endsWith('.js')) {

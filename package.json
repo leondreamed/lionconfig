@@ -4,12 +4,11 @@
 	"version": "1.0.36",
 	"license": "MIT",
 	"bin": {
-		"node-ts": "./tsconfig/node-ts",
-		"node-tsn": "./tsconfig/node-tsn"
+		"node-ts": "./tsconfig/node-ts"
 	},
 	"scripts": {
 		"prettier": "prettier --write src",
-		"build": "ts-node ./scripts/build.mts",
+		"build": "pnpm build --filter=./scripts",
 		"release": "lionp",
 		"tc": "tsc --noEmit"
 	},
@@ -42,6 +41,7 @@
 		"eslint": "^8.6.0",
 		"execa": "^6.0.0",
 		"fs-extra": "^10.0.0",
+		"lion-system": "^1.0.5",
 		"lionp": "^1.0.14",
 		"prettier": "^2.5.1",
 		"tsconfig-paths": "^3.12.0",
