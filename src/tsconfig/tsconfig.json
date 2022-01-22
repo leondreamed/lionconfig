@@ -1,4 +1,8 @@
 {
+	"ts-node": {
+		"transpileOnly": true,
+		"transpiler": "ts-node/transpilers/swc-experimental"
+	},
 	"compilerOptions": {
 		// Disabled because of https://github.com/Microsoft/TypeScript/issues/29172
 		// "outDir": "dist",
