@@ -29,7 +29,7 @@ importers:
       eslint-plugin-simple-import-sort: ^7.0.0
       eslint-plugin-unicorn: ^39.0.0
       eslint-plugin-vue: ^8.2.0
-      execa: ^6.0.0
+      execa: ^5.x
       fs-extra: ^10.0.0
       lion-system: ^1.0.5
       lionp: ^1.0.14
@@ -60,12 +60,12 @@ importers:
       eslint-plugin-simple-import-sort: 7.0.0_eslint@8.6.0
       eslint-plugin-unicorn: 39.0.0_eslint@8.6.0
       eslint-plugin-vue: 8.2.0_eslint@8.6.0
+      execa: 5.1.1
       ts-node: 10.4.0_1e625f3c8037a6ac3de3bd7b6240e202
       xo: 0.47.0
     devDependencies:
       '@types/node': 17.0.8
       eslint: 8.6.0
-      execa: 6.0.0
       fs-extra: 10.0.0
       lion-system: 1.0.5
       lionp: 1.0.14

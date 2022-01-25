@@ -33,13 +33,13 @@
 		"eslint-plugin-simple-import-sort": "^7.0.0",
 		"eslint-plugin-unicorn": "^39.0.0",
 		"eslint-plugin-vue": "^8.2.0",
+		"execa": "^5.1.1",
 		"ts-node": "^10.4.0",
 		"xo": "^0.47.0"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.8",
 		"eslint": "^8.6.0",
-		"execa": "^6.0.0",
 		"fs-extra": "^10.0.0",
 		"lion-system": "^1.0.5",
 		"lionp": "^1.0.14",

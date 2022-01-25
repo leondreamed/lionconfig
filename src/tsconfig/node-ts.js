@@ -1,6 +1,6 @@
-const { spawnSync } = require('child_process');
+const execa = require('execa');
 
-spawnSync(
+execa.sync(
 	'node',
 	[
 		'-r',
