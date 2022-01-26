@@ -33,6 +33,7 @@ importers:
       fs-extra: ^10.0.0
       lion-system: ^1.0.5
       lionp: ^1.0.14
+      minimist: ^1.2.5
       prettier: ^2.5.1
       ts-node: ^10.4.0
       tsconfig-paths: ^3.12.0
@@ -60,6 +61,7 @@ importers:
       eslint-plugin-simple-import-sort: 7.0.0_eslint@8.6.0
       eslint-plugin-unicorn: 39.0.0_eslint@8.6.0
       eslint-plugin-vue: 8.2.0_eslint@8.6.0
+      minimist: 1.2.5
       ts-node: 10.4.0_1e625f3c8037a6ac3de3bd7b6240e202
       tsconfig-paths: 3.12.0
       xo: 0.47.0
