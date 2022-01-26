@@ -15,7 +15,7 @@ if (file === undefined) {
 	throw new Error('No file specified.');
 }
 
-const fileIndex = process.argv.indexOf(fileIndex);
+const fileIndex = process.argv.indexOf(file);
 const argv = [...process.argv.slice(2, fileIndex), ...process.argv.slice(fileIndex + 1, process.argv.length)]
 
 spawnSync(
