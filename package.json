@@ -1,7 +1,7 @@
 {
 	"name": "@leonzalion/configs",
 	"description": "My configuration files for various tools.",
-	"version": "1.0.42",
+	"version": "1.0.43",
 	"license": "MIT",
 	"bin": {
 		"node-ts": "./tsconfig/node-ts.js"
