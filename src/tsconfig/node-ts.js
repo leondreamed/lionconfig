@@ -10,7 +10,7 @@ const projectPath = process.argv[1].slice(
 
 // The first CLI argument that doesn't have an option associated with it
 // is the file
-const file = minimist(process.argv)._[0];
+const file = minimist(process.argv.slice(2))._[0];
 if (file === undefined) {
 	throw new Error('No file specified.');
 }
