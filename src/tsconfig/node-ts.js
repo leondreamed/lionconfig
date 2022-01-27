@@ -35,7 +35,9 @@ const result = spawnSync('node', [
 	...argv,
 ]);
 
-if (result.error) {
+if (result.error || result.status !== 0) {
+	console.error('Stdout: ', result.stdout);
+	console.error('Stderr: ', result.stderr);
 	console.error('Error: ', result.error);
 	console.error('Options: ', spawnOptions);
 }
