@@ -1,4 +1,4 @@
-const { spawnSync } = require('child_process');
+const { spawnSync, spawn } = require('child_process');
 const path = require('path');
 const minimist = require('minimist');
 
@@ -27,17 +27,21 @@ const spawnOptions = {
 	cwd: path.join(projectPath, path.dirname(file)),
 };
 
-const result = spawnSync('node', [
-	'-r',
-	'@leonzalion/configs/tsconfig/suppress-experimental-loader-warning.cjs',
-	'--loader',
-	'@leonzalion/configs/tsconfig/ts-loader.mjs',
-	...argv,
-]);
+const result = spawnSync(
+	'node',
+	[
+		'-r',
+		'@leonzalion/configs/tsconfig/suppress-experimental-loader-warning.cjs',
+		'--loader',
+		'@leonzalion/configs/tsconfig/ts-loader.mjs',
+		...argv,
+	],
+	spawnOptions
+);
 
 if (result.error || result.status !== 0) {
-	console.error('Stdout: ', result.stdout);
-	console.error('Stderr: ', result.stderr);
+	console.error('Stdout: ', result.stdout?.toString());
+	console.error('Stderr: ', result.stderr?.toString());
 	console.error('Error: ', result.error);
 	console.error('Options: ', spawnOptions);
 }
