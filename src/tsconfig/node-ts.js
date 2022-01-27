@@ -16,20 +16,26 @@ if (file === undefined) {
 }
 
 const fileIndex = process.argv.indexOf(file);
-const argv = [...process.argv.slice(2, fileIndex), ...process.argv.slice(fileIndex + 1, process.argv.length)]
+const argv = [
+	...process.argv.slice(2, fileIndex),
+	path.join(projectPath, file),
+	...process.argv.slice(fileIndex + 1, process.argv.length),
+];
 
-spawnSync(
-	'node',
-	[
-		'-r',
-		'@leonzalion/configs/tsconfig/suppress-experimental-loader-warning.cjs',
-		'--loader',
-		'@leonzalion/configs/tsconfig/ts-loader.mjs',
-		...argv,
-		path.join(projectPath, file),
-	],
-	{
-		stdio: 'inherit',
-		cwd: path.join(projectPath, path.dirname(file)),
-	}
-);
+const spawnOptions = {
+	stdio: 'inherit',
+	cwd: path.join(projectPath, path.dirname(file)),
+};
+
+const result = spawnSync('node', [
+	'-r',
+	'@leonzalion/configs/tsconfig/suppress-experimental-loader-warning.cjs',
+	'--loader',
+	'@leonzalion/configs/tsconfig/ts-loader.mjs',
+	...argv,
+]);
+
+if (result.error) {
+	console.error('Error: ', result.error);
+	console.error('Options: ', spawnOptions);
+}
