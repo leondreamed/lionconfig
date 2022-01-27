@@ -1,4 +1,4 @@
-const { spawnSync, spawn } = require('child_process');
+const { spawnSync } = require('child_process');
 const path = require('path');
 const minimist = require('minimist');
 
@@ -39,9 +39,6 @@ const result = spawnSync(
 	spawnOptions
 );
 
-if (result.error || result.status !== 0) {
-	console.error('Stdout: ', result.stdout?.toString());
-	console.error('Stderr: ', result.stderr?.toString());
+if (result.error) {
 	console.error('Error: ', result.error);
-	console.error('Options: ', spawnOptions);
 }
