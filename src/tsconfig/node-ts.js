@@ -41,4 +41,5 @@ const result = spawnSync(
 
 if (result.error) {
 	console.error('Error: ', result.error);
+	process.exit(result.error.status);
 }
