@@ -44,5 +44,5 @@ if (result.error || result.status !== 0) {
 		console.error('Error: ', result.error);
 	}
 
-	process.exit(result.status ?? result.error.status);
+	process.exit(result.status);
 }
