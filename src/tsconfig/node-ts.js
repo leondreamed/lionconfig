@@ -1,6 +1,7 @@
 const { spawnSync } = require('child_process');
 const path = require('path');
 const minimist = require('minimist');
+const logSymbols = require('log-symbols');
 
 // The path of the project
 const projectPath = process.argv[1].slice(
@@ -44,5 +45,8 @@ if (result.error || result.status !== 0) {
 		console.error('Error: ', result.error);
 	}
 
-	process.exit(result.status);
+	if (result.status !== 0) {
+		console.log(logSymbols.error, `Process exited with exit code ${result.status}`)
+		process.exit(result.status);
+	}
 }
