@@ -39,7 +39,9 @@ const result = spawnSync(
 	spawnOptions
 );
 
-if (result.error) {
-	console.error('Error: ', result.error);
+if (result.error || result.status !== 0) {
+	if (result.error) {
+		console.error('Error: ', result.error);
+	}
 	process.exit(result.error.status);
 }
