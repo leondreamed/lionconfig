@@ -42,11 +42,11 @@ const result = spawnSync(
 
 if (result.error || result.status !== 0) {
 	if (result.error) {
-		console.error('Error: ', result.error);
+		console.error('Error from node-ts: ', result.error);
 	}
 
 	if (result.status !== 0) {
-		console.log(logSymbols.error, `Process exited with exit code ${result.status}`)
+		console.log(logSymbols.error, `node-ts: Process exited with exit code ${result.status}`)
 		process.exit(result.status);
 	}
 }
