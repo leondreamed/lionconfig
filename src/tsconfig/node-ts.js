@@ -6,7 +6,7 @@ const logSymbols = require('log-symbols');
 // The path of the project
 const projectPath = process.argv[1].slice(
 	0,
-	process.argv[1].indexOf('/node_modules/')
+	process.argv[1].lastIndexOf('/node_modules/')
 );
 
 // The first CLI argument that doesn't have an option associated with it
