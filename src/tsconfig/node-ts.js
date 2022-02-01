@@ -58,7 +58,7 @@ else {
 	fileFullPath = path.join(process.cwd(), filePath);
 }
 
-const nodeOpts = [fileFullPath, argv._.slice(1)];
+const nodeOpts = [...argv._.slice(1), fileFullPath];
 
 const spawnOptions = {
 	stdio: 'inherit',
