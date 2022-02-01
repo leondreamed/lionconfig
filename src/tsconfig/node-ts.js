@@ -3,8 +3,9 @@ const path = require('path');
 const minimist = require('minimist');
 const logSymbols = require('log-symbols');
 const pkgUp = require('pkg-up');
+const fs = require('fs');
 
-export function getProjectDir(pathUrl) {
+function getProjectDir(pathUrl) {
 	const pathDirectory = path.dirname(pathUrl);
 	const getPackageJson = (cwd) => {
 		const packageJsonPath = pkgUp.sync({ cwd });
