@@ -41,7 +41,8 @@ if ((argv['no-ci'] && isCi()) || (argv['ci-only'] && !isCi())) {
 }
 
 // The first CLI argument that doesn't have an option associated with it
-// is the file
+// is the file (thus if the user wants to use node options, they should place
+// those options after -- (e.g. `node-ts my-file.ts -- --node-opt1 --node-opt-2`)
 const filePath = argv._[0];
 if (filePath === undefined) {
 	throw new Error('No file specified.');
@@ -57,12 +58,7 @@ else {
 	fileFullPath = path.join(process.cwd(), filePath);
 }
 
-const filePathIndex = process.argv.indexOf(filePath);
-const nodeOpts = [
-	...process.argv.slice(2, filePathIndex),
-	fileFullPath,
-	...process.argv.slice(filePathIndex + 1, process.argv.length),
-];
+const nodeOpts = [fileFullPath, argv._.slice(1)];
 
 const spawnOptions = {
 	stdio: 'inherit',
