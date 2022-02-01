@@ -8,6 +8,7 @@ importers:
   .:
     specifiers:
       '@commitlint/config-conventional': ^16.0.0
+      '@leonzalion/configs': workspace:^1.0.59
       '@prettier/plugin-pug': ^1.18.0
       '@rushstack/eslint-patch': ^1.1.0
       '@swc/core': ^1.2.133
@@ -72,6 +73,7 @@ importers:
       tsconfig-paths: 3.12.0
       xo: 0.47.0
     devDependencies:
+      '@leonzalion/configs': 'link:'
       '@types/node': 17.0.8
       eslint: 8.6.0
       execa: 6.0.0
