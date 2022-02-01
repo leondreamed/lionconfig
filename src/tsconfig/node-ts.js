@@ -58,7 +58,7 @@ else {
 }
 
 const filePathIndex = process.argv.indexOf(filePath);
-const argv = [
+const nodeOpts = [
 	...process.argv.slice(2, filePathIndex),
 	fileFullPath,
 	...process.argv.slice(filePathIndex + 1, process.argv.length),
@@ -77,7 +77,7 @@ const result = spawnSync(
 		'@leonzalion/configs/tsconfig/suppress-experimental-loader-warning.cjs',
 		'--loader',
 		'@leonzalion/configs/tsconfig/ts-loader.mjs',
-		...argv,
+		...nodeOpts,
 	],
 	spawnOptions
 );
