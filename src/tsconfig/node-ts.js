@@ -4,6 +4,7 @@ const minimist = require('minimist');
 const logSymbols = require('log-symbols');
 const pkgUp = require('pkg-up');
 const fs = require('fs');
+const isCi = require('is-ci');
 
 function getProjectDir(pathUrl) {
 	const pathDirectory = path.dirname(pathUrl);
@@ -33,9 +34,14 @@ function getProjectDir(pathUrl) {
 	return projectPath;
 }
 
+const argv = minimist(process.argv.slice(2));
+if (argv['no-ci'] && isCi()) {
+	process.exit(0);
+}
+
 // The first CLI argument that doesn't have an option associated with it
 // is the file
-const filePath = minimist(process.argv.slice(2))._[0];
+const filePath = argv._[0];
 if (filePath === undefined) {
 	throw new Error('No file specified.');
 }

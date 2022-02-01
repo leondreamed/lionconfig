@@ -31,6 +31,7 @@ importers:
       eslint-plugin-vue: ^8.2.0
       execa: ^6.0.0
       fs-extra: ^10.0.0
+      is-ci: ^3.0.1
       lion-system: ^1.0.5
       lionp: ^1.0.14
       log-symbols: ^4.1.0
@@ -63,6 +64,7 @@ importers:
       eslint-plugin-simple-import-sort: 7.0.0_eslint@8.6.0
       eslint-plugin-unicorn: 39.0.0_eslint@8.6.0
       eslint-plugin-vue: 8.2.0_eslint@8.6.0
+      is-ci: 3.0.1
       log-symbols: 4.1.0
       minimist: 1.2.5
       pkg-up: 3.1.0
@@ -2518,6 +2520,13 @@ packages:
     dependencies:
       ci-info: 2.0.0
     dev: true
+
+  /is-ci/3.0.1:
+    resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
+    hasBin: true
+    dependencies:
+      ci-info: 3.3.0
+    dev: false
 
   /is-core-module/2.8.1:
     resolution: {integrity: sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==}
