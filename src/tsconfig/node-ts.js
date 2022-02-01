@@ -2,6 +2,35 @@ const { spawnSync } = require('child_process');
 const path = require('path');
 const minimist = require('minimist');
 const logSymbols = require('log-symbols');
+const pkgUp = require('pkg-up');
+
+export function getProjectDir(pathUrl) {
+	const pathDirectory = path.dirname(pathUrl);
+	const getPackageJson = (cwd) => {
+		const packageJsonPath = pkgUp.sync({ cwd });
+		if (packageJsonPath === undefined) {
+			throw new Error('No project found.');
+		}
+
+		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
+
+		return { packageJson, packageJsonPath };
+	};
+
+	let { packageJson, packageJsonPath } = getPackageJson(pathDirectory);
+
+	// If the package.json only has "type": "module", search for another one
+	while (
+		packageJson.type === 'module' &&
+		Object.keys(packageJson).length === 1
+	) {
+		const upperDirectory = path.join(path.dirname(packageJsonPath), '..');
+		({ packageJson, packageJsonPath } = getPackageJson(upperDirectory));
+	}
+
+	const projectPath = path.dirname(packageJsonPath);
+	return projectPath;
+}
 
 // The first CLI argument that doesn't have an option associated with it
 // is the file
@@ -30,7 +59,7 @@ const argv = [
 const spawnOptions = {
 	stdio: 'inherit',
 	// Run `node` from the working directory of the file
-	cwd: path.dirname(fileFullPath),
+	cwd: getProjectDir(fileFullPath),
 };
 
 const result = spawnSync(
