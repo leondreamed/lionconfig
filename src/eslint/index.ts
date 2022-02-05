@@ -25,6 +25,13 @@ module.exports = defineConfig({
 			},
 		},
 		{
+			files: '.eslintrc.cjs',
+			env: {
+				browser: false,
+				node: true,
+			},
+		},
+		{
 			files: '*.cjs',
 			rules: {
 				'@typescript-eslint/no-require-imports': 'off',
