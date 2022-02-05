@@ -25,7 +25,7 @@ module.exports = defineConfig({
 			},
 		},
 		{
-			files: '.eslintrc.cjs',
+			files: '**/.eslintrc.cjs',
 			env: {
 				browser: false,
 				node: true,
