@@ -78,12 +78,16 @@ const result = spawnSync(
 	spawnOptions
 );
 
+if (process.env.NODE_TS_DEBUG) {
+	console.debug(result);
+}
+
 if (result.error || result.status !== 0) {
 	if (result.error) {
 		console.error('Error from node-ts: ', result.error);
 	}
 
-	if (result.status !== 0) {
+	if (result.status !== 0 && result.status !== null) {
 		console.log(
 			logSymbols.error,
 			`node-ts: Process exited with exit code ${result.status}`
