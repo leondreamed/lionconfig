@@ -34,7 +34,7 @@ importers:
       fs-extra: ^10.0.0
       is-ci: ^3.0.1
       lion-system: ^1.0.5
-      lionp: ^1.0.14
+      lionp: ^1.0.15
       log-symbols: ^4.1.0
       minimist: ^1.2.5
       pkg-up: ^3.1.0
@@ -79,7 +79,7 @@ importers:
       execa: 6.0.0
       fs-extra: 10.0.0
       lion-system: 1.0.5
-      lionp: 1.0.14
+      lionp: 1.0.15
       prettier: 2.5.1
       tsm: 2.2.1
       typescript: 4.5.4
@@ -2123,6 +2123,14 @@ packages:
       locate-path: 7.0.0
       path-exists: 5.0.0
 
+  /find-up/6.3.0:
+    resolution: {integrity: sha512-v2ZsoEuVHYy8ZIlYqwPe/39Cy+cFDzp4dXPaxNvkEuouymu+2Jbz0PxpKarJHYJTmv2HWT3O382qY8l4jMWthw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      locate-path: 7.1.0
+      path-exists: 5.0.0
+    dev: true
+
   /flat-cache/3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -2867,8 +2875,14 @@ packages:
     resolution: {integrity: sha512-d2f22LuSdJKO3Ak1NlOssaQXsq6w31SP2taAb/aBSd5yXjnqHl66VreioFF3qQUNDNizWJ8NueocKnMcOM2LpQ==}
     dev: true
 
-  /lionp/1.0.14:
-    resolution: {integrity: sha512-q/g72J4XLuQ/BpTor1PWWwEVis+sw2/dJA0LycRdT1v/OXuZa5j8sq/EW5+AA7lNEyWuA27xipfRQry2rtpWvw==}
+  /lion-system/1.0.9:
+    resolution: {integrity: sha512-kOomq2SrAljYpUkzzXHAors4Bibe9+sP51uGSyfi2ilYCx6e0scHiYg3t6oyhWhr4276QjIbjNGwkBEylAB1ww==}
+    dependencies:
+      pkg-up: 4.0.0
+    dev: true
+
+  /lionp/1.0.15:
+    resolution: {integrity: sha512-a1IK4x3TAw8V2uuRHmKJGy8qtCGZroa2kIyxwKawCVYP3m383V7orwxwPAeHB/piUL4P/cft/M6UGeVXoG1XRg==}
     engines: {git: '>=2.11.0', node: '>=10', npm: '>=6.8.0'}
     hasBin: true
     dependencies:
@@ -2887,6 +2901,7 @@ packages:
       is-interactive: 2.0.0
       is-scoped: 3.0.0
       issue-regex: 4.0.0
+      lion-system: 1.0.9
       listr2: 3.14.0_enquirer@2.3.6
       log-symbols: 4.1.0
       meow: 10.1.2
@@ -2960,6 +2975,13 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       p-locate: 6.0.0
+
+  /locate-path/7.1.0:
+    resolution: {integrity: sha512-HNx5uOnYeK4SxEoid5qnhRfprlJeGMzFRKPLCf/15N3/B4AiofNwC/yq7VBKdVk9dx7m+PiYCJOGg55JYTAqoQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-locate: 6.0.0
+    dev: true
 
   /lodash-es/4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
@@ -3526,6 +3548,13 @@ packages:
     dependencies:
       find-up: 3.0.0
     dev: false
+
+  /pkg-up/4.0.0:
+    resolution: {integrity: sha512-N4zdA4sfOe6yCv+ulPCmpnIBQ5I60xfhDr1otdBBhKte9QtEf3bhfrfkW7dTb+IQ0iEx4ZDzas0kc1o5rdWpYg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      find-up: 6.3.0
+    dev: true
 
   /plur/4.0.0:
     resolution: {integrity: sha512-4UGewrYgqDFw9vV6zNV+ADmPAUAfJPKtGvb/VdpQAx25X5f3xXdGdyOEVFwkl8Hl/tl7+xbeHqSEM+D5/TirUg==}
