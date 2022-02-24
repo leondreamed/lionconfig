@@ -38,6 +38,7 @@ module.exports = {
 			},
 		],
 		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
-		'tailwindcss/no-custom-classname': 'off'
+		'tailwindcss/no-custom-classname': 'off',
+		'tailwindcss/classnames-order': 'off'
 	},
 };
