@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { spawnSync } = require('child_process');
 const path = require('path');
 const minimist = require('minimist');
