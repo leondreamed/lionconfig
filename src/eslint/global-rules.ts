@@ -37,6 +37,7 @@ module.exports = {
 				devDependencies: true,
 			},
 		],
-		'vue/component-name-in-template-casing': ['error', 'PascalCase']
+		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+		'tailwindcss/no-custom-classname': 'off'
 	},
 };
