@@ -36,7 +36,7 @@ importers:
       fs-extra: ^10.0.0
       is-ci: ^3.0.1
       lion-system: ^1.0.5
-      lionp: ^1.0.15
+      lionp: ^1.0.17
       log-symbols: ^4.1.0
       minimist: ^1.2.5
       pkg-up: ^3.1.0
@@ -87,7 +87,7 @@ importers:
       execa: 6.0.0
       fs-extra: 10.0.0
       lion-system: 1.0.5
-      lionp: 1.0.15
+      lionp: 1.0.17
       prettier: 2.5.1
       tsm: 2.2.1
       typescript: 4.5.4
@@ -3030,8 +3030,8 @@ packages:
       pkg-up: 4.0.0
     dev: true
 
-  /lionp/1.0.15:
-    resolution: {integrity: sha512-a1IK4x3TAw8V2uuRHmKJGy8qtCGZroa2kIyxwKawCVYP3m383V7orwxwPAeHB/piUL4P/cft/M6UGeVXoG1XRg==}
+  /lionp/1.0.17:
+    resolution: {integrity: sha512-zH2R08kD2t+tkiQxLtIgGptgW83NiJGyaMTS0wvUaHD/qd57Fyq6H4WINOGlgwCVGoEFC43ew/HV/Yvg2PD32w==}
     engines: {git: '>=2.11.0', node: '>=10', npm: '>=6.8.0'}
     hasBin: true
     dependencies:
