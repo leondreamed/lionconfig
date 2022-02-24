@@ -8,6 +8,7 @@ module.exports = defineConfig({
 		require.resolve('xo/config/plugins.cjs'),
 		'plugin:vue/vue3-recommended',
 		'prettier',
+		'plugin:tailwindcss/recommended',
 		'./global-rules.js',
 	],
 	parserOptions: {
@@ -15,7 +16,7 @@ module.exports = defineConfig({
 		ecmaVersion: 2018,
 		sourceType: 'module',
 	},
-	plugins: ['simple-import-sort', 'vue'],
+	plugins: ['simple-import-sort', 'vue', 'tailwindcss'],
 	ignorePatterns: ['dist'],
 	overrides: [
 		{

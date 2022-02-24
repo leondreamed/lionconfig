@@ -1,5 +1,5 @@
 module.exports = {
-	plugins: [require.resolve('@prettier/plugin-pug')],
+	plugins: [require.resolve('@prettier/plugin-pug'), require.resolve('prettier-plugin-tailwindcss')],
 	useTabs: true,
 	singleQuote: true,
 	pugSingleFileComponentIndentation: false,
