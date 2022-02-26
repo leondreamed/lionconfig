@@ -1,9 +1,8 @@
 import { execaCommandSync as exec } from 'execa';
 import fs from 'fs';
-import { copyPackageFiles, rmDist } from 'lion-system';
-import process from 'node:process';
+import { copyPackageFiles, rmDist, chProjectDir } from 'lion-system';
 
-process.chdir('..');
+chProjectDir(import.meta.url)
 rmDist();
 exec('tsc');
 copyPackageFiles();

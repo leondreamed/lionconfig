@@ -1,6 +1,0 @@
-{
-	"type": "module",
-	"scripts": {
-		"build": "node --loader ../src/tsconfig/ts-loader.mjs ./build.ts"
-	}
-}

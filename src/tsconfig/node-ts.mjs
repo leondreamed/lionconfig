@@ -38,7 +38,7 @@ function getProjectDir(pathUrl) {
 
 const argv = minimist(process.argv.slice(2));
 
-if ((argv['no-ci'] && isCi()) || (argv['ci-only'] && !isCi())) {
+if ((argv['no-ci'] && isCi) || (argv['ci-only'] && !isCi)) {
 	process.exit(0);
 }
 
