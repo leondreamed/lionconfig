@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"type": "module",
 	"bin": {
-		"node-ts": "./tsconfig/node-ts.js"
+		"node-ts": "./tsconfig/node-ts.mjs"
 	},
 	"repository": {
 		"type": "git",
