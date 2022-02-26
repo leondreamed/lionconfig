@@ -4,14 +4,14 @@ import { spawnSync } from 'child_process';
 import path from 'path';
 import minimist from 'minimist';
 import logSymbols from 'log-symbols';
-import pkgUp from 'pkg-up';
+import { pkgUpSync } from 'pkg-up';
 import fs from 'fs';
 import isCi from 'is-ci';
 
 function getProjectDir(pathUrl) {
 	const pathDirectory = path.dirname(pathUrl);
 	const getPackageJson = (cwd) => {
-		const packageJsonPath = pkgUp.sync({ cwd });
+		const packageJsonPath = pkgUpSync({ cwd });
 		if (packageJsonPath === undefined) {
 			throw new Error('No project found.');
 		}
