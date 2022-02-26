@@ -27,6 +27,7 @@ module.exports = {
 			},
 		],
 		'unicorn/prefer-ternary': 'off', // ternaries sometimes make code harder to read
+		'unicorn/no-null': 'off',
 		'@typescript-eslint/consistent-type-assertions': [
 			'error',
 			{ assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
