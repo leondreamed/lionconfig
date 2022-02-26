@@ -1,0 +1,8 @@
+{
+	"extends": "./tsconfig.json",
+	"include": [
+		"**/*.ts",
+		".eslintrc.cjs",
+		"jest.setup.ts"
+	]
+}

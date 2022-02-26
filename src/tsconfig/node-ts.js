@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const { spawnSync } = require('child_process');
-const path = require('path');
-const minimist = require('minimist');
-const logSymbols = require('log-symbols');
-const pkgUp = require('pkg-up');
-const fs = require('fs');
-const isCi = require('is-ci');
+import { spawnSync } from 'child_process';
+import path from 'path';
+import minimist from 'minimist';
+import logSymbols from 'log-symbols';
+import pkgUp from 'pkg-up';
+import fs from 'fs';
+import isCi from 'is-ci';
 
 function getProjectDir(pathUrl) {
 	const pathDirectory = path.dirname(pathUrl);
