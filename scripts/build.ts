@@ -7,3 +7,4 @@ rmDist();
 exec('tsc');
 copyPackageFiles();
 fs.cpSync('src/tsconfig', 'dist/tsconfig', { recursive: true });
+fs.cpSync('src/tsconfig.json', 'dist/tsconfig.json');

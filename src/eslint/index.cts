@@ -9,7 +9,7 @@ module.exports = defineConfig({
 		'plugin:vue/vue3-recommended',
 		'prettier',
 		'plugin:tailwindcss/recommended',
-		'./global-rules.js',
+		require.resolve('./global-rules.cjs'),
 	],
 	parserOptions: {
 		parser: '@typescript-eslint/parser',
@@ -47,7 +47,7 @@ module.exports = defineConfig({
 				require.resolve('xo/config/plugins.cjs'),
 				'plugin:vue/vue3-recommended',
 				'prettier',
-				'./global-rules.js',
+				require.resolve('./global-rules.cjs'),
 			],
 			parserOptions: {
 				parser: '@typescript-eslint/parser',
