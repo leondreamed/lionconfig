@@ -1,0 +1,9 @@
+{
+	"name": "my-project",
+	"prettier": "../../../dist/prettier.cjs",
+	"commitlint": {
+		"extends": [
+			"../../../dist/commitlint.cjs"
+		]
+	}
+}
