@@ -1,1 +1,1 @@
-module.exports = require('./markdownlint/index.cjs');
+module.exports = require("./markdownlint/index.cjs");

@@ -5,7 +5,7 @@ import { join } from 'desm';
 import { nanoid } from 'nanoid'
 
 const myProjectPath = join(import.meta.url, '../fixtures/my-project');
-const tempFolder = path.join(myProjectPath, '../../temp');
+const tempFolder = path.join(import.meta.url, 'temp');
 
 beforeAll(() => {
 	fs.rmSync(tempFolder, { force: true, recursive: true })
@@ -18,6 +18,7 @@ afterAll(() => {
 async function cloneTempProject() {
 	const tempProjectDir = path.join(tempFolder, nanoid());
 	await fs.promises.mkdir(tempProjectDir, { recursive: true });
+	await fs.promises.cp(myProjectPath, tempFolder, { recursive: true})
 	return tempProjectDir;
 }
 
@@ -28,12 +29,14 @@ test('eslint works', async() => {
 
 test('prettier works', async() => {
 	const tempProjectDir = await cloneTempProject();
-	await execaCommand('pnpm exec prettier --write', { cwd: tempProjectDir })
+	await execaCommand('pnpm exec prettier --write src', { cwd: tempProjectDir })
 })
 
 test('commitlint works', async() => {
 	const tempProjectDir = await cloneTempProject();
-	await execaCommand('pnpm exec commitlint --edit "fix: fix"', { cwd: tempProjectDir })
+	const commitlintProcess = execaCommand('pnpm exec commitlint', { cwd: tempProjectDir })
+	commitlintProcess.stdin?.write('fix: fix')
+	await commitlintProcess;
 })
 
 test('markdownlint works', async () => {

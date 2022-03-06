@@ -1,1 +1,1 @@
-module.exports = require('./commitlint/index.cjs');
+module.exports = require("./commitlint/index.cjs");
