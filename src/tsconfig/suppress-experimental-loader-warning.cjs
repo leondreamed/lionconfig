@@ -1,3 +1,5 @@
+const process = require('process');
+
 const { emitWarning } = process;
 
 process.emitWarning = (warning, arg, ...rest) => {

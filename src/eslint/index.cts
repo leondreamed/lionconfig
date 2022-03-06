@@ -33,10 +33,11 @@ module.exports = defineConfig({
 			},
 		},
 		{
-			files: '*.cjs',
+			files: ['*.cjs', '*.cts'],
 			rules: {
 				'@typescript-eslint/no-require-imports': 'off',
 				'@typescript-eslint/no-var-requires': 'off',
+				'unicorn/prefer-module': 'off'
 			},
 		},
 		{

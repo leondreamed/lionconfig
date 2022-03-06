@@ -3,9 +3,9 @@
 	"include": [
 		".eslintrc.cjs",
 		".prettierrc.cjs",
-		"tsconfig.json",
 		"vitest.config.ts",
 		"src",
+		"scripts",
 		"test"
 	]
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 module.exports = {
 	rules: {
 		'import/no-unassigned-import': 'off',

@@ -1,5 +1,5 @@
+import fs from 'node:fs';
 import { execaCommandSync as exec } from 'execa';
-import fs from 'fs';
 import { copyPackageFiles, rmDist, chProjectDir } from 'lion-system';
 
 chProjectDir(import.meta.url)
