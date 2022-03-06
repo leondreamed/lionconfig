@@ -1,1 +1,1 @@
-module.exports = require('./src/prettier/index.js');
+module.exports = require('./dist/prettier.cjs');

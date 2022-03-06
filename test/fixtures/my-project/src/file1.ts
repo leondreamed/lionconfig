@@ -1,0 +1,1 @@
+export const filePath1 = import.meta.url;

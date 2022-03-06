@@ -1,3 +1,3 @@
 module.exports = {
-	extends: [require.resolve('@leonzalion/configs/eslint/index.js')],
+	extends: [require.resolve('./dist/eslint.cjs')],
 };
