@@ -1,6 +1,6 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import { execaCommand } from 'execa';
+import { execaCommand, execa } from 'execa';
 import { join } from 'desm';
 import { beforeAll, afterAll, test } from 'vitest';
 
@@ -50,12 +50,12 @@ async function cloneTempProject(testName: string) {
 	const testName = 'commitlint works';
 	test.concurrent(testName, async () => {
 		const tempProjectDir = await cloneTempProject(testName);
-		const commitlintProcess = execaCommand('pnpm exec commitlint', {
+		const messageTxtPath = path.join(tempProjectDir, 'message.txt');
+		await fs.promises.writeFile(messageTxtPath, 'fix: fix');
+		await execa('pnpm', ['exec', 'commitlint', '--edit', messageTxtPath], {
 			cwd: tempProjectDir,
 			stdio: 'inherit',
 		});
-		commitlintProcess.stdin?.write('fix: fix');
-		await commitlintProcess;
 	});
 }
 
@@ -63,7 +63,8 @@ async function cloneTempProject(testName: string) {
 	const testName = 'markdownlint works';
 	test.concurrent(testName, async () => {
 		const tempProjectDir = await cloneTempProject(testName);
-		await execaCommand('pnpm exec markdownlint-cli readme.md', {
+		const readmePath = path.join(tempProjectDir, 'readme.md');
+		await execa('pnpm', ['exec', 'markdownlint', readmePath], {
 			cwd: tempProjectDir,
 			stdio: 'inherit',
 		});

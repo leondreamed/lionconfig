@@ -15,7 +15,7 @@
 	"scripts": {
 		"prettier": "prettier --write src",
 		"prepare": "lion-git-hooks",
-		"test": "vitest",
+		"test": "vitest run",
 		"build": "node --loader ts-node/esm ./scripts/build.ts",
 		"release": "lionp",
 		"tc": "tsc --noEmit"
