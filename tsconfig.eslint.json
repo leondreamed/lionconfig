@@ -1,0 +1,11 @@
+{
+	"extends": "./tsconfig.json",
+	"include": [
+		".eslintrc.cjs",
+		".prettierrc.cjs",
+		"tsconfig.json",
+		"vitest.config.ts",
+		"src",
+		"test"
+	]
+}

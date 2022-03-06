@@ -5,5 +5,13 @@
 		"extends": [
 			"../../../dist/commitlint.cjs"
 		]
+	},
+	"dependencies": {
+		"eslint": "latest",
+		"prettier": "latest",
+		"@commitlint/cli": "latest",
+		"typescript": "latest",
+		"markdownlint-cli": "latest",
+		"@leonzalion/configs": "link:../../../dist"
 	}
 }
