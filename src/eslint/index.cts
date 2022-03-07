@@ -65,6 +65,7 @@ module.exports = defineConfig({
 						caughtErrorsIgnorePattern: '^_',
 					},
 				],
+				'import/named': 'off'
 			},
 		},
 		{
