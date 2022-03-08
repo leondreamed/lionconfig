@@ -41,7 +41,7 @@ module.exports = defineConfig({
 			},
 		},
 		{
-			files: ['vitest.config.ts', '.eslintrc.cjs'],
+			files: ['**/vitest.config.ts', '**/.eslintrc.cjs'],
 			rules: {
 				'@typescript-eslint/naming-convention': 'off',
 			},
