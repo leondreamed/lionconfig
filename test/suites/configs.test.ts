@@ -2,21 +2,13 @@ import path from 'node:path';
 import fs from 'node:fs';
 import { execaCommand, execa } from 'execa';
 import { join } from 'desm';
-import { beforeAll, afterAll, test } from 'vitest';
+import { beforeAll, afterAll, test, describe } from 'vitest';
 
 const myProjectPath = join(import.meta.url, '../fixtures/my-project');
 const tempFolder = join(import.meta.url, '../temp');
 
-beforeAll(() => {
-	fs.rmSync(tempFolder, { force: true, recursive: true });
-});
-
-afterAll(() => {
-	// fs.rmSync(tempFolder, { force: true, recursive: true });
-});
-
-async function cloneTempProject(testName: string) {
-	const tempProjectDir = path.join(tempFolder, testName);
+async function cloneTempProject(projectPath: string) {
+	const tempProjectDir = path.join(tempFolder, path.basename(projectPath));
 	console.log(tempProjectDir);
 	await fs.promises.mkdir(tempProjectDir, { recursive: true });
 	await fs.promises.cp(myProjectPath, tempProjectDir, { recursive: true });
@@ -24,60 +16,55 @@ async function cloneTempProject(testName: string) {
 	return tempProjectDir;
 }
 
-{
-	const testName = 'eslint works';
-	test.concurrent(testName, async () => {
-		const tempProjectDir = await cloneTempProject(testName);
+beforeAll(async () => {
+	await fs.promises.rm(tempFolder, { force: true, recursive: true });
+});
+
+afterAll(() => {
+	// fs.rmSync(tempFolder, { force: true, recursive: true });
+});
+
+describe('works with my-project', async () => {
+	let projectDir: string;
+	beforeAll(async () => {
+		projectDir = await cloneTempProject(myProjectPath);
+	});
+
+	test('eslint works', async () => {
 		await execaCommand('pnpm exec eslint --fix .', {
-			cwd: tempProjectDir,
+			cwd: projectDir,
 			stdio: 'inherit',
 		});
 	});
-}
 
-{
-	const testName = 'prettier works';
-	test.concurrent(testName, async () => {
-		const tempProjectDir = await cloneTempProject(testName);
+	test('prettier works', async () => {
 		await execaCommand('pnpm exec prettier --write src', {
-			cwd: tempProjectDir,
+			cwd: projectDir,
 			stdio: 'inherit',
 		});
 	});
-}
 
-{
-	const testName = 'commitlint works';
-	test.concurrent(testName, async () => {
-		const tempProjectDir = await cloneTempProject(testName);
-		const messageTxtPath = path.join(tempProjectDir, 'message.txt');
+	test('commitlint works', async () => {
+		const messageTxtPath = path.join(projectDir, 'message.txt');
 		await fs.promises.writeFile(messageTxtPath, 'fix: fix');
 		await execa('pnpm', ['exec', 'commitlint', '--edit', messageTxtPath], {
-			cwd: tempProjectDir,
+			cwd: projectDir,
 			stdio: 'inherit',
 		});
 	});
-}
 
-{
-	const testName = 'markdownlint works';
-	test.concurrent(testName, async () => {
-		const tempProjectDir = await cloneTempProject(testName);
-		const readmePath = path.join(tempProjectDir, 'readme.md');
+	test('markdownlint works', async () => {
+		const readmePath = path.join(projectDir, 'readme.md');
 		await execa('pnpm', ['exec', 'markdownlint', readmePath], {
-			cwd: tempProjectDir,
+			cwd: projectDir,
 			stdio: 'inherit',
 		});
 	});
-}
 
-{
-	const testName = 'typescript works';
-	test.concurrent(testName, async () => {
-		const tempProjectDir = await cloneTempProject(testName);
+	test('typescript works', async () => {
 		await execaCommand('pnpm exec tsc --noEmit', {
-			cwd: tempProjectDir,
+			cwd: projectDir,
 			stdio: 'inherit',
 		});
 	});
-}
+});
