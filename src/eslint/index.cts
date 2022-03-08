@@ -37,7 +37,13 @@ module.exports = defineConfig({
 			rules: {
 				'@typescript-eslint/no-require-imports': 'off',
 				'@typescript-eslint/no-var-requires': 'off',
-				'unicorn/prefer-module': 'off'
+				'unicorn/prefer-module': 'off',
+			},
+		},
+		{
+			files: ['vitest.config.ts', '.eslintrc.cjs'],
+			rules: {
+				'@typescript-eslint/naming-convention': 'off',
 			},
 		},
 		{
@@ -65,7 +71,7 @@ module.exports = defineConfig({
 						caughtErrorsIgnorePattern: '^_',
 					},
 				],
-				'import/named': 'off'
+				'import/named': 'off',
 			},
 		},
 		{

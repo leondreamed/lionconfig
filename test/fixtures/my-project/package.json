@@ -13,5 +13,9 @@
 		"typescript": "latest",
 		"markdownlint-cli": "latest",
 		"@leonzalion/configs": "link:../../../dist"
+	},
+	"devDependencies": {
+		"vitest": "^0.6.0",
+		"desm": "^1.2.0"
 	}
 }
