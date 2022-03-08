@@ -44,7 +44,7 @@ specifiers:
   ts-node: ^10.7.0
   tsconfig-paths: ^3.13.0
   typescript: ^4.6.2
-  vitest: ^0.5.9
+  vitest: ^0.6.0
   webpack: npm:lodash.noop@^3.0.1
   xo: ^0.48.0
 
@@ -96,7 +96,7 @@ devDependencies:
   prettier: 2.5.1
   tmp-promise: 3.0.3
   typescript: 4.6.2
-  vitest: 0.5.9
+  vitest: 0.6.0
 
 packages:
 
@@ -4933,8 +4933,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.5.9:
-    resolution: {integrity: sha512-R8lRP9Q1yIbwr8pDf2gvw4PFe8H5YMyHhBcdyfnUh6toLfCR10jrdI/WkNxdo5I4H/9XrMX9t+SAavdJExNdKg==}
+  /vitest/0.6.0:
+    resolution: {integrity: sha512-FuIkLHCQxz6rO35MQROUtVdwcBaYnt198YpPGIrJXmuNHGolfPbrZIiwpD7bek0OiETxuphK3+KR5oJ5Qi1g5A==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
