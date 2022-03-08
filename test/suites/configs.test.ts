@@ -17,6 +17,7 @@ async function cloneTempProject(projectPath: string) {
 }
 
 beforeAll(async () => {
+	await execaCommand('pnpm build');
 	await fs.promises.rm(tempFolder, { force: true, recursive: true });
 });
 
