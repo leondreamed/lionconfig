@@ -7,27 +7,6 @@ module.exports = {
 		'unicorn/prevent-abbreviations': 'off', // code is sometimes clearer with abbreviations
 		'no-else-return': 'off', // code is sometimes clearer with an else
 		'no-lonely-if': 'off', // code is sometimes clearer with a lonely if
-		'@typescript-eslint/naming-convention': [
-			'error',
-			{
-				selector: 'default',
-				format: ['camelCase'],
-				leadingUnderscore: 'allowSingleOrDouble',
-				trailingUnderscore: 'allow',
-			},
-			{
-				selector: 'variable',
-				format: ['camelCase', 'UPPER_CASE'],
-				leadingUnderscore: 'allowSingleOrDouble',
-				trailingUnderscore: 'allow',
-			},
-
-			{
-				selector: 'typeLike',
-				format: ['PascalCase'],
-				leadingUnderscore: 'allow', // Sometimes generic type parameters are unused
-			},
-		],
 		'unicorn/prefer-ternary': 'off', // ternaries sometimes make code harder to read
 		'unicorn/no-null': 'off',
 		'@typescript-eslint/consistent-type-assertions': [
