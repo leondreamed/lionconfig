@@ -93,5 +93,7 @@ module.exports = {
 			},
 		],
 		'capitalized-comments': 'off', // Want to be able to comment out code without it autofixing that
+		// Too annoying when using keys that don't adhere to naming convention
+		'@typescript-eslint/naming-convention': 'off'
 	},
 };
