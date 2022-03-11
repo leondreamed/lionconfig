@@ -32,7 +32,7 @@ specifiers:
   is-ci: ^3.0.1
   lion-git-hooks: ^1.0.7
   lion-system: ^1.0.11
-  lionp: ^1.0.19
+  lionp: ^1.0.21
   log-symbols: ^5.1.0
   minimist: ^1.2.5
   nanoid: ^3.3.1
@@ -93,7 +93,7 @@ devDependencies:
   globby: 13.1.1
   lion-git-hooks: 1.0.7
   lion-system: 1.0.11
-  lionp: 1.0.19
+  lionp: 1.0.21
   nanoid: 3.3.1
   prettier: 2.5.1
   tmp-promise: 3.0.3
@@ -1074,6 +1074,12 @@ packages:
       balanced-match: 1.0.2
       concat-map: 0.0.1
 
+  /brace-expansion/2.0.1:
+    resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==}
+    dependencies:
+      balanced-match: 1.0.2
+    dev: true
+
   /braces/3.0.2:
     resolution: {integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==}
     engines: {node: '>=8'}
@@ -1219,7 +1225,11 @@ packages:
   /chalk/5.0.0:
     resolution: {integrity: sha512-/duVOqst+luxCQRKEo4bNxinsOQtMP80ZYm7mMqzuh5PociNL0PvmHFvREJ9ueYL2TxlHjBcmLCdmocx9Vg+IQ==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-    dev: false
+
+  /chalk/5.0.1:
+    resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+    dev: true
 
   /character-parser/2.2.0:
     resolution: {integrity: sha1-x84o821LzZdE5f/CxfzeHHMmH8A=}
@@ -2822,9 +2832,9 @@ packages:
     resolution: {integrity: sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA==}
     engines: {node: '>=10'}
 
-  /inquirer/8.2.0:
-    resolution: {integrity: sha512-0crLweprevJ02tTuA6ThpoAERAGyVILC4sS74uib58Xf/zSr1/ZWtmm7D5CI+bSQEaA04f0K7idaHpQbSWgiVQ==}
-    engines: {node: '>=8.0.0'}
+  /inquirer/8.2.1:
+    resolution: {integrity: sha512-pxhBaw9cyTFMjwKtkjePWDhvwzvrNGAw7En4hottzlPvz80GZaMZthdDU35aA6/f5FRZf3uhE057q8w1DE3V2g==}
+    engines: {node: '>=12.0.0'}
     dependencies:
       ansi-escapes: 4.3.2
       chalk: 4.1.2
@@ -2836,7 +2846,7 @@ packages:
       mute-stream: 0.0.8
       ora: 5.4.1
       run-async: 2.4.1
-      rxjs: 7.5.4
+      rxjs: 7.5.5
       string-width: 4.2.3
       strip-ansi: 6.0.1
       through: 2.3.8
@@ -3126,7 +3136,6 @@ packages:
   /is-unicode-supported/1.1.0:
     resolution: {integrity: sha512-lDcxivp8TJpLG75/DpatAqNzOpDPSpED8XNtrpBHTdQ2InQ1PbW78jhwSxyxhhu+xbVSast2X38bwj8atwoUQA==}
     engines: {node: '>=12'}
-    dev: false
 
   /is-url-superb/4.0.0:
     resolution: {integrity: sha512-GI+WjezhPPcbM+tqE9LnmsY5qqjwHzTvjJ36wxYX5ujNXefSUJ/T17r5bqDV8yLhcgB59KTPNOc9O9cmHTPWsA==}
@@ -3284,13 +3293,13 @@ packages:
       pkg-up: 4.0.0
     dev: true
 
-  /lionp/1.0.19:
-    resolution: {integrity: sha512-RNomRUlpPdCVpJhxLMvTtDyqw5E3AzQl1Y58fLsxySq/Xoks4jDSnudn8iJAj3aQ8/893gLijMnkNzDyD6x4vQ==}
+  /lionp/1.0.21:
+    resolution: {integrity: sha512-MYOZKVbYLsHFj0wrntms++kcx+QVMdYoG8Fqosho3aGyJvJvd5BeuDKxl8p6Dbaizrx7jTxoz9/NR8hbAyh0mA==}
     engines: {git: '>=2.11.0', node: '>=10', npm: '>=6.8.0'}
     hasBin: true
     dependencies:
       async-exit-hook: 2.0.1
-      chalk: 4.1.2
+      chalk: 5.0.1
       cosmiconfig: 7.0.1
       del: 6.0.0
       enquirer: 2.3.6
@@ -3300,15 +3309,15 @@ packages:
       github-url-from-git: 1.5.0
       hosted-git-info: 4.1.0
       ignore-walk: 4.0.1
-      inquirer: 8.2.0
+      inquirer: 8.2.1
       is-interactive: 2.0.0
       is-scoped: 3.0.0
       issue-regex: 4.0.0
       lion-system: 1.0.11
-      listr2: 3.14.0_enquirer@2.3.6
-      log-symbols: 4.1.0
+      listr2: 4.0.5_enquirer@2.3.6
+      log-symbols: 5.1.0
       meow: 10.1.2
-      minimatch: 3.1.2
+      minimatch: 5.0.1
       new-github-release-url: 2.0.0
       npm-name: 6.0.1
       onetime: 6.0.0
@@ -3324,9 +3333,9 @@ packages:
       update-notifier: 5.1.0
     dev: true
 
-  /listr2/3.14.0_enquirer@2.3.6:
-    resolution: {integrity: sha512-TyWI8G99GX9GjE54cJ+RrNMcIFBfwMPxc3XTFiAYGN4s10hWROGtOg7+O6u6LE3mNkyld7RSLE6nrKBvTfcs3g==}
-    engines: {node: '>=10.0.0'}
+  /listr2/4.0.5_enquirer@2.3.6:
+    resolution: {integrity: sha512-juGHV1doQdpNT3GSTs9IUN43QJb7KHdF9uqg7Vufs/tG9VTzpFphqF4pm/ICdAABGQxsyNn9CiYA3StkI6jpwA==}
+    engines: {node: '>=12'}
     peerDependencies:
       enquirer: '>= 2.3.0 < 3'
     peerDependenciesMeta:
@@ -3339,7 +3348,7 @@ packages:
       log-update: 4.0.0
       p-map: 4.0.0
       rfdc: 1.3.0
-      rxjs: 7.5.4
+      rxjs: 7.5.5
       through: 2.3.8
       wrap-ansi: 7.0.0
     dev: true
@@ -3406,7 +3415,6 @@ packages:
     dependencies:
       chalk: 5.0.0
       is-unicode-supported: 1.1.0
-    dev: false
 
   /log-update/4.0.0:
     resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}
@@ -3542,6 +3550,13 @@ packages:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
       brace-expansion: 1.1.11
+
+  /minimatch/5.0.1:
+    resolution: {integrity: sha512-nLDxIFRyhDblz3qMuq+SoRZED4+miJ/G+tdDrjkkkRnjAsBexeGpgjLEQ0blJy7rHhR2b93rhQY4SvyWu9v03g==}
+    engines: {node: '>=10'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
 
   /minimist-options/4.1.0:
     resolution: {integrity: sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==}
@@ -4321,8 +4336,8 @@ packages:
     dependencies:
       queue-microtask: 1.2.3
 
-  /rxjs/7.5.4:
-    resolution: {integrity: sha512-h5M3Hk78r6wAheJF0a5YahB1yRQKCsZ4MsGdZ5O9ETbVtjPcScGfrMmoOq7EBsCRzd4BDkvDJ7ogP8Sz5tTFiQ==}
+  /rxjs/7.5.5:
+    resolution: {integrity: sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==}
     dependencies:
       tslib: 2.3.1
     dev: true
