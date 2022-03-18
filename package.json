@@ -23,7 +23,6 @@
 	},
 	"dependencies": {
 		"@commitlint/config-conventional": "^16.2.1",
-		"@prettier/plugin-pug": "^1.19.3",
 		"@rushstack/eslint-patch": "^1.1.1",
 		"@swc/core": "^1.2.158",
 		"@swc/helpers": "^0.3.8",
