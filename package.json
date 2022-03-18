@@ -61,7 +61,7 @@
 		"globby": "^13.1.1",
 		"lion-git-hooks": "^1.0.7",
 		"lion-system": "^1.0.11",
-		"lionp": "^1.0.21",
+		"lionp": "^1.0.23",
 		"nanoid": "^3.3.1",
 		"prettier": "^2.6.0",
 		"tmp-promise": "^3.0.3",
