@@ -5,7 +5,13 @@
 	"license": "MIT",
 	"type": "module",
 	"bin": {
-		"node-ts": "./tsconfig/node-ts.mjs"
+		"node-ts": "./tsconfig/node-ts.mjs",
+		"commitlint": "./node_modules/.bin/commitlint",
+		"eslint": "./node_modules/.bin/eslint",
+		"lionp": "./node_modules/.bin/lionp",
+		"lion-git-hooks": "./node_modules/.bin/lion-git-hooks",
+		"prettier": "./node_modules/.bin/prettier",
+		"ts-node": "./node_modules/.bin/ts-node"
 	},
 	"repository": {
 		"type": "git",
