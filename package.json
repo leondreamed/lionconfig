@@ -10,9 +10,9 @@
 		"eslint": "./bin/eslint.cjs",
 		"lionp": "./bin/lionp.cjs",
 		"lion-git-hooks": "./bin/lion-git-hooks.cjs",
-		"markdownlint": "./node_modules/markdownlint.cjs",
-		"prettier": "./node_modules/prettier.cjs",
-		"ts-node": "./node_modules/ts-node.cjs"
+		"markdownlint": "./bin/markdownlint.cjs",
+		"prettier": "./bin/prettier.cjs",
+		"ts-node": "./bin/ts-node.cjs"
 	},
 	"repository": {
 		"type": "git",
