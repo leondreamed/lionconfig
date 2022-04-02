@@ -1,2 +1,2 @@
 const { executeBin } = require('../utils/bin.cjs');
-executeBin('lint-staged');
+executeBin('lint-staged', 'bin/lint-staged.js');

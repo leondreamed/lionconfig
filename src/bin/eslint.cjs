@@ -1,2 +1,2 @@
 const { executeBin } = require('../utils/bin.cjs');
-executeBin('eslint');
+executeBin('eslint', 'bin/eslint.js');

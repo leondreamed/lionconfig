@@ -1,2 +1,2 @@
 const { executeBin } = require('../utils/bin.cjs');
-executeBin('ts-node');
+executeBin('ts-node', 'dist/bin.js');
