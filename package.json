@@ -1,7 +1,7 @@
 {
 	"name": "@leonzalion/configs",
 	"description": "My configuration files for various tools.",
-	"version": "1.1.20",
+	"version": "1.1.21",
 	"license": "MIT",
 	"type": "module",
 	"bin": {
