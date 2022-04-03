@@ -12,7 +12,8 @@
 		"lion-git-hooks": "./bin/lion-git-hooks.cjs",
 		"markdownlint": "./bin/markdownlint.cjs",
 		"prettier": "./bin/prettier.cjs",
-		"ts-node": "./bin/ts-node.cjs"
+		"ts-node": "./bin/ts-node.cjs",
+		"tsc-alias": "./bin/tsc-alias.cjs"
 	},
 	"repository": {
 		"type": "git",
@@ -62,6 +63,7 @@
 		"prettier": "^2.6.2",
 		"resolve": "^1.22.0",
 		"ts-node": "^10.7.0",
+		"tsc-alias": "^1.6.5",
 		"tsconfig-paths": "^3.14.1",
 		"update-notifier": "^5.1.0",
 		"webpack": "npm:lodash.noop@^3.0.1",
