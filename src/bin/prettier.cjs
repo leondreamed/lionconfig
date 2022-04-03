@@ -1,2 +1,2 @@
 const { executeBin } = require('../utils/bin.cjs');
-executeBin('prettier', 'cli.js');
+executeBin('prettier', 'bin-prettier.js');
