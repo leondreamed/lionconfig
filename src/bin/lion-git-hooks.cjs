@@ -1,2 +1,2 @@
 const { executeBin } = require('../utils/bin.cjs');
-executeBin('lion-git-hooks', 'cli.js');
+executeBin('lion-git-hooks', 'bin/cli.js');
