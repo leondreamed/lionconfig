@@ -31,7 +31,7 @@ specifiers:
   lint-staged: ^12.3.7
   lion-git-hooks: ^1.0.7
   lion-system: ^1.0.17
-  lionp: ^1.0.23
+  lionp: ^1.0.24
   log-symbols: ^5.1.0
   markdownlint-cli: ^0.31.1
   minimist: ^1.2.6
@@ -75,7 +75,7 @@ dependencies:
   lint-staged: 12.3.7
   lion-git-hooks: 1.0.7
   lion-system: 1.0.17
-  lionp: 1.0.23
+  lionp: 1.0.24
   log-symbols: 5.1.0
   markdownlint-cli: 0.31.1
   minimist: 1.2.6
@@ -3236,8 +3236,8 @@ packages:
       pkg-up: 4.0.0
     dev: false
 
-  /lionp/1.0.23:
-    resolution: {integrity: sha512-jgdcKhKQvC4JHuRBgD2R/Sp+6kqztWdNWvJDXkVSd+OkQjibraDUxJA12mWutq+BxRYyAYUGI6QxKLETTBKpLg==}
+  /lionp/1.0.24:
+    resolution: {integrity: sha512-jyB5xzN12KnJgfn9afpewqNN+kIYSIPoS2KYHqpBxkO69oT1rgBUq5saMKHQNaUdlIYcdYei7kddOtWrbgV7dA==}
     engines: {git: '>=2.11.0', node: '>=10', npm: '>=6.8.0'}
     hasBin: true
     dependencies:

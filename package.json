@@ -54,7 +54,7 @@
 		"lint-staged": "^12.3.7",
 		"lion-git-hooks": "^1.0.7",
 		"lion-system": "^1.0.17",
-		"lionp": "^1.0.23",
+		"lionp": "^1.0.24",
 		"log-symbols": "^5.1.0",
 		"markdownlint-cli": "^0.31.1",
 		"minimist": "^1.2.6",
