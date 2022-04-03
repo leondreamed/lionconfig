@@ -52,7 +52,7 @@
 		"eslint-plugin-vue": "^8.5.0",
 		"is-ci": "^3.0.1",
 		"lint-staged": "^12.3.7",
-		"lion-git-hooks": "^1.0.7",
+		"lion-git-hooks": "^1.0.8",
 		"lion-system": "^1.0.17",
 		"lionp": "^1.0.24",
 		"log-symbols": "^5.1.0",

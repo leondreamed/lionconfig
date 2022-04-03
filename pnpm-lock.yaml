@@ -29,7 +29,7 @@ specifiers:
   globby: ^13.1.1
   is-ci: ^3.0.1
   lint-staged: ^12.3.7
-  lion-git-hooks: ^1.0.7
+  lion-git-hooks: ^1.0.8
   lion-system: ^1.0.17
   lionp: ^1.0.24
   log-symbols: ^5.1.0
@@ -73,7 +73,7 @@ dependencies:
   eslint-plugin-vue: 8.5.0_eslint@8.12.0
   is-ci: 3.0.1
   lint-staged: 12.3.7
-  lion-git-hooks: 1.0.7
+  lion-git-hooks: 1.0.8
   lion-system: 1.0.17
   lionp: 1.0.24
   log-symbols: 5.1.0
@@ -3213,8 +3213,8 @@ packages:
       - enquirer
     dev: false
 
-  /lion-git-hooks/1.0.7:
-    resolution: {integrity: sha512-NpAqZXVk6p1UPaJbsMV5TnRwcyVRaRYt+lv11Ju1RhShU65FILSKiNVZwFP2HaL4Cm1WAdDIMQ3f2VlTb4Bhrw==}
+  /lion-git-hooks/1.0.8:
+    resolution: {integrity: sha512-B3q72OrxVKCpZcXQvWGPbJoFQluiMlZ3ukJwGYIdTL4kDE9kn0/KrG05j41RElZEn+faN0RaoHxh/ZSGO7HoUA==}
     hasBin: true
     dependencies:
       cosmiconfig: 7.0.1
