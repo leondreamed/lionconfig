@@ -8,6 +8,7 @@
 		"node-ts": "./tsconfig/node-ts.mjs",
 		"commitlint": "./bin/commitlint.cjs",
 		"eslint": "./bin/eslint.cjs",
+		"lint-staged": "./bin/lint-staged.cjs",
 		"lionp": "./bin/lionp.cjs",
 		"lion-git-hooks": "./bin/lion-git-hooks.cjs",
 		"markdownlint": "./bin/markdownlint.cjs",
