@@ -2,7 +2,7 @@ const process = require('process');
 const { spawnSync } = require("child_process");
 const resolve = require('resolve');
 
-exports.executeBin = function(packageName, relativeBinPath, args) {
+exports.executeBin = function(packageName, relativeBinPath, args = []) {
 	const binPath = resolve.sync(packageName, {
 		basedir: __dirname,
 		packageFilter(pkg) {
@@ -14,7 +14,7 @@ exports.executeBin = function(packageName, relativeBinPath, args) {
 	process.exit(
 		spawnSync(
 			binPath,
-			[...process.argv.slice(2), ...args],
+			[...args, ...process.argv.slice(2)],
 			{ stdio: 'inherit' }
 		).status
 	);

@@ -1,11 +1,5 @@
 {
 	"name": "my-project",
-	"prettier": "../../../dist/prettier.cjs",
-	"commitlint": {
-		"extends": [
-			"../../../dist/commitlint.cjs"
-		]
-	},
 	"dependencies": {
 		"@leonzalion/configs": "link:../../../dist"
 	},
