@@ -1,2 +1,2 @@
 const { executeBin } = require('../utils/bin.cjs');
-executeBin('markdownlint', 'markdownlint.js');
+executeBin('markdownlint-cli', 'markdownlint.js');

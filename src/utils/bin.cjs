@@ -13,8 +13,8 @@ exports.executeBin = function(packageName, relativeBinPath) {
 
 	process.exit(
 		spawnSync(
-			"node",
-			[binPath, '--', ...process.argv.slice(2)],
+			binPath,
+			process.argv.slice(2),
 			{ stdio: 'inherit' }
 		).status
 	);
