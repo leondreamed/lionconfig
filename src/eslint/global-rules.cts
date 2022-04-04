@@ -72,7 +72,11 @@ module.exports = {
 		'capitalized-comments': 'off', // Want to be able to comment out code without it autofixing that
 		// Too annoying when using keys that don't adhere to naming convention
 		'@typescript-eslint/naming-convention': 'off',
-		'unicorn/prefer-json-parse-buffer': 'off', // not supported by TypeScript types
-		'new-cap': 'off'
+		'new-cap': 'off',
+		'import/extensions': ['error', {
+			js: 'always',
+			ts: 'always',
+			vue: 'always'
+		}]
 	},
 };
