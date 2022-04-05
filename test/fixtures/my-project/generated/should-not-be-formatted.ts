@@ -1,1 +1,1 @@
-const _a = { foo: 'bar', }
+export const a = { foo: 'bar', }

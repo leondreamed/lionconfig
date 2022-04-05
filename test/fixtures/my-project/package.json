@@ -1,7 +1,7 @@
 {
 	"name": "my-project",
 	"dependencies": {
-		"@leonzalion/configs": "link:../../../dist"
+		"@leonzalion/configs": "link:../../.."
 	},
 	"devDependencies": {
 		"vitest": "^0.6.0",

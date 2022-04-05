@@ -9,7 +9,6 @@ const tempFolder = join(import.meta.url, '../temp');
 
 async function cloneTempProject(projectPath: string) {
 	const tempProjectDir = path.join(tempFolder, path.basename(projectPath));
-	console.log(tempProjectDir);
 	await fs.promises.mkdir(tempProjectDir, { recursive: true });
 	await fs.promises.cp(myProjectPath, tempProjectDir, { recursive: true });
 	await execaCommand('pnpm install', { cwd: tempProjectDir });
@@ -17,9 +16,8 @@ async function cloneTempProject(projectPath: string) {
 }
 
 beforeAll(async () => {
-	await execaCommand('pnpm build');
 	await fs.promises.rm(tempFolder, { force: true, recursive: true });
-}, 30_000);
+});
 
 afterAll(() => {
 	// fs.rmSync(tempFolder, { force: true, recursive: true });
