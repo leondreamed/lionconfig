@@ -5,5 +5,5 @@ executeBin('prettier', 'bin-prettier.js', [
 	'--config',
 	require.resolve('../prettier.cjs'),
 	'--ignore-path',
-	path.join(__dirname, '../prettier/.prettierignore')
+	path.join(__dirname, '../prettier/.prettierignore'),
 ]);

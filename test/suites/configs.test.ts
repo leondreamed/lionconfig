@@ -2,7 +2,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import { execaCommand, execa } from 'execa';
 import { join } from 'desm';
-import { beforeAll, afterAll, test, describe } from 'vitest';
+import { beforeAll, afterAll, test, describe, expect } from 'vitest';
 
 const myProjectPath = join(import.meta.url, '../fixtures/my-project');
 const tempFolder = join(import.meta.url, '../temp');
@@ -39,10 +39,40 @@ describe('works with my-project', async () => {
 	});
 
 	test('prettier works', async () => {
-		await execaCommand('pnpm exec prettier --write src', {
+		await execaCommand('pnpm exec prettier --write .', {
 			cwd: projectDir,
 			stdio: 'inherit',
 		});
+
+		expect(
+			fs.readFileSync(
+				path.join(
+					tempFolder,
+					'my-project/generated/should-not-be-formatted.ts'
+				),
+				'utf8'
+			)
+		).toEqual(
+			fs.readFileSync(
+				path.join(myProjectPath, 'generated/should-not-be-formatted.ts'),
+				'utf8'
+			)
+		);
+
+		expect(
+			fs.readFileSync(
+				path.join(
+					tempFolder,
+					'my-project/not-generated/should-be-formatted.ts'
+				),
+				'utf8'
+			)
+		).not.toEqual(
+			fs.readFileSync(
+				path.join(myProjectPath, 'not-generated/should-be-formatted.ts'),
+				'utf8'
+			)
+		);
 	});
 
 	test('commitlint works', async () => {

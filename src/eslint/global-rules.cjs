@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 module.exports = {
 	rules: {
 		'import/no-unassigned-import': 'off',
@@ -73,10 +71,13 @@ module.exports = {
 		// Too annoying when using keys that don't adhere to naming convention
 		'@typescript-eslint/naming-convention': 'off',
 		'new-cap': 'off',
-		'import/extensions': ['error', {
-			js: 'always',
-			ts: 'always',
-			vue: 'always'
-		}]
+		'import/extensions': [
+			'error',
+			{
+				js: 'always',
+				ts: 'always',
+				vue: 'always',
+			},
+		],
 	},
 };

@@ -2,6 +2,8 @@
 	"extends": "./tsconfig.json",
 	"include": [
 		"src",
+		"generated",
+		"not-generated",
 		".eslintrc.cjs",
 		".markdownlint.cjs",
 		"vitest.config.ts"

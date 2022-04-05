@@ -1,0 +1,1 @@
+const _b = { foo: 'bar', }
