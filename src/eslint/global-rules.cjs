@@ -79,5 +79,6 @@ module.exports = {
 				vue: 'always',
 			},
 		],
+		'unicorn/prefer-json-parse-buffer': 'off'
 	},
 };
