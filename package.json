@@ -8,6 +8,7 @@
 		"./*": "./src/*"
 	},
 	"bin": {
+		"git-cliff": "./src/bin/git-cliff",
 		"node-ts": "./src/tsconfig/node-ts.mjs",
 		"commitlint": "./src/bin/commitlint.cjs",
 		"eslint": "./src/bin/eslint.cjs",
@@ -25,6 +26,7 @@
 	},
 	"homepage": "https://github.com/leonzalion/configs#readme",
 	"scripts": {
+		"update-git-cliff": "node --loader ts-node/esm ./scripts/update-git-cliff.ts",
 		"prettier": "prettier --write src",
 		"lint": "eslint --fix .",
 		"prepare": "lion-git-hooks",
@@ -63,6 +65,7 @@
 		"log-symbols": "^5.1.0",
 		"markdownlint-cli": "^0.31.1",
 		"minimist": "^1.2.6",
+		"npm-binary": "^0.1.2",
 		"pkg-up": "^4.0.0",
 		"postcss": "^8.4.12",
 		"prettier": "^2.6.2",
