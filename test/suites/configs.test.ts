@@ -96,4 +96,11 @@ describe('works with my-project', async () => {
 			stdio: 'inherit',
 		});
 	});
+
+	test('git-cliff works', async () => {
+		await execaCommand('git-cliff --version', {
+			cwd: projectDir,
+			stdio: 'inherit',
+		});
+	});
 });
