@@ -6,7 +6,7 @@ import replace from 'replace-in-file';
 chProjectDir(import.meta.url);
 rmDist();
 exec('tsc');
-exec('update-git-cliff');
+exec('pnpm run update-git-cliff');
 copyPackageFiles();
 
 fs.cpSync('src/prettier/.prettierignore', 'dist/prettier/.prettierignore');
