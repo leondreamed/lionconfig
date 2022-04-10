@@ -79,6 +79,11 @@ module.exports = {
 				vue: 'always',
 			},
 		],
-		'unicorn/prefer-json-parse-buffer': 'off'
+		'unicorn/prefer-json-parse-buffer': 'off',
+		'unicorn/template-indent': [
+			'warn', {
+				indent: '\t'
+			}
+		]
 	},
 };
