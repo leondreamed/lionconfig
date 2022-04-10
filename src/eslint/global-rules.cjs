@@ -85,6 +85,7 @@ module.exports = {
 				indent: '\t'
 			}
 		],
+		'import/order': 'off',
 		'simple-import-sort/imports': 'error',
 		'simple-import-sort/exports': 'error',
 	},
