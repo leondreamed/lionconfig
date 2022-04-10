@@ -84,6 +84,8 @@ module.exports = {
 			'warn', {
 				indent: '\t'
 			}
-		]
+		],
+		'simple-import-sort/imports': 'error',
+		'simple-import-sort/exports': 'error',
 	},
 };
