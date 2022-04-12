@@ -73,11 +73,7 @@ module.exports = {
 		'new-cap': 'off',
 		'import/extensions': [
 			'error',
-			{
-				js: 'always',
-				ts: 'always',
-				vue: 'always',
-			},
+			'always'
 		],
 		'unicorn/prefer-json-parse-buffer': 'off',
 		'unicorn/template-indent': [
