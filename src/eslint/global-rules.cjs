@@ -73,7 +73,10 @@ module.exports = {
 		'new-cap': 'off',
 		'import/extensions': [
 			'error',
-			'always'
+			'always',
+			{
+				ignorePackages: true
+			}
 		],
 		'unicorn/prefer-json-parse-buffer': 'off',
 		'unicorn/template-indent': [
