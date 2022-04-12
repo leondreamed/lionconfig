@@ -88,6 +88,6 @@ module.exports = {
 		'simple-import-sort/imports': 'error',
 		'simple-import-sort/exports': 'error',
 		'@typescript-eslint/prefer-function-type': 'off', // we use a type literal with only a call signature for defineEmits in Vue 3
+		'node/file-extension-in-import': 'off' // import/extensions is better
 	},
-	'node/file-extension-in-import': 'off' // import/extensions is better
 };
