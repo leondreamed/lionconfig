@@ -28,7 +28,11 @@ afterAll(() => {
 
 describe('works with my-project', async () => {
 	const myProjectPath = join(import.meta.url, '../fixtures/my-project');
-	const projectDir = await cloneTempProject({ projectPath: myProjectPath });
+
+	let projectDir: string;
+	beforeAll(async () => {
+		projectDir = await cloneTempProject({ projectPath: myProjectPath });
+	});
 
 	test('eslint works', async () => {
 		await execaCommand('pnpm exec eslint --fix .', {
@@ -105,8 +109,11 @@ test('supports custom .prettierignore', async () => {
 		'../fixtures/custom-prettier-ignore'
 	);
 
-	const projectDir = await cloneTempProject({
-		projectPath: customPrettierIgnore,
+	let projectDir: string;
+	beforeAll(async () => {
+		projectDir = await cloneTempProject({
+			projectPath: customPrettierIgnore,
+		});
 	});
 
 	await execaCommand('pnpm exec prettier --write .', {
