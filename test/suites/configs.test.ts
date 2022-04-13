@@ -103,7 +103,7 @@ describe('works with my-project', async () => {
 	});
 });
 
-test('supports custom .prettierignore', async () => {
+describe('supports custom .prettierignore', async () => {
 	const customPrettierIgnore = join(
 		import.meta.url,
 		'../fixtures/custom-prettier-ignore'
@@ -116,20 +116,22 @@ test('supports custom .prettierignore', async () => {
 		});
 	});
 
-	await execaCommand('pnpm exec prettier --write .', {
-		cwd: projectDir,
-		stdio: 'inherit',
-	});
+	test('prettier formatting works', async () => {
+		await execaCommand('pnpm exec prettier --write .', {
+			cwd: projectDir,
+			stdio: 'inherit',
+		});
 
-	expect(
-		fs.readFileSync(
-			path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
-			'utf8'
-		)
-	).toEqual(
-		fs.readFileSync(
-			path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
-			'utf8'
-		)
-	);
+		expect(
+			fs.readFileSync(
+				path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
+				'utf8'
+			)
+		).toEqual(
+			fs.readFileSync(
+				path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
+				'utf8'
+			)
+		);
+	});
 });
