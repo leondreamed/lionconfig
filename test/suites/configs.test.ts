@@ -1,17 +1,26 @@
-import path from 'node:path';
-import fs from 'node:fs';
-import { execaCommand, execa } from 'execa';
 import { join } from 'desm';
-import { beforeAll, afterAll, test, describe, expect } from 'vitest';
+import { execa, execaCommand } from 'execa';
+import fs from 'node:fs';
+import path from 'node:path';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
-const myProjectPath = join(import.meta.url, '../fixtures/my-project');
 const tempFolder = join(import.meta.url, '../temp');
 
-async function cloneTempProject(projectPath: string) {
+type CloneTempProject = {
+	projectPath: string;
+	installDeps?: boolean;
+};
+async function cloneTempProject({
+	projectPath,
+	installDeps = true,
+}: CloneTempProject) {
 	const tempProjectDir = path.join(tempFolder, path.basename(projectPath));
 	await fs.promises.mkdir(tempProjectDir, { recursive: true });
-	await fs.promises.cp(myProjectPath, tempProjectDir, { recursive: true });
-	await execaCommand('pnpm install', { cwd: tempProjectDir });
+	await fs.promises.cp(projectPath, tempProjectDir, { recursive: true });
+	if (installDeps) {
+		await execaCommand('pnpm install', { cwd: tempProjectDir });
+	}
+
 	return tempProjectDir;
 }
 
@@ -24,10 +33,8 @@ afterAll(() => {
 });
 
 describe('works with my-project', async () => {
-	let projectDir: string;
-	beforeAll(async () => {
-		projectDir = await cloneTempProject(myProjectPath);
-	});
+	const myProjectPath = join(import.meta.url, '../fixtures/my-project');
+	const projectDir = await cloneTempProject({ projectPath: myProjectPath });
 
 	test('eslint works', async () => {
 		await execaCommand('pnpm exec eslint --fix .', {
@@ -96,4 +103,33 @@ describe('works with my-project', async () => {
 			stdio: 'inherit',
 		});
 	});
+});
+
+test('supports custom .prettierignore', async () => {
+	const customPrettierIgnore = join(
+		import.meta.url,
+		'../fixtures/custom-prettier-ignore'
+	);
+
+	const projectDir = await cloneTempProject({
+		projectPath: customPrettierIgnore,
+		installDeps: false,
+	});
+
+	await execaCommand('pnpm exec prettier --write .', {
+		cwd: projectDir,
+		stdio: 'inherit',
+	});
+
+	expect(
+		fs.readFileSync(
+			path.join(tempFolder, 'my-project/generated/should-be-formatted.ts'),
+			'utf8'
+		)
+	).not.toEqual(
+		fs.readFileSync(
+			path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
+			'utf8'
+		)
+	);
 });
