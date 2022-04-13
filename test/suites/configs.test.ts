@@ -8,18 +8,12 @@ const tempFolder = join(import.meta.url, '../temp');
 
 type CloneTempProject = {
 	projectPath: string;
-	installDeps?: boolean;
 };
-async function cloneTempProject({
-	projectPath,
-	installDeps = true,
-}: CloneTempProject) {
+async function cloneTempProject({ projectPath }: CloneTempProject) {
 	const tempProjectDir = path.join(tempFolder, path.basename(projectPath));
 	await fs.promises.mkdir(tempProjectDir, { recursive: true });
 	await fs.promises.cp(projectPath, tempProjectDir, { recursive: true });
-	if (installDeps) {
-		await execaCommand('pnpm install', { cwd: tempProjectDir });
-	}
+	await execaCommand('pnpm install', { cwd: tempProjectDir });
 
 	return tempProjectDir;
 }
@@ -113,7 +107,6 @@ test('supports custom .prettierignore', async () => {
 
 	const projectDir = await cloneTempProject({
 		projectPath: customPrettierIgnore,
-		installDeps: false,
 	});
 
 	await execaCommand('pnpm exec prettier --write .', {
@@ -123,10 +116,10 @@ test('supports custom .prettierignore', async () => {
 
 	expect(
 		fs.readFileSync(
-			path.join(tempFolder, 'my-project/generated/should-be-formatted.ts'),
+			path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
 			'utf8'
 		)
-	).not.toEqual(
+	).toEqual(
 		fs.readFileSync(
 			path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
 			'utf8'

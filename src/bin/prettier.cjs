@@ -1,3 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+const process = require('process');
+const { executeBin } = require('../utils/bin.cjs');
+
 let ignorePath;
 if (fs.existsSync(path.join(process.cwd(), '.prettierignore'))) {
 	ignorePath = path.join(process.cwd(), '.prettierignore');
