@@ -127,9 +127,9 @@ describe('supports custom .prettierignore', async () => {
 				path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
 				'utf8'
 			)
-		).toEqual(
+		).not.toEqual(
 			fs.readFileSync(
-				path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
+				path.join(projectDir, 'generated/should-be-formatted.ts'),
 				'utf8'
 			)
 		);
