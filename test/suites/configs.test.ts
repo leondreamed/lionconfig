@@ -135,3 +135,25 @@ describe('supports custom .prettierignore', async () => {
 		);
 	});
 });
+
+describe('markdown override works', async () => {
+	const markdownFolder = join(import.meta.url, '../fixtures/markdown');
+
+	let projectDir: string;
+	beforeAll(async () => {
+		projectDir = await cloneTempProject({
+			projectPath: markdownFolder,
+		});
+	});
+
+	test('does not format markdown code blocks with tabs', async () => {
+		await execaCommand('pnpm exec prettier --write .', {
+			cwd: projectDir,
+			stdio: 'inherit',
+		});
+
+		expect(
+			fs.readFileSync(path.join(markdownFolder, 'no-format.md'), 'utf8')
+		).toEqual(fs.readFileSync(path.join(projectDir, 'no-format.md'), 'utf8'));
+	});
+});
