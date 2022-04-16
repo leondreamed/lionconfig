@@ -1,6 +1,6 @@
 # @leonzalion/configs
 
-[![npm version](https://badge.fury.io/js/@leonzalion/configs.svg)](https://badge.fury.io/js/@leonzalion/configs)
+[![npm version](https://img.shields.io/npm/v/@leonzalion/configs)](https://npmjs.com/package/@leonzalion/configs)
 
 Requires the following configuration to be added in VSCode: 
 ```jsonc
