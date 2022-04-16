@@ -1,25 +1,13 @@
-import { join } from 'desm';
 import { execa, execaCommand } from 'execa';
 import fs from 'node:fs';
 import path from 'node:path';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
-const tempFolder = join(import.meta.url, '../temp');
-
-type CloneTempProject = {
-	projectPath: string;
-};
-async function cloneTempProject({ projectPath }: CloneTempProject) {
-	const tempProjectDir = path.join(tempFolder, path.basename(projectPath));
-	await fs.promises.mkdir(tempProjectDir, { recursive: true });
-	await fs.promises.cp(projectPath, tempProjectDir, { recursive: true });
-	await execaCommand('pnpm install', { cwd: tempProjectDir });
-
-	return tempProjectDir;
-}
+import { fixture } from '~test/utils/fixture.js';
+import { tempFolderPath } from '~test/utils/paths.js';
 
 beforeAll(async () => {
-	await fs.promises.rm(tempFolder, { force: true, recursive: true });
+	await fs.promises.rm(tempFolderPath, { force: true, recursive: true });
 });
 
 afterAll(() => {
@@ -27,109 +15,99 @@ afterAll(() => {
 });
 
 describe('works with my-project', async () => {
-	const myProjectPath = join(import.meta.url, '../fixtures/my-project');
+	let tempFixturePath: string;
+	let originalFixturePath: string;
 
-	let projectDir: string;
 	beforeAll(async () => {
-		projectDir = await cloneTempProject({ projectPath: myProjectPath });
+		({ tempFixturePath, originalFixturePath } = await fixture('my-project'));
 	});
 
 	test('eslint works', async () => {
 		await execaCommand('pnpm exec eslint --fix .', {
-			cwd: projectDir,
+			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
 	});
 
 	test('prettier works', async () => {
 		await execaCommand('pnpm exec prettier --write .', {
-			cwd: projectDir,
+			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
 
 		expect(
 			fs.readFileSync(
-				path.join(
-					tempFolder,
-					'my-project/generated/should-not-be-formatted.ts'
-				),
+				path.join(tempFixturePath, 'generated/should-not-be-formatted.ts'),
 				'utf8'
 			)
 		).toEqual(
 			fs.readFileSync(
-				path.join(myProjectPath, 'generated/should-not-be-formatted.ts'),
+				path.join(tempFixturePath, 'generated/should-not-be-formatted.ts'),
 				'utf8'
 			)
 		);
 
 		expect(
 			fs.readFileSync(
-				path.join(
-					tempFolder,
-					'my-project/not-generated/should-be-formatted.ts'
-				),
+				path.join(tempFixturePath, 'not-generated/should-be-formatted.ts'),
 				'utf8'
 			)
 		).not.toEqual(
 			fs.readFileSync(
-				path.join(myProjectPath, 'not-generated/should-be-formatted.ts'),
+				path.join(originalFixturePath, 'not-generated/should-be-formatted.ts'),
 				'utf8'
 			)
 		);
 	});
 
 	test('commitlint works', async () => {
-		const messageTxtPath = path.join(projectDir, 'message.txt');
+		const messageTxtPath = path.join(tempFixturePath, 'message.txt');
 		await fs.promises.writeFile(messageTxtPath, 'fix: fix');
 		await execa('pnpm', ['exec', 'commitlint', '--edit', messageTxtPath], {
-			cwd: projectDir,
+			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
 	});
 
 	test('markdownlint works', async () => {
-		const readmePath = path.join(projectDir, 'readme.md');
+		const readmePath = path.join(tempFixturePath, 'readme.md');
 		await execa('pnpm', ['exec', 'markdownlint', readmePath], {
-			cwd: projectDir,
+			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
 	});
 
 	test('typescript works', async () => {
 		await execaCommand('pnpm exec tsc --noEmit', {
-			cwd: projectDir,
+			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
 	});
 });
 
 describe('supports custom .prettierignore', async () => {
-	const customPrettierIgnore = join(
-		import.meta.url,
-		'../fixtures/custom-prettier-ignore'
-	);
-
-	let projectDir: string;
+	let originalFixturePath: string;
+	let tempFixturePath: string;
 	beforeAll(async () => {
-		projectDir = await cloneTempProject({
-			projectPath: customPrettierIgnore,
-		});
+		({ originalFixturePath, tempFixturePath } = await fixture(
+			'custom-prettier-ignore'
+		));
 	});
 
 	test('prettier formatting works', async () => {
 		await execaCommand('pnpm exec prettier --write .', {
-			cwd: projectDir,
+			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
 
 		expect(
 			fs.readFileSync(
-				path.join(customPrettierIgnore, 'generated/should-be-formatted.ts'),
+				path.join(tempFixturePath, 'generated/should-be-formatted.ts'),
 				'utf8'
 			)
 		).not.toEqual(
 			fs.readFileSync(
-				path.join(projectDir, 'generated/should-be-formatted.ts'),
+				path.join(originalFixturePath, 'generated/should-be-formatted.ts'),
 				'utf8'
 			)
 		);
@@ -137,23 +115,22 @@ describe('supports custom .prettierignore', async () => {
 });
 
 describe('markdown override works', async () => {
-	const markdownFolder = join(import.meta.url, '../fixtures/markdown');
-
-	let projectDir: string;
+	let originalFixturePath: string;
+	let tempFixturePath: string;
 	beforeAll(async () => {
-		projectDir = await cloneTempProject({
-			projectPath: markdownFolder,
-		});
+		({ originalFixturePath, tempFixturePath } = await fixture('markdown'));
 	});
 
 	test('does not format markdown code blocks with tabs', async () => {
 		await execaCommand('pnpm exec prettier --write .', {
-			cwd: projectDir,
+			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
 
 		expect(
-			fs.readFileSync(path.join(markdownFolder, 'no-format.md'), 'utf8')
-		).toEqual(fs.readFileSync(path.join(projectDir, 'no-format.md'), 'utf8'));
+			fs.readFileSync(path.join(originalFixturePath, 'no-format.md'), 'utf8')
+		).toEqual(
+			fs.readFileSync(path.join(tempFixturePath, 'no-format.md'), 'utf8')
+		);
 	});
 });
