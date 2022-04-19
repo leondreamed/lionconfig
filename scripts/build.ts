@@ -7,7 +7,7 @@ rmDist();
 exec('tsc');
 await copyPackageFiles({
 	additionalFiles: [
-		'prettier/.prettierignore',
+		'src/prettier/.prettierignore',
 		'src/tsconfig',
 		'src/tsconfig.json',
 		'src/markdownlint.json',
