@@ -4,9 +4,6 @@
 	"version": "1.2.19",
 	"license": "MIT",
 	"type": "module",
-	"exports": {
-		"./*": "./src/*"
-	},
 	"bin": {
 		"node-ts": "./src/tsconfig/node-ts.mjs",
 		"commitlint": "./src/bin/commitlint.cjs",
