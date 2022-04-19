@@ -17,7 +17,7 @@
 		"tsc-alias": "./src/bin/tsc-alias.cjs"
 	},
 	"exports": {
-		"./*": "./src"
+		"./*": "./src/*"
 	},
 	"repository": {
 		"type": "git",
