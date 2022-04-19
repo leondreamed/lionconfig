@@ -16,13 +16,17 @@
 		"ts-node": "./src/bin/ts-node.cjs",
 		"tsc-alias": "./src/bin/tsc-alias.cjs"
 	},
+	"exports": {
+		"./*": "./src"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/leonzalion/configs.git"
 	},
 	"homepage": "https://github.com/leonzalion/configs#readme",
 	"scripts": {
-		"prettier": "prettier --write src",
+		"preinstall": "pnpm build",
+		"prettier": "prettier --write .",
 		"lint": "eslint --fix .",
 		"prepare": "lion-git-hooks",
 		"test": "vitest run",
@@ -55,7 +59,7 @@
 		"is-ci": "^3.0.1",
 		"lint-staged": "^12.3.8",
 		"lion-git-hooks": "^1.0.9",
-		"lion-system": "^1.3.13",
+		"lion-system": "^1.3.14",
 		"lionp": "^1.0.24",
 		"log-symbols": "^5.1.0",
 		"markdownlint-cli": "^0.31.1",
