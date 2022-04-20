@@ -13,8 +13,23 @@ export function resolve(specifier, ctx, defaultResolve) {
 		// Handle *.js
 		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 3));
 		const match = matchPath(trimmed);
-		if (match)
+		if (match) {
 			return resolveTs(pathToFileURL(`${match}.js`).href, ctx, defaultResolve);
+		}
+	} else if (specifier.endsWith('.cjs')) {
+		// Handle *.cjs
+		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 4));
+		const match = matchPath(trimmed);
+		if (match) {
+			return resolveTs(pathToFileURL(`${match}.cjs`).href, ctx, defaultResolve);
+		}
+	} else if (specifier.endsWith('.mjs')) {
+		// Handle *.cjs
+		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 4));
+		const match = matchPath(trimmed);
+		if (match) {
+			return resolveTs(pathToFileURL(`${match}.mjs`).href, ctx, defaultResolve);
+		}
 	}
 
 	return resolveTs(specifier, ctx, defaultResolve);
