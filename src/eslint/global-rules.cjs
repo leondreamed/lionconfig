@@ -89,7 +89,10 @@ module.exports = {
 		'simple-import-sort/exports': 'error',
 		'@typescript-eslint/prefer-function-type': 'off', // we use a type literal with only a call signature for defineEmits in Vue 3
 		'node/file-extension-in-import': 'off', // import/extensions is better
-		'vue/no-v-html': 'off' // I know when v-html is fine to use
+		'vue/no-v-html': 'off', // I know when v-html is fine to use
+		'@typescript-eslint/no-unused-expressions': ['error', {
+			allowTaggedTemplates: true
+		}] // debug``
 		
 	},
 };
