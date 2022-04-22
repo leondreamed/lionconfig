@@ -5,7 +5,7 @@ const { emitWarning } = process;
 process.emitWarning = (warning, arg, ...rest) => {
 	if (
 		(arg === 'ExperimentalWarning' &&
-			warning.includes('--experimental-loader')) ||
+			warning.includes('Custom ESM Loaders')) ||
 		(arg === 'DeprecationWarning' && warning.includes('Obsolete loader'))
 	) {
 		return;
