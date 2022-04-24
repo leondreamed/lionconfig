@@ -1,7 +1,4 @@
 const xoPlugins = require('xo/config/plugins.cjs');
-xoPlugins.plugins.splice(xoPlugins.plugins.indexOf('ava'), 1);
-xoPlugins.extends.splice(
-	xoPlugins.extends.indexOf('plugin:ava/recommended'),
-	1
-);
+xoPlugins.plugins = xoPlugins.plugins.filter(plugin => plugin !== 'ava');
+xoPlugins.extends = xoPlugins.extends.filter(extend => extend !== 'plugin:ava/recommended');
 module.exports = xoPlugins;
