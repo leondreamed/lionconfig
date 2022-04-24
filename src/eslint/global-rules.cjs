@@ -75,14 +75,15 @@ module.exports = {
 			'error',
 			'always',
 			{
-				ignorePackages: true
-			}
+				ignorePackages: true,
+			},
 		],
 		'unicorn/prefer-json-parse-buffer': 'off',
 		'unicorn/template-indent': [
-			'warn', {
-				indent: '\t'
-			}
+			'warn',
+			{
+				indent: '\t',
+			},
 		],
 		'import/order': 'off',
 		'simple-import-sort/imports': 'error',
@@ -90,9 +91,11 @@ module.exports = {
 		'@typescript-eslint/prefer-function-type': 'off', // we use a type literal with only a call signature for defineEmits in Vue 3
 		'node/file-extension-in-import': 'off', // import/extensions is better
 		'vue/no-v-html': 'off', // I know when v-html is fine to use
-		'@typescript-eslint/no-unused-expressions': ['error', {
-			allowTaggedTemplates: true
-		}] // debug``
-		
+		'@typescript-eslint/no-unused-expressions': [
+			'error',
+			{
+				allowTaggedTemplates: true,
+			},
+		], // debug``
 	},
 };
