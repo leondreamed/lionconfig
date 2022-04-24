@@ -5,9 +5,9 @@ module.exports = defineConfig({
 	extends: require.resolve('./src/eslint.cjs'),
 	ignorePatterns: ['test/fixtures'],
 	parserOptions: {
-		project: path.resolve(__dirname, './tsconfig.eslint.json')
+		project: path.resolve(__dirname, './tsconfig.eslint.json'),
 	},
 	rules: {
-		'unicorn/no-process-exit': 'off'
-	}
+		'unicorn/no-process-exit': 'off',
+	},
 });

@@ -1,7 +1,7 @@
 /**
  * @type import('prettier').Config
  */
- module.exports = {
+module.exports = {
 	useTabs: true,
 	singleQuote: true,
 	overrides: [
