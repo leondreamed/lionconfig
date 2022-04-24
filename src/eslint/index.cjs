@@ -5,7 +5,7 @@ const { defineConfig } = require('eslint-define-config');
 module.exports = defineConfig({
 	extends: [
 		'xo',
-		require.resolve('xo/config/plugins.cjs'),
+		require.resolve('./plugins.cjs'),
 		'plugin:vue/vue3-recommended',
 		'prettier',
 		require.resolve('./global-rules.cjs'),
@@ -50,7 +50,7 @@ module.exports = defineConfig({
 			extends: [
 				'xo',
 				'xo-typescript',
-				require.resolve('xo/config/plugins.cjs'),
+				require.resolve('./plugins.cjs'),
 				'plugin:vue/vue3-recommended',
 				'prettier',
 				require.resolve('./global-rules.cjs'),
@@ -71,7 +71,7 @@ module.exports = defineConfig({
 					},
 				],
 				'import/named': 'off',
-				'@typescript-eslint/unified-signatures': 'off' // I prefer to add the events for defineEmits<{}> separately instead of using a unified signature
+				'@typescript-eslint/unified-signatures': 'off', // I prefer to add the events for defineEmits<{}> separately instead of using a unified signature
 			},
 		},
 		{

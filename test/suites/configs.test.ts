@@ -2,16 +2,15 @@ import { execa, execaCommand } from 'execa';
 import fs from 'node:fs';
 import path from 'node:path';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { lionFixture } from 'lion-fixture';
+import { join } from 'desm';
 
-import { fixture } from '~test/utils/fixture.js';
-import { tempFolderPath } from '~test/utils/paths.js';
+const tempDir = join(import.meta.url, '../temp');
+const fixturesDir = join(import.meta.url, '../fixtures');
+const { fixture } = lionFixture(import.meta.url);
 
 beforeAll(async () => {
-	await fs.promises.rm(tempFolderPath, { force: true, recursive: true });
-});
-
-afterAll(() => {
-	// fs.rmSync(tempFolder, { force: true, recursive: true });
+	await fs.promises.rm(tempDir, { force: true, recursive: true });
 });
 
 describe('works with my-project', async () => {
@@ -19,7 +18,8 @@ describe('works with my-project', async () => {
 	let originalFixturePath: string;
 
 	beforeAll(async () => {
-		({ tempFixturePath, originalFixturePath } = await fixture('my-project'));
+		tempFixturePath = await fixture('my-project');
+		originalFixturePath = path.join(fixturesDir, 'my-project');
 	});
 
 	test('eslint works', async () => {
@@ -89,9 +89,8 @@ describe('supports custom .prettierignore', async () => {
 	let originalFixturePath: string;
 	let tempFixturePath: string;
 	beforeAll(async () => {
-		({ originalFixturePath, tempFixturePath } = await fixture(
-			'custom-prettier-ignore'
-		));
+		originalFixturePath = path.join(fixturesDir, 'custom-prettier-ignore');
+		tempFixturePath = await fixture('custom-prettier-ignore');
 	});
 
 	test('prettier formatting works', async () => {
@@ -117,8 +116,10 @@ describe('supports custom .prettierignore', async () => {
 describe('markdown override works', async () => {
 	let originalFixturePath: string;
 	let tempFixturePath: string;
+
 	beforeAll(async () => {
-		({ originalFixturePath, tempFixturePath } = await fixture('markdown'));
+		tempFixturePath = await fixture('markdown');
+		originalFixturePath = path.join(fixturesDir, 'markdown');
 	});
 
 	test('does not format markdown code blocks with tabs', async () => {
