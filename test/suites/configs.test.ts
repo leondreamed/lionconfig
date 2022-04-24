@@ -1,7 +1,7 @@
 import { execa, execaCommand } from 'execa';
 import fs from 'node:fs';
 import path from 'node:path';
-import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { beforeAll, describe, expect, test } from 'vitest';
 import { lionFixture } from 'lion-fixture';
 import { join } from 'desm';
 
