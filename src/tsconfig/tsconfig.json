@@ -24,6 +24,7 @@
 		"useDefineForClassFields": true,
 		"useUnknownInCatchVariables": true,
 		"forceConsistentCasingInFileNames": true,
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"jsx": "preserve"
 	}
 }
