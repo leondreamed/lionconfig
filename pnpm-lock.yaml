@@ -50,7 +50,7 @@ specifiers:
   typescript: ^4.6.3
   update-notifier: ^5.1.0
   vitest: ^0.9.4
-  webpack: npm:ignoredep@^3.0.1
+  webpack: npm:ignoredep@>=1.11.0
   xo: ^0.48.0
 
 dependencies:
