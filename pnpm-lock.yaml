@@ -50,7 +50,7 @@ specifiers:
   typescript: ^4.6.3
   update-notifier: ^5.1.0
   vitest: ^0.9.4
-  webpack: npm:lodash.noop@^3.0.1
+  webpack: npm:ignoredep@^3.0.1
   xo: ^0.48.0
 
 dependencies:
@@ -91,8 +91,8 @@ dependencies:
   tsc-alias: 1.6.7
   tsconfig-paths: 3.14.1
   update-notifier: 5.1.0
-  webpack: /lodash.noop/3.0.1
-  xo: 0.48.0_lodash.noop@3.0.1
+  webpack: /ignoredep/3.9999.0
+  xo: 0.48.0_ignoredep@3.9999.0
 
 devDependencies:
   '@types/is-ci': 3.0.0
@@ -2039,7 +2039,7 @@ packages:
       resolve: 1.22.0
     dev: false
 
-  /eslint-import-resolver-webpack/0.13.2_7f5a2a74ac610a03e7ee1903121a979f:
+  /eslint-import-resolver-webpack/0.13.2_27d1744f643896e165ad2ac45db3825f:
     resolution: {integrity: sha512-XodIPyg1OgE2h5BDErz3WJoK7lawxKTJNhgPNafRST6csC/MZC+L5P6kKqsZGRInpbgc02s/WZMrb4uGJzcuRg==}
     engines: {node: '>= 6'}
     peerDependencies:
@@ -2058,7 +2058,7 @@ packages:
       lodash: 4.17.21
       resolve: 1.22.0
       semver: 5.7.1
-      webpack: /lodash.noop/3.0.1
+      webpack: /ignoredep/3.9999.0
     dev: false
 
   /eslint-module-utils/2.7.3:
@@ -2833,6 +2833,10 @@ packages:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
 
+  /ignoredep/3.9999.0:
+    resolution: {integrity: sha512-wFOooPFRHfhUU45U829a79FqEEk15YaUsdMXP+AreUZ05s2JUgilW0v9OeBMeMCkk73KiqgohdyMfaRhvZZesg==}
+    dev: false
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -3564,10 +3568,6 @@ packages:
 
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-    dev: false
-
-  /lodash.noop/3.0.1:
-    resolution: {integrity: sha1-OBiPTWUKOkdCWEObluxFsyYXEzw=}
     dev: false
 
   /lodash.zip/4.2.0:
@@ -5349,7 +5349,7 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /xo/0.48.0_lodash.noop@3.0.1:
+  /xo/0.48.0_ignoredep@3.9999.0:
     resolution: {integrity: sha512-f0sbQGJoML3nwOLG7EIAJroBypmLokoGJqTPN+bI/oogKLMciqWBEiFh9Vpxnfwxafq1AkHoWrQZQWSflDCG1w==}
     engines: {node: '>=12.20'}
     hasBin: true
@@ -5365,7 +5365,7 @@ packages:
       eslint-config-xo: 0.40.0_eslint@8.14.0
       eslint-config-xo-typescript: 0.50.0_e7a300b26844813a4ad7af0fc0b6271b
       eslint-formatter-pretty: 4.1.0
-      eslint-import-resolver-webpack: 0.13.2_7f5a2a74ac610a03e7ee1903121a979f
+      eslint-import-resolver-webpack: 0.13.2_27d1744f643896e165ad2ac45db3825f
       eslint-plugin-ava: 13.2.0_eslint@8.14.0
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.14.0
       eslint-plugin-import: 2.26.0_eslint@8.14.0
