@@ -22,6 +22,7 @@ module.exports = defineConfig({
 			files: '*.vue',
 			rules: {
 				'import/no-default-export': 'off',
+				'import/no-anonymous-default-export': 'off' // export default { inheritAttrs: false }
 			},
 		},
 		{
