@@ -2,7 +2,7 @@ import { execa, execaCommand } from 'execa';
 import fs from 'node:fs';
 import path from 'node:path';
 import { beforeAll, describe, expect, test } from 'vitest';
-import { lionFixture } from 'lion-fixture';
+import lionFixture  from 'lion-fixture';
 import { join } from 'desm';
 
 const tempDir = join(import.meta.url, '../temp');
