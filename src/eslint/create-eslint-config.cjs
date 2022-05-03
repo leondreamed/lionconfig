@@ -109,8 +109,6 @@ function createESLintConfig(dirname, projectConfig = {}) {
 		],
 	});
 
-
-	console.log(deepmerge(defaultConfig, projectConfig))
 	return deepmerge(defaultConfig, projectConfig);
 }
 
