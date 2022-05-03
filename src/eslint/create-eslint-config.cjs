@@ -28,6 +28,7 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			ecmaVersion: 2018,
 			sourceType: 'module',
 			project: path.resolve(dirname, 'tsconfig.eslint.json'),
+			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts']
 		},
 		plugins: ['simple-import-sort', 'vue'],
 		ignorePatterns: ['dist'],
