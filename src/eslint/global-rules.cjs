@@ -1,5 +1,16 @@
-module.exports = {
-	rules: {
+const findUp = require('find-up');
+
+const pnpmWorkspace = findUp.sync('pnpm-workspace.yaml');
+
+/**
+	@param {string} dirname
+	@returns {import('eslint-define-config').EslintConfig['rules']}
+*/
+function getGlobalRules(dirname) {
+	/**
+		@type {import('eslint-define-config').EslintConfig['rules']}
+	*/
+	const rules = {
 		'import/no-unassigned-import': 'off',
 		'@typescript-eslint/consistent-type-imports': 'error',
 		'unicorn/prevent-abbreviations': 'off', // code is sometimes clearer with abbreviations
@@ -97,5 +108,23 @@ module.exports = {
 				allowTaggedTemplates: true,
 			},
 		], // debug``
-	},
-};
+		'import/no-extraneous-dependencies': [
+			'error',
+			{
+				packageDir: [dirname],
+			},
+		],
+	};
+
+	rules['import/no-extraneous-dependencies'] = [
+		'error',
+		{
+			packageDir:
+				pnpmWorkspace === undefined ? [dirname] : [dirname, pnpmWorkspace],
+		},
+	];
+
+	return rules;
+}
+
+module.exports = getGlobalRules;

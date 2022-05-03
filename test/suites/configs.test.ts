@@ -1,13 +1,10 @@
 import { execa, execaCommand } from 'execa';
+import lionFixture  from 'lion-fixture';
 import fs from 'node:fs';
 import path from 'node:path';
 import { beforeAll, describe, expect, test } from 'vitest';
-import lionFixture  from 'lion-fixture';
-import { join } from 'desm';
 
-const tempDir = join(import.meta.url, '../temp');
-const fixturesDir = join(import.meta.url, '../fixtures');
-const { fixture } = lionFixture(import.meta.url);
+const { fixture , tempDir, fixturesDir } = lionFixture(import.meta.url);
 
 beforeAll(async () => {
 	await fs.promises.rm(tempDir, { force: true, recursive: true });

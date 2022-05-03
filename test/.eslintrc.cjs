@@ -1,8 +1,3 @@
-const path = require('path');
+const createESLintConfig = require('../src/eslint.cjs');
 
-module.exports = {
-	extends: '../.eslintrc.cjs',
-	parserOptions: {
-		project: path.resolve(__dirname, './tsconfig.eslint.json'),
-	},
-};
+module.exports = createESLintConfig(__dirname);
