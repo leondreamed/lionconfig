@@ -9,8 +9,12 @@ const { deepmerge } = require('deepmerge-ts');
 */
 function createESLintConfig(dirname, projectConfig = {}) {
 	if (dirname === undefined) {
-		throw new Error(
-			'`dirname` must be provided to `createESLintConfig(dirname, projectConfig = {})`!'
+		throw new Error('`dirname` must be provided to `createESLintConfig`');
+	}
+
+	if (typeof dirname !== 'string') {
+		throw new TypeError(
+			'`dirname`, the first argument passed to `createESLintConfig`, must be a string'
 		);
 	}
 
@@ -28,7 +32,7 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			ecmaVersion: 2018,
 			sourceType: 'module',
 			project: path.resolve(dirname, 'tsconfig.eslint.json'),
-			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts']
+			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 		},
 		plugins: ['simple-import-sort', 'vue'],
 		ignorePatterns: ['dist'],
