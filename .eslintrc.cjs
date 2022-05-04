@@ -6,3 +6,4 @@ module.exports = createESLintConfig(__dirname, {
 		'unicorn/no-process-exit': 'off',
 	},
 });
+

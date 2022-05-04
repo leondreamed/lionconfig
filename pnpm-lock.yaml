@@ -28,7 +28,7 @@ specifiers:
   eslint-plugin-unicorn: ^42.0.0
   eslint-plugin-vue: ^8.7.1
   execa: ^6.1.0
-  find-up: ^5.0.0
+  find-up: ^6.3.0
   globby: ^13.1.1
   is-ci: ^3.0.1
   lint-staged: ^12.4.1
@@ -78,7 +78,7 @@ dependencies:
   eslint-plugin-simple-import-sort: 7.0.0_eslint@8.14.0
   eslint-plugin-unicorn: 42.0.0_eslint@8.14.0
   eslint-plugin-vue: 8.7.1_eslint@8.14.0
-  find-up: 5.0.0
+  find-up: 6.3.0
   is-ci: 3.0.1
   lint-staged: 12.4.1
   lion-git-hooks: 1.0.10
