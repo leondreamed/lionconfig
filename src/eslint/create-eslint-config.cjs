@@ -3,7 +3,6 @@ const path = require('path');
 const getGlobalRules = require('./global-rules.cjs');
 const { defineConfig } = require('eslint-define-config');
 const { deepmerge } = require('deepmerge-ts');
-const findUp = require('find-up');
 
 /**
 	@param {string} dirname
