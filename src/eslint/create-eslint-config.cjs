@@ -42,7 +42,7 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 		},
 		plugins: ['simple-import-sort', 'vue'],
-		ignorePatterns: ['dist'],
+		ignorePatterns: ['dist', 'generated', '__snapshots__'],
 		// Rules should not be smart-merged but instead overwritten
 		rules: { ...globalRules, ...projectConfig.rules },
 		overrides: [
