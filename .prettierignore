@@ -126,4 +126,5 @@ dist-ssr
 .eslintcache
 tsconfig.tsbuildinfo
 
-test
+test/fixtures
+test/temp

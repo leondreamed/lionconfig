@@ -1,19 +1,32 @@
 import { execa, execaCommand } from 'execa';
-import lionFixture  from 'lion-fixture';
+import lionFixture from 'lion-fixture';
 import fs from 'node:fs';
 import path from 'node:path';
 import { beforeAll, describe, expect, test } from 'vitest';
 
-const { fixture , tempDir, fixturesDir } = lionFixture(import.meta.url);
+const { fixture, tempDir, fixturesDir } = lionFixture(import.meta.url);
 
 beforeAll(async () => {
 	await fs.promises.rm(tempDir, { force: true, recursive: true });
 });
 
+describe('lints a javascript-only project properly', async () => {
+	let jsProjectTempDir: string;
+	beforeAll(async () => {
+		jsProjectTempDir = await fixture('my-js-project');
+	});
+
+	test('eslint works', async () => {
+		await execaCommand('pnpm exec eslint --fix .', {
+			cwd: jsProjectTempDir,
+			stdio: 'inherit',
+		});
+	});
+});
+
 describe('works with my-project', async () => {
 	let tempFixturePath: string;
 	let originalFixturePath: string;
-
 	beforeAll(async () => {
 		tempFixturePath = await fixture('my-project');
 		originalFixturePath = path.join(fixturesDir, 'my-project');

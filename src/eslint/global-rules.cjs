@@ -1,12 +1,12 @@
 const findUp = require('find-up');
 
-const pnpmWorkspace = findUp.sync('pnpm-workspace.yaml');
-
 /**
 	@param {string} dirname
 	@returns {import('eslint-define-config').EslintConfig['rules']}
 */
 function getGlobalRules(dirname) {
+	const pnpmWorkspace = findUp.sync('pnpm-workspace.yaml', { cwd: dirname });
+
 	/**
 		@type {import('eslint-define-config').EslintConfig['rules']}
 	*/
@@ -22,12 +22,7 @@ function getGlobalRules(dirname) {
 			'error',
 			{ assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
 		],
-		'import/no-extraneous-dependencies': [
-			'error',
-			{
-				devDependencies: true,
-			},
-		],
+
 		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
 		'@typescript-eslint/ban-types': [
 			'error',
@@ -111,18 +106,11 @@ function getGlobalRules(dirname) {
 		'import/no-extraneous-dependencies': [
 			'error',
 			{
-				packageDir: [dirname],
+				packageDir:
+					pnpmWorkspace === undefined ? [dirname] : [dirname, pnpmWorkspace],
 			},
 		],
 	};
-
-	rules['import/no-extraneous-dependencies'] = [
-		'error',
-		{
-			packageDir:
-				pnpmWorkspace === undefined ? [dirname] : [dirname, pnpmWorkspace],
-		},
-	];
 
 	return rules;
 }

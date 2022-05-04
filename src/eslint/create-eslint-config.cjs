@@ -1,7 +1,9 @@
+const fs = require('fs');
 const path = require('path');
 const getGlobalRules = require('./global-rules.cjs');
 const { defineConfig } = require('eslint-define-config');
 const { deepmerge } = require('deepmerge-ts');
+const findUp = require('find-up');
 
 /**
 	@param {string} dirname
@@ -20,7 +22,13 @@ function createESLintConfig(dirname, projectConfig = {}) {
 
 	const globalRules = getGlobalRules(dirname);
 
+	const tsconfigEslintPath = path.resolve(dirname, 'tsconfig.eslint.json');
+	const parserOptionsProject = fs.existsSync(tsconfigEslintPath)
+		? tsconfigEslintPath
+		: undefined;
+
 	const defaultConfig = defineConfig({
+		root: true,
 		extends: [
 			'xo',
 			require.resolve('./plugins.cjs'),
@@ -31,12 +39,13 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			parser: '@typescript-eslint/parser',
 			ecmaVersion: 2018,
 			sourceType: 'module',
-			project: path.resolve(dirname, 'tsconfig.eslint.json'),
+			project: parserOptionsProject,
 			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 		},
 		plugins: ['simple-import-sort', 'vue'],
 		ignorePatterns: ['dist'],
-		rules: globalRules,
+		// Rules should not be smart-merged but instead overwritten
+		rules: { ...globalRules, ...projectConfig.rules },
 		overrides: [
 			{
 				files: '*.vue',
@@ -112,6 +121,8 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			},
 		],
 	});
+
+	delete projectConfig.rules;
 
 	return deepmerge(defaultConfig, projectConfig);
 }

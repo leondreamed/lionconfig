@@ -1,0 +1,6 @@
+{
+	"name": "my-js-project",
+	"dependencies": {
+		"@leonzalion/configs": "link:../../.."
+	}
+}
