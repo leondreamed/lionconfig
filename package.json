@@ -32,7 +32,7 @@
 		"test": "vitest run",
 		"build": "node --loader ts-node/esm ./scripts/build.ts",
 		"release": "lionp",
-		"tc": "tsc --noEmit"
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@commitlint/cli": "^16.2.4",
