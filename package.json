@@ -93,9 +93,6 @@
 	},
 	"publishConfig": {
 		"directory": "dist"
-	},
-	"resolutions": {
-		"find-up": "5.0.0"
 	}
 
 }
