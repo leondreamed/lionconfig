@@ -57,7 +57,7 @@
 		"eslint-plugin-simple-import-sort": "^7.0.0",
 		"eslint-plugin-unicorn": "^42.0.0",
 		"eslint-plugin-vue": "^8.7.1",
-		"find-up": "^5.1.1",
+		"find-up": "^5.0.0",
 		"is-ci": "^3.0.1",
 		"lint-staged": "^12.4.1",
 		"lion-git-hooks": "^1.0.10",
@@ -95,7 +95,7 @@
 		"directory": "dist"
 	},
 	"resolutions": {
-		"find-up": "5.1.1"
+		"find-up": "5.0.0"
 	}
 
 }
