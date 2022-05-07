@@ -1,11 +1,13 @@
 const path = require('path');
 const findUp = require('find-up');
+const pkgUp = require('pkg-up');
 
 /**
 	@param {string} dirname
 	@returns {import('eslint-define-config').EslintConfig['rules']}
 */
 function getGlobalRules(dirname) {
+	const pkgJsonFile = pkgUp.sync({ cwd: dirname });
 	const pnpmWorkspaceFile = findUp.sync('pnpm-workspace.yaml', {
 		cwd: dirname,
 	});
@@ -115,8 +117,8 @@ function getGlobalRules(dirname) {
 			{
 				packageDir:
 					pnpmWorkspaceDir === undefined
-						? [dirname]
-						: [dirname, pnpmWorkspaceDir],
+						? [path.dirname(pkgJsonFile)]
+						: [path.dirname(pkgJsonFile), pnpmWorkspaceDir],
 			},
 		],
 	};
