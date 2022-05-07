@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-import { spawnSync } from 'node:child_process';
-import path from 'node:path';
-import fs from 'node:fs';
-import process from 'node:process';
-import minimist from 'minimist';
-import logSymbols from 'log-symbols';
-import { pkgUpSync } from 'pkg-up';
 import isCi from 'is-ci';
+import logSymbols from 'log-symbols';
+import minimist from 'minimist';
+import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import process from 'node:process';
+import pkgUp from 'pkg-up';
 
 function getProjectDir(pathUrl) {
 	const pathDirectory = path.dirname(pathUrl);
 	const getPackageJson = (cwd) => {
-		const packageJsonPath = pkgUpSync({ cwd });
+		const packageJsonPath = pkgUp.sync({ cwd });
 		if (packageJsonPath === undefined) {
 			throw new Error('No project found.');
 		}
