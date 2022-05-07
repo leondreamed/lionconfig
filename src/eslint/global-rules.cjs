@@ -12,7 +12,7 @@ function getGlobalRules(dirname) {
 	const pnpmWorkspaceDir =
 		pnpmWorkspaceFile === undefined
 			? undefined
-			: path.dirname(pnpmWorkspaceDir);
+			: path.dirname(pnpmWorkspaceFile);
 
 	/**
 		@type {import('eslint-define-config').EslintConfig['rules']}
