@@ -117,6 +117,7 @@ function createESLintConfig(dirname, projectConfig = {}) {
 						'error',
 						{ devDependencies: false },
 					],
+					...projectConfig.rules,
 				},
 			},
 		],
