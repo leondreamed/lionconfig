@@ -104,12 +104,17 @@ function createESLintConfig(dirname, projectConfig = {}) {
 					require.resolve('./plugins.cjs'),
 					'plugin:vue/vue3-recommended',
 					'prettier',
+					'plugin:eslint-comments/recommended',
+					'plugin:jsonc/recommended-with-jsonc',
+					'plugin:yml/standard',
+					'plugin:markdown/recommended', // Lint code inside markdown files
 				],
 				parserOptions: {
 					parser: '@typescript-eslint/parser',
 					ecmaVersion: 2018,
 					sourceType: 'module',
 					project: parserOptionsProject,
+					extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 				},
 				rules: {
 					...globalRules,
