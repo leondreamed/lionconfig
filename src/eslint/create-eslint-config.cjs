@@ -109,6 +109,7 @@ function createESLintConfig(dirname, projectConfig = {}) {
 					parser: '@typescript-eslint/parser',
 					ecmaVersion: 2018,
 					sourceType: 'module',
+					project: parserOptionsProject,
 				},
 				rules: {
 					...globalRules,
