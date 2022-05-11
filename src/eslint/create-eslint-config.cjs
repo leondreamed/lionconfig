@@ -35,6 +35,7 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			'prettier',
 			'plugin:eslint-comments/recommended',
 			'plugin:jsonc/recommended-with-jsonc',
+			'plugin:jsonc/prettier',
 			'plugin:yml/standard',
 			'plugin:markdown/recommended', // Lint code inside markdown files
 		],
@@ -106,6 +107,7 @@ function createESLintConfig(dirname, projectConfig = {}) {
 					'prettier',
 					'plugin:eslint-comments/recommended',
 					'plugin:jsonc/recommended-with-jsonc',
+					'plugin:jsonc/prettier',
 					'plugin:yml/standard',
 					'plugin:markdown/recommended', // Lint code inside markdown files
 				],
