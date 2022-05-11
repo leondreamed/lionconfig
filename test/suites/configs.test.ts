@@ -37,6 +37,13 @@ describe('works with my-project', async () => {
 			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
+
+		expect(
+			fs
+				.readFileSync(path.join(tempFixturePath, 'package.json'))
+				.includes('  '),
+			'package.json should not be formatted by `eslint-plugin-jsonc` with two-space indentation'
+		).toBe(false);
 	});
 
 	test('prettier works', async () => {

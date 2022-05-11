@@ -32,12 +32,12 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			'xo',
 			require.resolve('./plugins.cjs'),
 			'plugin:vue/vue3-recommended',
-			'prettier',
 			'plugin:eslint-comments/recommended',
 			'plugin:jsonc/recommended-with-jsonc',
 			'plugin:jsonc/prettier',
 			'plugin:yml/standard',
 			'plugin:markdown/recommended', // Lint code inside markdown files
+			'prettier',
 		],
 		parserOptions: {
 			parser: '@typescript-eslint/parser',
@@ -104,12 +104,12 @@ function createESLintConfig(dirname, projectConfig = {}) {
 					'xo-typescript',
 					require.resolve('./plugins.cjs'),
 					'plugin:vue/vue3-recommended',
-					'prettier',
 					'plugin:eslint-comments/recommended',
 					'plugin:jsonc/recommended-with-jsonc',
 					'plugin:jsonc/prettier',
 					'plugin:yml/standard',
 					'plugin:markdown/recommended', // Lint code inside markdown files
+					'prettier',
 				],
 				parserOptions: {
 					parser: '@typescript-eslint/parser',
@@ -153,26 +153,6 @@ function createESLintConfig(dirname, projectConfig = {}) {
 			{
 				files: ['*.json', '*.json5'],
 				parser: 'jsonc-eslint-parser',
-				rules: {
-					'jsonc/array-bracket-spacing': ['error', 'never'],
-					'jsonc/comma-dangle': ['error', 'never'],
-					'jsonc/comma-style': ['error', 'last'],
-					'jsonc/indent': ['error', 2],
-					'jsonc/key-spacing': [
-						'error',
-						{ beforeColon: false, afterColon: true },
-					],
-					'jsonc/no-octal-escape': 'error',
-					'jsonc/object-curly-newline': [
-						'error',
-						{ multiline: true, consistent: true },
-					],
-					'jsonc/object-curly-spacing': ['error', 'always'],
-					'jsonc/object-property-newline': [
-						'error',
-						{ allowMultiplePropertiesPerLine: true },
-					],
-				},
 			},
 			{
 				files: ['*.yaml', '*.yml'],
