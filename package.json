@@ -8,13 +8,16 @@
 		"node-ts": "./src/tsconfig/node-ts.mjs",
 		"commitlint": "./src/bin/commitlint.cjs",
 		"eslint": "./src/bin/eslint.cjs",
+		"format": "./src/bin/format.cjs",
+		"lint": "./src/bin/lint.cjs",
 		"lint-staged": "./src/bin/lint-staged.cjs",
 		"lionp": "./src/bin/lionp.cjs",
 		"lion-git-hooks": "./src/bin/lion-git-hooks.cjs",
 		"markdownlint": "./src/bin/markdownlint.cjs",
 		"prettier": "./src/bin/prettier.cjs",
 		"ts-node": "./src/bin/ts-node.cjs",
-		"tsc-alias": "./src/bin/tsc-alias.cjs"
+		"tsc-alias": "./src/bin/tsc-alias.cjs",
+		"typecheck": "./src/bin/typecheck.cjs"
 	},
 	"exports": {
 		"./*": "./src/*"
