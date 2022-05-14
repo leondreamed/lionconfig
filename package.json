@@ -1,9 +1,17 @@
 {
 	"name": "lionconfig",
-	"description": "Powerful configuration utilities for various JavaScript and TypeScript tools.",
-	"version": "1.6.0",
-	"license": "MIT",
 	"type": "module",
+	"version": "1.6.0",
+	"description": "Powerful configuration utilities for various JavaScript and TypeScript tools.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/leonzalion/configs.git"
+	},
+	"exports": {
+		"./*": "./src/*",
+		"./eslint": "./src/eslint.cjs"
+	},
 	"bin": {
 		"node-ts": "./src/tsconfig/node-ts.mjs",
 		"commitlint": "./src/bin/commitlint.cjs",
@@ -21,13 +29,6 @@
 		"ts-node": "./src/bin/ts-node.cjs",
 		"tsc-alias": "./src/bin/tsc-alias.cjs",
 		"typecheck": "./src/bin/typecheck.cjs"
-	},
-	"exports": {
-		"./*": "./src/*"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/leonzalion/configs.git"
 	},
 	"homepage": "https://github.com/leonzalion/configs#readme",
 	"scripts": {
