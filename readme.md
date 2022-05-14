@@ -1,12 +1,12 @@
 # lionconfig
 
-Powerful configuration defaults for various JavaScript and TypeScript tools.
-
 [![npm version](https://img.shields.io/npm/v/lionconfig)](https://npmjs.com/package/lionconfig)
+
+Powerful configuration defaults for various JavaScript and TypeScript tools.
 
 ## Installation
 
-`lionconfig` is based on on `pnpm`; it may not work well with other package managers.
+> **Note:** `lionconfig` is based on on `pnpm` and may not work well with other package managers.
 
 ```shell
 pnpm add -D lionconfig
