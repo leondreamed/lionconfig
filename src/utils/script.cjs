@@ -16,9 +16,9 @@ function runScript(scriptArgs) {
 			}).status
 		);
 	} else {
-		process.exit(spawnSync('pnpm', ['exec', ...scriptArgs]).status, {
-			stdio: 'inherit',
-		});
+		process.exit(
+			spawnSync('pnpm', ['exec', ...scriptArgs], { stdio: 'inherit' }).status
+		);
 	}
 }
 

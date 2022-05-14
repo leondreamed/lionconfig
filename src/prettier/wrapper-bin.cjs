@@ -14,6 +14,7 @@ const readFileAsync = fs.promises.readFile;
 
 // prettier uses `fs.promises` to read files: https://github.com/prettier/prettier/blob/main/src/utils/get-file-content-or-null.js
 fs.promises.readFile = async (filename, encoding) => {
+	console.log(filename. encoding)
 	if (filename === defaultPrettierIgnoreFilePath) {
 		const defaultPrettierIgnore = await readFileAsync(filename, encoding);
 
