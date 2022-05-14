@@ -69,6 +69,8 @@ module.exports = createESLintConfig(__dirname);
 
 ### Markdownlint
 
+Markdownlint support is also provided out-of-the-box.
+
 ### Release
 
 [lionp](https://github.com/leonzalion/lionp) is exposed as a binary so you can add the following property to your `package.json`:
