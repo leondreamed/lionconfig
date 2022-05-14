@@ -44,7 +44,7 @@ Prettier comes in the form of a wrapper function which comes with a default `.pr
 ESLint support is provided via a powerful `createESLintConfig` function that you can use like this:
 
 ```typescript
-const createESLintConfig = require('lionconfig/eslint.cjs');
+const createESLintConfig = require('lionconfig/eslint');
 
 module.exports = createESLintConfig(__dirname, {
   rules: {
@@ -56,6 +56,16 @@ module.exports = createESLintConfig(__dirname, {
 ```
 
 The default ESLint configuration is based off of [xo](https://github.com/xojs/xo) with some modifications.
+
+To avoid the boilerplate of having to create an `.eslintrc.cjs` file per-project, `lionconfig` will automatically stub a "virtual" `.eslintrc.cjs` file in directories that contain a `package.json` file and don't contain an `eslintrc.cjs` file.
+
+#### Virtual `eslintrc.cjs`
+
+```typescript
+const createESLintConfig = require('lionconfig/eslint');
+
+module.exports = createESLintConfig(__dirname);
+```
 
 ### Markdownlint
 
