@@ -35,8 +35,7 @@
 		"prepare": "lion-git-hooks",
 		"test": "vitest run",
 		"build": "node --loader ts-node/esm ./scripts/build.ts",
-		"release": "lionp",
-		"typecheck": "tsc --noEmit"
+		"release": "lionp"
 	},
 	"dependencies": {
 		"@commitlint/cli": "^16.2.4",
