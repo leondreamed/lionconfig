@@ -11,8 +11,8 @@ describe('markdown override works', async () => {
 	let tempFixturePath: string;
 
 	beforeAll(async () => {
-		tempFixturePath = await fixture('markdown');
-		originalFixturePath = path.join(fixturesDir, 'markdown');
+		tempFixturePath = await fixture('markdown-override');
+		originalFixturePath = path.join(fixturesDir, 'markdown-override');
 	});
 
 	test('does not format markdown code blocks with tabs', async () => {

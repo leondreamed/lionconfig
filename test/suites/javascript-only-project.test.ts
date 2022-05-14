@@ -7,7 +7,7 @@ const { fixture } = lionFixture(import.meta.url);
 describe('lints a javascript-only project properly', async () => {
 	let jsProjectTempDir: string;
 	beforeAll(async () => {
-		jsProjectTempDir = await fixture('my-js-project');
+		jsProjectTempDir = await fixture('javascript-only-project');
 	});
 
 	test('eslint works', async () => {

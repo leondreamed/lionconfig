@@ -1,5 +1,5 @@
 {
-	"name": "my-js-project",
+	"name": "javascript-only-project",
 	"dependencies": {
 		"@leonzalion/configs": "link:../../.."
 	}
