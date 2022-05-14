@@ -21,4 +21,4 @@ if (!fileName.startsWith('./src/bin') && !fileName.startsWith('src/bin')) {
 }
 
 // TODO: call `node-ts` directly
-spawnSync('pnpm exec node-ts', [filePath, ...args]);
+spawnSync('pnpm exec node-ts', [filePath, ...args._.slice(1)]);
