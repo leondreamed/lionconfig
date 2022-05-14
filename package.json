@@ -1,7 +1,7 @@
 {
-	"name": "@leonzalion/configs",
-	"description": "My configuration files for various tools.",
-	"version": "1.4.21",
+	"name": "lionconfigs",
+	"description": "Powerful configuration utilities for various tools.",
+	"version": "0.0.0",
 	"license": "MIT",
 	"type": "module",
 	"bin": {
@@ -74,6 +74,7 @@
 		"log-symbols": "^5.1.0",
 		"markdownlint-cli": "^0.31.1",
 		"minimist": "^1.2.6",
+		"outdent": "^0.8.0",
 		"pkg-up": "^4.0.0",
 		"postcss": "^8.4.13",
 		"prettier": "^2.6.2",

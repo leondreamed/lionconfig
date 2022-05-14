@@ -43,6 +43,7 @@ specifiers:
   markdownlint-cli: ^0.31.1
   minimist: ^1.2.6
   nanoid: ^3.3.4
+  outdent: ^0.8.0
   pkg-up: ^4.0.0
   postcss: ^8.4.13
   prettier: ^2.6.2
@@ -93,6 +94,7 @@ dependencies:
   log-symbols: 5.1.0
   markdownlint-cli: 0.31.1
   minimist: 1.2.6
+  outdent: 0.8.0
   pkg-up: 4.0.0
   postcss: 8.4.13
   prettier: 2.6.2
@@ -4458,6 +4460,10 @@ packages:
   /os-tmpdir/1.0.2:
     resolution: {integrity: sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /outdent/0.8.0:
+    resolution: {integrity: sha512-KiOAIsdpUTcAXuykya5fnVVT+/5uS0Q1mrkRHcF89tpieSmY33O/tmc54CqwA+bfhbtEfZUNLHaPUiB9X3jt1A==}
     dev: false
 
   /p-cancelable/1.1.0:
