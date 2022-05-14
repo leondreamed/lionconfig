@@ -24,7 +24,7 @@ if (customConfigIndex !== -1) {
 	prettierOptions.push('--config', require.resolve('../prettier.cjs'));
 }
 
-prettierOptions.push(argv);
+prettierOptions.push(...argv);
 
 process.exit(
 	spawnSync(prettierWrapperBinPath, prettierOptions, {

@@ -91,7 +91,7 @@ if (result.error || result.status !== 0) {
 	}
 
 	if (result.status !== 0 && result.status !== null) {
-		console.log(
+		console.error(
 			logSymbols.error,
 			`node-ts: Process exited with exit code ${result.status}`
 		);
