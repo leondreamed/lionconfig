@@ -15,6 +15,7 @@
 		"lion-git-hooks": "./src/bin/lion-git-hooks.cjs",
 		"markdownlint": "./src/bin/markdownlint.cjs",
 		"prettier": "./src/bin/prettier.cjs",
+		"run-bin": "./src/bin/run-bin.cjs",
 		"ts-node": "./src/bin/ts-node.cjs",
 		"tsc-alias": "./src/bin/tsc-alias.cjs",
 		"typecheck": "./src/bin/typecheck.cjs"
