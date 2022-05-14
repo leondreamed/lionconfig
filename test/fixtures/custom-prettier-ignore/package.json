@@ -1,7 +1,7 @@
 {
 	"name": "custom-prettier-ignore",
 	"dependencies": {
-		"@leonzalion/configs": "link:../../.."
+		"lionconfig": "link:../../.."
 	}
 }
 

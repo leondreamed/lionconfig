@@ -1,6 +1,6 @@
 {
 	"name": "javascript-only-project",
 	"dependencies": {
-		"@leonzalion/configs": "link:../../.."
+		"lionconfig": "link:../../.."
 	}
 }

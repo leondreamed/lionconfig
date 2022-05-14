@@ -73,9 +73,9 @@ const result = spawnSync(
 	'node',
 	[
 		'-r',
-		'@leonzalion/configs/tsconfig/suppress-experimental-loader-warning.cjs',
+		'lionconfig/tsconfig/suppress-experimental-loader-warning.cjs',
 		'--loader',
-		'@leonzalion/configs/tsconfig/ts-loader.mjs',
+		'lionconfig/tsconfig/ts-loader.mjs',
 		...nodeOpts,
 	],
 	spawnOptions

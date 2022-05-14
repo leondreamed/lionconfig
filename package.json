@@ -1,6 +1,6 @@
 {
-	"name": "lionconfigs",
-	"description": "Powerful configuration utilities for various tools.",
+	"name": "lionconfig",
+	"description": "Powerful configuration utilities for various JavaScript and TypeScript tools.",
 	"version": "0.0.0",
 	"license": "MIT",
 	"type": "module",

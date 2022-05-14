@@ -1,7 +1,7 @@
 {
 	"name": "my-project",
 	"dependencies": {
-		"@leonzalion/configs": "link:../../.."
+		"lionconfig": "link:../../.."
 	},
 	"devDependencies": {
 		"vitest": "^0.6.0",
