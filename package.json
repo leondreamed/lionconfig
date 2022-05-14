@@ -70,7 +70,7 @@
 		"lint-staged": "^12.4.1",
 		"lion-git-hooks": "^1.0.10",
 		"lion-system": "^1.3.29",
-		"lionp": "^1.0.27",
+		"lionp": "^1.0.28",
 		"log-symbols": "^5.1.0",
 		"markdownlint-cli": "^0.31.1",
 		"minimist": "^1.2.6",
