@@ -4,13 +4,27 @@
 
 Powerful configuration defaults for various JavaScript and TypeScript tools.
 
+> **Note:** `lionconfig` is based on on `pnpm` and may not work well with other package managers.
+
 ## Installation
 
-> **Note:** `lionconfig` is based on on `pnpm` and may not work well with other package managers.
+Install `lionconfig` as a devDependency to the root of your project.
+
+In a monorepo, run:
+
+```shell
+pnpm add --workspace-root --dev lionconfig
+```
+
+Otherwise, run:
 
 ```shell
 pnpm add -D lionconfig
 ```
+
+### IDE Integration
+
+#### Prettier
 
 For optimal Prettier support in VSCode, add the following configuration to your VSCode settings:
 
