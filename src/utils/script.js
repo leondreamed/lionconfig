@@ -5,8 +5,23 @@ import * as path from 'node:path';
 import process from 'node:process';
 import pkgUp from 'pkg-up';
 
-export async function runScript(scriptArgs, condition) {
+export async function runScript(scriptName, scriptArgs, condition) {
 	const pkgJsonPath = pkgUp.sync({ cwd: process.cwd() });
+	if (pkgJsonPath === undefined) {
+		throw new Error('`package.json` path could not be found.');
+	}
+
+	const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+
+	// Run the script specified in the package.json if the script already exists
+	if (pkgJson.scripts?.[scriptName] !== undefined) {
+		process.exit(
+			spawnSync('pnpm', ['run', scriptName, ...scriptArgs], {
+				stdio: 'inherit',
+			}).status
+		);
+	}
+
 	const pkgJsonDir = path.dirname(pkgJsonPath);
 
 	const workspacesToRunScript = [];
@@ -27,7 +42,9 @@ export async function runScript(scriptArgs, condition) {
 					continue;
 				}
 
-				if (condition?.(workspacePackage.dir)) {
+				if (workspacePackage.manifest.scripts?.[scriptName] !== undefined) {
+					workspacesToRunScript.push(workspacePackage);
+				} else if (condition?.(workspacePackage.dir)) {
 					workspacesToRunScript.push(workspacePackage);
 				}
 			}

@@ -6,7 +6,7 @@ import process from 'node:process';
 
 import { runScript } from '../utils/script.js';
 
-runScript(['vitest', 'run', ...process.argv.slice(2)], (dir) => {
+runScript('test', ['vitest', 'run', ...process.argv.slice(2)], (dir) => {
 	const vitestFiles = [
 		'vite.config.ts',
 		'vite.config.js',

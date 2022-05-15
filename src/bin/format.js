@@ -4,4 +4,4 @@ import process from 'node:process';
 
 import { runScript } from '../utils/script.js';
 
-runScript(['prettier', '--write', ...process.argv.slice(2), '.']);
+runScript('format', ['prettier', '--write', ...process.argv.slice(2), '.']);

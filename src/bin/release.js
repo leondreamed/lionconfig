@@ -6,7 +6,7 @@ import process from 'node:process';
 
 import { runScript } from '../utils/script.js';
 
-runScript(['lionp', ...process.argv.slice(2)], (dir) => {
+runScript('release', ['lionp', ...process.argv.slice(2)], (dir) => {
 	const pkgJson = JSON.parse(
 		fs.readFileSync(path.join(dir, 'package.json'), 'utf8')
 	);

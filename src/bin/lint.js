@@ -4,4 +4,4 @@ import process from 'node:process';
 
 import { runScript } from '../utils/script.js';
 
-runScript(['eslint', '--cache', '--fix', ...process.argv.slice(2), '.']);
+runScript('lint', ['eslint', '--cache', '--fix', ...process.argv.slice(2), '.']);
