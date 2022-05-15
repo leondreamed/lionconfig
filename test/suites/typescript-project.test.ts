@@ -92,4 +92,11 @@ describe('works with typescript-project', async () => {
 			stdio: 'inherit',
 		});
 	});
+
+	test('lint-staged works', async () => {
+		await execaCommand('pnpm exec lint-staged', {
+			cwd: tempFixturePath,
+			stdio: 'inherit',
+		});
+	});
 });
