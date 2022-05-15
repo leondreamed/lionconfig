@@ -26,7 +26,7 @@ export function nodeTs(filePath, cliOptions = []) {
 		'node',
 		[
 			'-r',
-			'lionconfig/tsconfig/suppress-experimental-loader-warning.cjs',
+			'lionconfig/tsconfig/suppress-experimental-loader-warning.js',
 			'--loader',
 			'lionconfig/tsconfig/ts-loader.js',
 			...nodeOpts,
