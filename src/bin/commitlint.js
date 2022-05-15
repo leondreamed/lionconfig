@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import resolve from 'resolve';
+import { join } from 'desm';
 
 import { executeBin } from '../utils/bin.js';
 
 executeBin('@commitlint/cli', 'cli.js', [
 	'--config',
-	resolve.sync('../commitlint.js'),
+	join(import.meta.url, '../commitlint.cjs'),
 ]);
