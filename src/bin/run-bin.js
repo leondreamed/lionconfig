@@ -1,7 +1,10 @@
-const minimist = require('minimist');
-const path = require('path');
-const process = require('process');
-const { nodeTs } = require('../utils/node.cjs');
+#!/usr/bin/env node
+
+import minimist from 'minimist';
+import path from 'node:path';
+import process from 'node:process';
+
+import { nodeTs } from '../utils/node.js';
 
 const args = minimist(process.argv.slice(2));
 let fileName = args._[0];
@@ -19,9 +22,5 @@ let filePath = fileName;
 if (!fileName.startsWith('./src/bin') && !fileName.startsWith('src/bin')) {
 	filePath = `./src/bin/${fileName}`;
 }
-
-(async () => {
-	await import('../tsconfig/node-ts.mjs');
-})();
 
 nodeTs(filePath, args._.slice(1));

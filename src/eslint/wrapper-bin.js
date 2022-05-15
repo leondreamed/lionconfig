@@ -4,11 +4,12 @@
 	A wrapper around ESLint to provide a default `.eslintrc.cjs` file if the project doesn't contain one.
 */
 
-const fs = require('node:fs');
-const path = require('node:path');
-const { outdent } = require('outdent');
+import fs from 'node:fs';
+import path from 'node:path';
+import { outdent } from 'outdent';
+import resolve from 'resolve';
 
-const eslintPath = require.resolve('eslint');
+const eslintPath = resolve('eslint');
 const eslintBinPath = path.resolve(eslintPath, '../../bin/eslint.js');
 
 const readFileSync = fs.readFileSync;
@@ -60,4 +61,4 @@ if (!fs.__lionConfigStubbed) {
 	};
 }
 
-require(eslintBinPath);
+await import(eslintBinPath);

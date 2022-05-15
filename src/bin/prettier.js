@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
-const path = require('node:path');
-const process = require('node:process');
-const { spawnSync } = require('node:child_process');
+import { join } from 'desm';
+import { spawnSync } from 'node:child_process';
+import process from 'node:process';
+import resolve from 'resolve';
 
 const argv = process.argv.slice(2);
 
@@ -12,16 +13,16 @@ if (customConfigIndex !== -1) {
 	argv.splice(customConfigIndex, 1);
 }
 
-const ignorePath = path.join(__dirname, '../prettier/.prettierignore');
-const prettierWrapperBinPath = path.join(
-	__dirname,
+const ignorePath = join(import.meta.url, '../prettier/.prettierignore');
+const prettierWrapperBinPath = join(
+	import.meta.url,
 	'../prettier/wrapper-bin.cjs'
 );
 
 const prettierOptions = [`--ignore-path=${ignorePath}`];
 
 if (customConfigIndex !== -1) {
-	prettierOptions.push('--config', require.resolve('../prettier.cjs'));
+	prettierOptions.push('--config', resolve('../prettier.cjs'));
 }
 
 prettierOptions.push(...argv);

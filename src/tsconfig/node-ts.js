@@ -4,9 +4,7 @@ import isCi from 'is-ci';
 import minimist from 'minimist';
 import process from 'node:process';
 
-import * as nodeUtils from '../utils/node.cjs';
-
-const { nodeTs } = nodeUtils;
+import { nodeTs } from '../utils/node.js';
 
 const argv = minimist(process.argv.slice(2));
 
@@ -22,4 +20,4 @@ if (filePath === undefined) {
 	throw new Error('No file specified.');
 }
 
-nodeTs(filePath, argv._.slice(1));
+await nodeTs(filePath, argv._.slice(1));

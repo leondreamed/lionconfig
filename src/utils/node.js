@@ -3,7 +3,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
 
-exports.nodeTs = function (filePath, cliOptions = []) {
+export function nodeTs(filePath, cliOptions = []) {
 	let fileFullPath;
 	// Absolute path
 	if (filePath.startsWith('/')) {
@@ -28,7 +28,7 @@ exports.nodeTs = function (filePath, cliOptions = []) {
 			'-r',
 			'lionconfig/tsconfig/suppress-experimental-loader-warning.cjs',
 			'--loader',
-			'lionconfig/tsconfig/ts-loader.mjs',
+			'lionconfig/tsconfig/ts-loader.js',
 			...nodeOpts,
 		],
 		spawnOptions
@@ -51,4 +51,4 @@ exports.nodeTs = function (filePath, cliOptions = []) {
 			process.exit(result.status);
 		}
 	}
-};
+}

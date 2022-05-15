@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const { executeBin } = require('../utils/bin.cjs');
+import { executeBin } from '../utils/bin.js';
 
 executeBin('ts-node', 'dist/bin.js');

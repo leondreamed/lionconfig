@@ -70,6 +70,7 @@ dependencies:
   '@typescript-eslint/eslint-plugin': 5.23.0_c63nfttrfhylg3zmgcxfslaw44
   '@typescript-eslint/parser': 5.23.0_hcfsmds2fshutdssjqluwm76uu
   deepmerge-ts: 4.0.3
+  desm: 1.2.0
   eslint: 8.15.0
   eslint-config-airbnb-base: 15.0.0_gwd37gqv3vjv3xlpl7ju3ag2qu
   eslint-config-prettier: 8.5.0_eslint@8.15.0
@@ -111,7 +112,6 @@ devDependencies:
   '@types/is-ci': 3.0.0
   '@types/prettier': 2.6.1
   '@types/resolve': 1.20.2
-  desm: 1.2.0
   execa: 6.1.0
   globby: 13.1.1
   lion-fixture: 1.1.1

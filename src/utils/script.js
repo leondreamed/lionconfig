@@ -1,10 +1,10 @@
-const pkgUp = require('pkg-up');
-const process = require('node:process');
-const path = require('node:path');
-const fs = require('node:fs');
-const { spawnSync } = require('node:child_process');
+import { spawnSync } from 'node:child_process';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import process from 'node:process';
+import pkgUp from 'pkg-up';
 
-function runScript(scriptArgs) {
+export function runScript(scriptArgs) {
 	const pkgJsonPath = pkgUp.sync({ cwd: process.cwd() });
 	const pkgJsonDir = path.dirname(pkgJsonPath);
 
@@ -21,5 +21,3 @@ function runScript(scriptArgs) {
 		);
 	}
 }
-
-exports.runScript = runScript;

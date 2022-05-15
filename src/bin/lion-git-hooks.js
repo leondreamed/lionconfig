@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const { executeBin } = require('../utils/bin.cjs');
+import { executeBin } from '../utils/bin.js';
 
 executeBin('lion-git-hooks', 'bin/cli.js');
