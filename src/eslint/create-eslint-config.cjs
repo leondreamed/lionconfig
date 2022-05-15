@@ -189,7 +189,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 				},
 			},
 			{
-				files: ['scripts/**/*.ts'],
+				files: ['scripts/**/*.*', 'src/bin/**/*.*'],
 				rules: {
 					'unicorn/no-process-exit': 'off',
 				},
