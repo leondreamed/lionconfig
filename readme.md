@@ -19,7 +19,7 @@ pnpm add --workspace-root --dev lionconfig
 Otherwise, run:
 
 ```shell
-pnpm add -D lionconfig
+pnpm add --dev lionconfig
 ```
 
 ### IDE Integration
