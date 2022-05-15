@@ -81,5 +81,15 @@ describe('works with typescript-project', async () => {
 			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});
+
+		await execaCommand('pnpm exec node-ts ./src/file1.ts', {
+			cwd: tempFixturePath,
+			stdio: 'inherit',
+		});
+
+		await execaCommand('pnpm exec run-bin cli', {
+			cwd: tempFixturePath,
+			stdio: 'inherit',
+		});
 	});
 });
