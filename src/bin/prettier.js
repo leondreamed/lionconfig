@@ -16,7 +16,7 @@ if (customConfigIndex !== -1) {
 const ignorePath = join(import.meta.url, '../prettier/.prettierignore');
 const prettierWrapperBinPath = join(
 	import.meta.url,
-	'../prettier/wrapper-bin.cjs'
+	'../prettier/wrapper-bin.js'
 );
 
 const prettierOptions = [`--ignore-path=${ignorePath}`];
