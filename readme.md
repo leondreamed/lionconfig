@@ -91,4 +91,4 @@ To reduce boilerplate in the `scripts` property of each codebase's `package.json
 `pnpm exec format`: `prettier --write .`\
 `pnpm exec typecheck`: `tsc --noEmit`
 
-When run from the workspace root, these scripts will run intelligently based on the contents of the workspace packages (e.g. `typecheck` will only run in workspace packages that have a `tsconfig.json` file).
+When run from the workspace root, these scripts will intelligently run recursively based on the contents of the workspace packages (e.g. `typecheck` will only run in workspace packages that have a `tsconfig.json` file).
