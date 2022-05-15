@@ -1,14 +1,31 @@
+/* eslint-disable prefer-destructuring */
+
 const fs = require('fs');
 const path = require('path');
 const getGlobalRules = require('./global-rules.cjs');
 const { defineConfig } = require('eslint-define-config');
 const { deepmerge } = require('deepmerge-ts');
+const { outdent } = require('outdent');
+
+const statSync = fs.statSync;
+const existsSync = fs.existsSync;
+const readFileSync = fs.readFileSync;
+
+function shouldStubTsconfigEslintJson(filePath) {
+	if (path.basename(filePath) !== 'tsconfig.eslint.json') {
+		return false;
+	}
+
+	const dir = path.dirname(filePath);
+
+	return existsSync(path.join(dir, 'tsconfig.json'));
+}
 
 /**
 	@param {string} dirname
 	@param {import('eslint-define-config').EslintConfig} config
 */
-function createESLintConfig(dirname, projectConfig = {}) {
+function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 	if (dirname === undefined) {
 		throw new Error('`dirname` must be provided to `createESLintConfig`');
 	}
@@ -17,6 +34,43 @@ function createESLintConfig(dirname, projectConfig = {}) {
 		throw new TypeError(
 			'`dirname`, the first argument passed to `createESLintConfig`, must be a string'
 		);
+	}
+
+	if (!options.noStubs) {
+		fs.statSync = (...args) => {
+			if (shouldStubTsconfigEslintJson(args[0])) {
+				return {
+					isFile: () => true,
+				};
+			}
+			// Otherwise, just pass through
+			else {
+				return statSync(...args);
+			}
+		};
+
+		fs.existsSync = (...args) => {
+			if (shouldStubTsconfigEslintJson(args[0])) {
+				return true;
+			} else {
+				return existsSync(...args);
+			}
+		};
+
+		fs.readFileSync = (...args) => {
+			if (shouldStubTsconfigEslintJson(args[0])) {
+				return outdent`
+					{
+						"extends": "./tsconfig.json",
+						"include": ["*.*", "**/*.*"]
+					}
+				`;
+			} else {
+				return readFileSync(...args);
+			}
+		};
+
+		fs.__lionConfigStubbed = true;
 	}
 
 	const globalRules = getGlobalRules(dirname);

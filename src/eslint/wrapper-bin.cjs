@@ -11,6 +11,10 @@ const { outdent } = require('outdent');
 const eslintPath = require.resolve('eslint');
 const eslintBinPath = path.resolve(eslintPath, '../../bin/eslint.js');
 
+const readFileSync = fs.readFileSync;
+const statSync = fs.statSync;
+const existsSync = fs.existsSync;
+
 function shouldStubTsconfigEslintJson(filePath) {
 	if (path.basename(filePath) !== 'tsconfig.eslint.json') {
 		return false;
@@ -21,41 +25,39 @@ function shouldStubTsconfigEslintJson(filePath) {
 	return existsSync(path.join(dir, 'tsconfig.json'));
 }
 
-const readFileSync = fs.readFileSync;
-fs.readFileSync = (...args) => {
-	if (shouldStubTsconfigEslintJson(args[0])) {
-		return outdent`
-			{
-				"extends": "./tsconfig.json",
-				"include": ["*.*", "**/*.*"]
-			}
-		`;
-	} else {
-		return readFileSync(...args);
-	}
-};
+if (!fs.__lionConfigStubbed) {
+	fs.readFileSync = (...args) => {
+		if (shouldStubTsconfigEslintJson(args[0])) {
+			return outdent`
+				{
+					"extends": "./tsconfig.json",
+					"include": ["*.*", "**/*.*"]
+				}
+			`;
+		} else {
+			return readFileSync(...args);
+		}
+	};
 
-const statSync = fs.statSync;
-const existsSync = fs.existsSync;
+	fs.statSync = (...args) => {
+		if (shouldStubTsconfigEslintJson(args[0])) {
+			return {
+				isFile: () => true,
+			};
+		}
+		// Otherwise, just pass through
+		else {
+			return statSync(...args);
+		}
+	};
 
-fs.statSync = (...args) => {
-	if (shouldStubTsconfigEslintJson(args[0])) {
-		return {
-			isFile: () => true,
-		};
-	}
-	// Otherwise, just pass through
-	else {
-		return statSync(...args);
-	}
-};
-
-fs.existsSync = (...args) => {
-	if (shouldStubTsconfigEslintJson(args[0])) {
-		return true;
-	} else {
-		return existsSync(...args);
-	}
-};
+	fs.existsSync = (...args) => {
+		if (shouldStubTsconfigEslintJson(args[0])) {
+			return true;
+		} else {
+			return existsSync(...args);
+		}
+	};
+}
 
 require(eslintBinPath);
