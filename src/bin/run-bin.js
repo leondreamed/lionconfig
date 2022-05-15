@@ -13,7 +13,7 @@ if (fileName === undefined) {
 	throw new Error('A file name must be specified.');
 }
 
-if (path.parse(fileName).ext === undefined) {
+if (path.parse(fileName).ext === '') {
 	fileName += '.ts';
 }
 
