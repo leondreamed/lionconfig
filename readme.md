@@ -43,7 +43,7 @@ In addition, `tsc-alias` is exposed as a binary so you can use it to turn your a
 
 ### Git Hooks
 
-Git hooks are set with [`lion-git-hooks`](https://github.com/leonzalion/lion-git-hooks). To register git hooks in your project, create one of the following folders in your project's filesystem:
+Git hooks are set with [`lion-git-hooks`](https://github.com/leonzalion/lion-git-hooks). To add git hooks to your project, create one of the following folders in your project's filesystem:
 
 ```shell
 hooks
