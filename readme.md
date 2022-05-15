@@ -35,7 +35,7 @@ Git hooks are set with [`lion-git-hooks`](https://github.com/leonzalion/lion-git
 
 ### Prettier
 
-Prettier comes in the form of a wrapper binary which comes with a default `.prettierignore` configuration while also allowing you to specify a `.prettierignore` extension which extends the default in your own project.
+Prettier comes in the form of a wrapper binary which comes with a default `.prettierignore` configuration while also allowing you to specify a custom `.prettierignore` for your project which extends the default.
 
 > Since prettier doesn't yet provide native support for this feature, this feature is added through a prettier wrapper script which makes prettier load a "combined" version of the default `.prettierignore` file and the project's `.prettierignore` file.
 
