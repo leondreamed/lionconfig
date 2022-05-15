@@ -55,7 +55,7 @@ module.exports = createESLintConfig(__dirname, {
 });
 ```
 
-The default ESLint configuration is based off of [xo](https://github.com/xojs/xo) with some modifications.
+The [default ESLint configuration](https://github.com/leonzalion/lionconfig/blob/main/src/eslint/create-eslint-config.cjs) is based off of [xo](https://github.com/xojs/xo) with some modifications.
 
 To prevent unnecessary boilerplate in projects, `lionconfig` provides a wrapper over the ESLint binary which stubs certain files that aren't present in a folder:
 
