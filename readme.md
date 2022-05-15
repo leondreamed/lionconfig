@@ -63,6 +63,8 @@ import { prePush } from 'lion-system';
 prePush();
 ```
 
+#### [lint-staged](https://github.com/okonet/lint-staged)
+
 [`lint-staged`](https://github.com/okonet/lint-staged) is also provided as an out-of-the-box-supported binary.
 
 ### Prettier
