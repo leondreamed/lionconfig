@@ -25,7 +25,7 @@ For optimal Prettier support in VSCode, add the following configuration to your 
 
 ### TypeScript
 
-TypeScript + ESM support is provided out of the box via a wrapper script named `node-ts` which wraps around `ts-node`'s ESM support with a custom loader hook to support TypeScript path aliases.
+TypeScript + ESM support is provided out of the box via a wrapper script named `node-ts` which leverages `ts-node`'s ESM support with a custom loader hook to support TypeScript path aliases.
 
 In addition, `tsc-alias` is exposed as a binary so you can use it to turn your aliased paths into relative paths at compile time.
 
