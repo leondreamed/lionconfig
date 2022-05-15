@@ -3,7 +3,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
 
-export function nodeTs(filePath, cliOptions = []) {
+export function nodeTs(filePath, cliOptions = {}) {
 	let fileFullPath;
 	// Absolute path
 	if (filePath.startsWith('/')) {
@@ -14,12 +14,14 @@ export function nodeTs(filePath, cliOptions = []) {
 		fileFullPath = path.join(process.cwd(), filePath);
 	}
 
-	const nodeOpts = [fileFullPath, ...cliOptions];
+	const nodeOpts = [fileFullPath, ...(cliOptions.args ?? [])];
 
 	const spawnOptions = {
 		stdio: 'inherit',
 		// Run `node` from the working directory of the file
 		cwd: path.dirname(fileFullPath),
+		env: cliOptions.env,
+		extendEnv: true,
 	};
 
 	const result = spawnSync(

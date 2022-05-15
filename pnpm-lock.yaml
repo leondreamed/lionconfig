@@ -16,6 +16,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.23.0
   deepmerge-ts: ^4.0.3
   desm: ^1.2.0
+  dotenv: ^16.0.1
   eslint: ^8.15.0
   eslint-config-airbnb-base: ^15.0.0
   eslint-config-prettier: ^8.5.0
@@ -75,6 +76,7 @@ dependencies:
   '@typescript-eslint/parser': 5.23.0_hcfsmds2fshutdssjqluwm76uu
   deepmerge-ts: 4.0.3
   desm: 1.2.0
+  dotenv: 16.0.1
   eslint: 8.15.0
   eslint-config-airbnb-base: 15.0.0_gwd37gqv3vjv3xlpl7ju3ag2qu
   eslint-config-prettier: 8.5.0_eslint@8.15.0
@@ -1855,6 +1857,11 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       type-fest: 2.12.2
+
+  /dotenv/16.0.1:
+    resolution: {integrity: sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /duplexer3/0.1.4:
     resolution: {integrity: sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=}

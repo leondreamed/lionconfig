@@ -53,6 +53,7 @@
 		"@typescript-eslint/parser": "^5.23.0",
 		"deepmerge-ts": "^4.0.3",
 		"desm": "^1.2.0",
+		"dotenv": "^16.0.1",
 		"eslint": "^8.15.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-prettier": "^8.5.0",

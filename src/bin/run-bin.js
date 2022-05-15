@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
+import dotenv from 'dotenv';
+import findUp from 'find-up';
 import minimist from 'minimist';
+import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -23,4 +26,18 @@ if (!fileName.startsWith('./src/bin') && !fileName.startsWith('src/bin')) {
 	filePath = `./src/bin/${fileName}`;
 }
 
-nodeTs(filePath, args._.slice(1));
+const pnpmWorkspaceYamlPath = findUp.sync('pnpm-workspace.yaml');
+// Load environment variables from an `.env` file if they are present
+const envFilePath = path.join(
+	pnpmWorkspaceYamlPath === undefined
+		? process.cwd()
+		: path.dirname(pnpmWorkspaceYamlPath),
+	'.env'
+);
+
+if (fs.existsSync(envFilePath)) {
+	nodeTs(filePath, {
+		args: args._.slice(1),
+		env: dotenv.config({ path: envFilePath }).parsed,
+	});
+}
