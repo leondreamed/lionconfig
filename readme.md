@@ -27,11 +27,43 @@ For optimal Prettier support in VSCode, add the following configuration to your 
 
 TypeScript + ESM support is provided out of the box via a wrapper script named `node-ts` which leverages `ts-node`'s ESM support with a custom loader hook to support TypeScript path aliases.
 
+`lionconfig` also provides a default [`tsconfig.json`]() file to extend from with reasonable defaults (including transpilation-by-default using [swc](https://github.com/swc-project/swc)). To use it, simply add the `extends` property in your project's `tsconfig.json`:
+
+```jsonc
+{
+  "extends": "lionconfig/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    // ... and add your custom project settings here
+  }
+}
+```
+
 In addition, `tsc-alias` is exposed as a binary so you can use it to turn your aliased paths into relative paths at compile time.
 
 ### Git Hooks
 
-Git hooks are set with [`lion-git-hooks`](https://github.com/leonzalion/lion-git-hooks). [lint-staged](https://github.com/okonet/lint-staged) is also provided as an out-of-the-box-supported binary.
+Git hooks are set with [`lion-git-hooks`](https://github.com/leonzalion/lion-git-hooks). To register git hooks in your project, create one of the following folders in your project's filesystem:
+
+```shell
+hooks
+scripts/hooks
+scripts/src/hooks
+packages/scripts/src/hooks
+```
+
+In the hooks folder, add a JavaScript/TypeScript file for each hook you want to register. For example, to create a pre-push hook, create a file named `pre-push.ts`:
+
+```typescript
+// pre-push.ts
+
+// Change the code below to what you want to run in your pre-push hook
+import { prePush } from 'lion-system';
+
+prePush();
+```
+
+[`lint-staged`](https://github.com/okonet/lint-staged) is also provided as an out-of-the-box-supported binary.
 
 ### Prettier
 
