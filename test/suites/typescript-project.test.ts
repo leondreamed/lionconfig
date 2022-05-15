@@ -99,4 +99,11 @@ describe('works with typescript-project', async () => {
 			stdio: 'inherit',
 		});
 	});
+
+	test('typecheck works', async () => {
+		await execaCommand('pnpm exec typecheck', {
+			cwd: tempFixturePath,
+			stdio: 'inherit',
+		});
+	});
 });

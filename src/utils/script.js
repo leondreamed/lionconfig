@@ -23,6 +23,10 @@ export async function runScript(scriptArgs, condition) {
 
 			// Filter the workspaces which meet a certain condition
 			for (const workspacePackage of workspacePackages) {
+				if (workspacePackage === pkgJsonDir) {
+					continue;
+				}
+
 				if (condition?.(workspacePackage.dir)) {
 					workspacesToRunScript.push(workspacePackage.dir);
 				}
