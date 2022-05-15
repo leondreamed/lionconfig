@@ -140,3 +140,16 @@ To override these default scripts, simply add a script with the same name in the
 
 and then `pnpm exec typecheck` will run `vue-tsc --noEmit` instead of the default `tsc --noEmit`.
 
+### Utility Scripts
+
+If you create scripts in a `src/bin` folder, instead of running:
+
+```shell
+pnpm exec node-ts ./src/bin/my-cli.ts
+```
+
+`lionconfig` provides a `run-bin` script so you can run:
+
+```shell
+pnpm exec run-bin my-cli
+```
