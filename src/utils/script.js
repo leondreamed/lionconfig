@@ -1,4 +1,4 @@
-import findWorkspacePackages from '@pnpm/find-workspace-packages';
+import { findWorkspacePackagesNoCheck } from '@pnpm/find-workspace-packages';
 import { spawnSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -19,7 +19,7 @@ export async function runScript(scriptArgs, condition) {
 				}).status
 			);
 		} else {
-			const workspacePackages = await findWorkspacePackages(pkgJsonDir);
+			const workspacePackages = await findWorkspacePackagesNoCheck(pkgJsonDir);
 
 			// Filter the workspaces which meet a certain condition
 			for (const workspacePackage of workspacePackages) {
@@ -28,13 +28,14 @@ export async function runScript(scriptArgs, condition) {
 				}
 
 				if (condition?.(workspacePackage.dir)) {
-					workspacesToRunScript.push(workspacePackage.dir);
+					workspacesToRunScript.push(workspacePackage);
 				}
 			}
 
-			const pnpmFilterArgs = workspacePackages.flatMap(
-				workspacesToRunScript.map((workspaceDir) => ['--filter', workspaceDir])
-			);
+			const pnpmFilterArgs = workspacesToRunScript.map((workspace) => [
+				'--filter',
+				workspace.manifest.name,
+			]);
 
 			// The script will be run from the context of the workspace root, so run linting recursively
 			process.exit(
