@@ -1,5 +1,6 @@
 {
 	"name": "my-project",
+	"type": "module",
 	"dependencies": {
 		"lionconfig": "link:../../.."
 	},
