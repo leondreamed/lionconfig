@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const pkgUp = require('pkg-up');
-const { outdent } = require('outdent');
+import { join } from 'desm';
+import fs from 'node:fs';
+import path from 'node:path';
+import { outdent } from 'outdent';
+import pkgUp from 'pkg-up';
 
-const defaultPrettierIgnoreFilePath = path.join(__dirname, '.prettierignore');
+const defaultPrettierIgnoreFilePath = join(import.meta.url, '.prettierignore');
 const projectDir = path.dirname(pkgUp.sync());
 
 /**
@@ -38,4 +39,4 @@ fs.promises.readFile = async (filename, encoding) => {
 	}
 };
 
-require('prettier/bin-prettier.js');
+await import('prettier/bin-prettier.js');
