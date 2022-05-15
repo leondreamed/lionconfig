@@ -16,6 +16,6 @@ export function executeBin(packageName, relativeBinPath, args = []) {
 		execaSync(binPath, [...args, ...process.argv.slice(2)], {
 			stdio: 'inherit',
 			reject: false,
-		}).status
+		}).exitCode
 	);
 }

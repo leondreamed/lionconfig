@@ -19,7 +19,7 @@ export async function runScript(scriptName, scriptArgs, condition) {
 			execaSync('pnpm', ['run', scriptName, ...scriptArgs], {
 				stdio: 'inherit',
 				reject: false,
-			}).status
+			}).exitCode
 		);
 	}
 
@@ -33,7 +33,7 @@ export async function runScript(scriptName, scriptArgs, condition) {
 				execaSync('pnpm', ['recursive', 'exec', ...scriptArgs], {
 					stdio: 'inherit',
 					reject: false,
-				}).status
+				}).exitCode
 			);
 		} else {
 			const workspacePackages = await findWorkspacePackagesNoCheck(pkgJsonDir);
@@ -61,7 +61,7 @@ export async function runScript(scriptName, scriptArgs, condition) {
 				execaSync('pnpm', [...pnpmFilterArgs, 'exec', ...scriptArgs], {
 					stdio: 'inherit',
 					reject: false,
-				}).status
+				}).exitCode
 			);
 		}
 	} else {
@@ -69,7 +69,7 @@ export async function runScript(scriptName, scriptArgs, condition) {
 			execaSync('pnpm', ['exec', ...scriptArgs], {
 				stdio: 'inherit',
 				reject: false,
-			}).status
+			}).exitCode
 		);
 	}
 }

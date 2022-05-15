@@ -31,5 +31,5 @@ process.exit(
 	execaSync(prettierWrapperBinPath, prettierOptions, {
 		stdio: 'inherit',
 		reject: false,
-	}).status
+	}).exitCode
 );

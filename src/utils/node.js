@@ -22,6 +22,7 @@ export function nodeTs(filePath, cliOptions = {}) {
 		cwd: path.dirname(fileFullPath),
 		env: cliOptions.env,
 		extendEnv: true,
+		reject: false,
 	};
 
 	const result = execa.sync(
@@ -40,17 +41,17 @@ export function nodeTs(filePath, cliOptions = {}) {
 		console.debug(result);
 	}
 
-	if (result.error || result.status !== 0) {
+	if (result.error || result.exitCode !== 0) {
 		if (result.error) {
 			console.error('Error from node-ts:', result.error);
 		}
 
-		if (result.status !== 0 && result.status !== null) {
+		if (result.exitCode !== 0) {
 			console.error(
 				logSymbols.error,
-				`node-ts: Process exited with exit code ${result.status}`
+				`node-ts: Process exited with exit code ${result.exitCode}`
 			);
-			process.exit(result.status);
+			process.exit(result.exitCode);
 		}
 	}
 }
