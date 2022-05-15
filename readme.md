@@ -12,7 +12,7 @@ Powerful configuration defaults for various JavaScript and TypeScript tools.
 pnpm add -D lionconfig
 ```
 
-For optimal Prettier support in VSCode, add the following configuration to your VSCode:
+For optimal Prettier support in VSCode, add the following configuration to your VSCode settings:
 
 ```jsonc
 {
