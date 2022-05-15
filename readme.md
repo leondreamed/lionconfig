@@ -52,7 +52,7 @@ scripts/src/hooks
 packages/scripts/src/hooks
 ```
 
-In the hooks folder, add a JavaScript/TypeScript file for each hook you want to register. For example, to create a pre-push hook, create a file named `pre-push.ts`:
+In the `hooks` folder you just created, add a JavaScript/TypeScript file for each hook you want to register. For example, to create a pre-push hook, create a file named `pre-push.ts`:
 
 ```typescript
 // pre-push.ts
