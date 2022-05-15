@@ -86,7 +86,9 @@ and then running `pnpm release` or `pnpm exec release` will call `lionp`.
 
 To reduce boilerplate in the `scripts` property of each codebase's `package.json`, some utility binaries are exposed:
 
-`pnpm exec test`: `vitest run`
-`pnpm exec lint`: `eslint --cache --fix .`
-`pnpm exec format`: `prettier --write .`
+`pnpm exec test`: `vitest run`\
+`pnpm exec lint`: `eslint --cache --fix .`\
+`pnpm exec format`: `prettier --write .`\
 `pnpm exec typecheck`: `tsc --noEmit`
+
+When run from the workspace root, these scripts will run intelligently based on the contents of the workspace packages (e.g. `typecheck` will only run in workspace packages that have a `tsconfig.json` file).
