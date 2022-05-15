@@ -20,4 +20,4 @@ if (filePath === undefined) {
 	throw new Error('No file specified.');
 }
 
-await nodeTs(filePath, argv._.slice(1));
+await nodeTs(filePath, { args: argv._.slice(1) });

@@ -1,5 +1,5 @@
 import { dirname } from 'desm';
-import { spawnSync } from 'node:child_process';
+import { execaSync } from 'execa';
 import process from 'node:process';
 import resolve from 'resolve';
 
@@ -13,8 +13,9 @@ export function executeBin(packageName, relativeBinPath, args = []) {
 	});
 
 	process.exit(
-		spawnSync(binPath, [...args, ...process.argv.slice(2)], {
+		execaSync(binPath, [...args, ...process.argv.slice(2)], {
 			stdio: 'inherit',
+			reject: false,
 		}).status
 	);
 }

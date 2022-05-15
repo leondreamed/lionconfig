@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { join } from 'desm';
-import { spawnSync } from 'node:child_process';
+import { execaSync } from 'execa';
 import process from 'node:process';
 import resolve from 'resolve';
 
@@ -28,7 +28,8 @@ if (customConfigIndex !== -1) {
 prettierOptions.push(...argv);
 
 process.exit(
-	spawnSync(prettierWrapperBinPath, prettierOptions, {
+	execaSync(prettierWrapperBinPath, prettierOptions, {
 		stdio: 'inherit',
+		reject: false,
 	}).status
 );

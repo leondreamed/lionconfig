@@ -1,5 +1,5 @@
+import execa from 'execa-cjs';
 import logSymbols from 'log-symbols';
-import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -24,7 +24,7 @@ export function nodeTs(filePath, cliOptions = {}) {
 		extendEnv: true,
 	};
 
-	const result = spawnSync(
+	const result = execa.sync(
 		'node',
 		[
 			'-r',

@@ -1,5 +1,5 @@
 import { findWorkspacePackagesNoCheck } from '@pnpm/find-workspace-packages';
-import { spawnSync } from 'node:child_process';
+import { execaSync } from 'execa';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'node:process';
@@ -16,8 +16,9 @@ export async function runScript(scriptName, scriptArgs, condition) {
 	// Run the script specified in the package.json if the script already exists
 	if (pkgJson.scripts?.[scriptName] !== undefined) {
 		process.exit(
-			spawnSync('pnpm', ['run', scriptName, ...scriptArgs], {
+			execaSync('pnpm', ['run', scriptName, ...scriptArgs], {
 				stdio: 'inherit',
+				reject: false,
 			}).status
 		);
 	}
@@ -29,8 +30,9 @@ export async function runScript(scriptName, scriptArgs, condition) {
 	if (fs.existsSync(path.join(pkgJsonDir, 'pnpm-workspace.yaml'))) {
 		if (condition === undefined) {
 			process.exit(
-				spawnSync('pnpm', ['recursive', 'exec', ...scriptArgs], {
+				execaSync('pnpm', ['recursive', 'exec', ...scriptArgs], {
 					stdio: 'inherit',
+					reject: false,
 				}).status
 			);
 		} else {
@@ -56,14 +58,18 @@ export async function runScript(scriptName, scriptArgs, condition) {
 
 			// The script will be run from the context of the workspace root, so run linting recursively
 			process.exit(
-				spawnSync('pnpm', [...pnpmFilterArgs, 'exec', ...scriptArgs], {
+				execaSync('pnpm', [...pnpmFilterArgs, 'exec', ...scriptArgs], {
 					stdio: 'inherit',
+					reject: false,
 				}).status
 			);
 		}
 	} else {
 		process.exit(
-			spawnSync('pnpm', ['exec', ...scriptArgs], { stdio: 'inherit' }).status
+			execaSync('pnpm', ['exec', ...scriptArgs], {
+				stdio: 'inherit',
+				reject: false,
+			}).status
 		);
 	}
 }

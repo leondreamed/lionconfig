@@ -87,10 +87,11 @@ describe('works with typescript-project', async () => {
 			stdio: 'inherit',
 		});
 
-		await execaCommand('pnpm exec run-bin cli', {
+		const { stdout } = await execaCommand('pnpm exec run-bin env', {
 			cwd: tempFixturePath,
-			stdio: 'inherit',
 		});
+
+		expect(stdout).toEqual('1');
 	});
 
 	test('lint-staged works', async () => {

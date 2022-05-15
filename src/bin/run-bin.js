@@ -35,9 +35,9 @@ const envFilePath = path.join(
 	'.env'
 );
 
-if (fs.existsSync(envFilePath)) {
-	nodeTs(filePath, {
-		args: args._.slice(1),
-		env: dotenv.config({ path: envFilePath }).parsed,
-	});
-}
+const env = fs.existsSync(envFilePath) ? dotenv.config({ path: envFilePath }).parsed : undefined;
+
+nodeTs(filePath, {
+	args: args._.slice(1),
+	env,
+});
