@@ -49,7 +49,7 @@ export async function runScript(scriptName, scriptArgs, condition) {
 				}
 			}
 
-			const pnpmFilterArgs = workspacesToRunScript.map((workspace) => [
+			const pnpmFilterArgs = workspacesToRunScript.flatMap((workspace) => [
 				'--filter',
 				workspace.manifest.name,
 			]);
