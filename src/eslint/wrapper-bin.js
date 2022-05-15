@@ -9,7 +9,7 @@ import path from 'node:path';
 import { outdent } from 'outdent';
 import resolve from 'resolve';
 
-const eslintPath = resolve('eslint');
+const eslintPath = resolve.sync('eslint');
 const eslintBinPath = path.resolve(eslintPath, '../../bin/eslint.js');
 
 const readFileSync = fs.readFileSync;

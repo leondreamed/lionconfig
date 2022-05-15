@@ -22,7 +22,7 @@ const prettierWrapperBinPath = join(
 const prettierOptions = [`--ignore-path=${ignorePath}`];
 
 if (customConfigIndex !== -1) {
-	prettierOptions.push('--config', resolve('../prettier.cjs'));
+	prettierOptions.push('--config', resolve.sync('../prettier.cjs'));
 }
 
 prettierOptions.push(...argv);

@@ -6,5 +6,5 @@ import { executeBin } from '../utils/bin.js';
 
 executeBin('@commitlint/cli', 'cli.js', [
 	'--config',
-	resolve('../commitlint.cjs'),
+	resolve.sync('../commitlint.cjs'),
 ]);

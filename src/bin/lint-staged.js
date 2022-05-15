@@ -6,5 +6,5 @@ import { executeBin } from '../utils/bin.js';
 
 executeBin('lint-staged', 'bin/lint-staged.js', [
 	'--config',
-	resolve('../lint-staged.config.cjs'),
+	resolve.sync('../lint-staged.config.cjs'),
 ]);
