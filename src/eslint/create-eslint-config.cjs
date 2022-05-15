@@ -36,7 +36,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 		);
 	}
 
-	if (!options.noStubs) {
+	if (!options.noStubs && !fs.__lionConfigStubbed) {
 		fs.statSync = (...args) => {
 			if (shouldStubTsconfigEslintJson(args[0])) {
 				return {
