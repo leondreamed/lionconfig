@@ -24,7 +24,7 @@ export function resolve(specifier, ctx, defaultResolve) {
 			return resolveTs(pathToFileURL(`${match}.cjs`).href, ctx, defaultResolve);
 		}
 	} else if (specifier.endsWith('.mjs')) {
-		// Handle *.cjs
+		// Handle *.mjs
 		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 4));
 		const match = matchPath(trimmed);
 		if (match) {
