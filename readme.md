@@ -92,3 +92,17 @@ To reduce boilerplate in the `scripts` property of each codebase's `package.json
 `pnpm exec typecheck`: `tsc --noEmit`
 
 When run from the workspace root, these scripts will intelligently run recursively based on the contents of the workspace packages (e.g. `typecheck` will only run in workspace packages that have a `tsconfig.json` file).
+
+To override these default scripts, simply add a script with the same name in the project's `package.json`:
+
+```jsonc
+{
+  "scripts": {
+     "typecheck": "vue-tsc --noEmit"
+  }
+  // ...
+}
+```
+
+and then `pnpm exec typecheck` will run `vue-tsc --noEmit` instead of the default `tsc --noEmit`.
+
