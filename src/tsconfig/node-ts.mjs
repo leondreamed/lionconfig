@@ -4,7 +4,9 @@ import isCi from 'is-ci';
 import minimist from 'minimist';
 import process from 'node:process';
 
-import { nodeTs } from '../utils/node.cjs';
+import * as nodeUtils from '../utils/node.cjs';
+
+const { nodeTs } = nodeUtils;
 
 const argv = minimist(process.argv.slice(2));
 

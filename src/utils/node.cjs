@@ -3,7 +3,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
 
-export function nodeTs(filePath, cliOptions = []) {
+exports.nodeTs = function (filePath, cliOptions = []) {
 	let fileFullPath;
 	// Absolute path
 	if (filePath.startsWith('/')) {
@@ -51,4 +51,4 @@ export function nodeTs(filePath, cliOptions = []) {
 			process.exit(result.status);
 		}
 	}
-}
+};
