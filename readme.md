@@ -57,7 +57,11 @@ module.exports = createESLintConfig(__dirname, {
 
 The default ESLint configuration is based off of [xo](https://github.com/xojs/xo) with some modifications.
 
-> **Note:** When using ESLint with TypeScript, projects usually need to add a separate `tsconfig.eslint.json` file with the `includes` property set to all files they want to lint in order to avoid the `"Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser"` error from `typescript-eslint`. To avoid this boilerplate, `lionconfig` wraps the ESLint binary and mocks the `fs.readFileSync` function to provide a "virtual" `tsconfig.eslint.json` file so that end users don't need to specify this file in all of their projects when using ESLint with TypeScript.
+To prevent unnecessary boilerplate in projects, `lionconfig` provides a wrapper over the ESLint binary which stubs certain files that aren't present in a folder:
+
+#### `tsconfig.eslint.json`
+
+When using ESLint with TypeScript, projects usually need to add a separate `tsconfig.eslint.json` file with the `includes` property set to all files they want to lint in order to avoid the `"Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser"` error from `typescript-eslint`. To avoid this boilerplate, `lionconfig` wraps the ESLint binary and mocks the `fs.readFileSync` function to provide a "virtual" `tsconfig.eslint.json` file so that end users don't need to specify this file in all of their projects when using ESLint with TypeScript.
 
 ### Markdownlint
 
