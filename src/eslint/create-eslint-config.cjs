@@ -39,9 +39,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 	if (!options.noStubs && !fs.__lionConfigStubbed) {
 		fs.statSync = (...args) => {
 			if (shouldStubTsconfigEslintJson(args[0])) {
-				return {
-					isFile: () => true,
-				};
+				return statSync(path.join(path.dirname(args[0]), 'tsconfig.json'));
 			}
 			// Otherwise, just pass through
 			else {
