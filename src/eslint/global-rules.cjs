@@ -86,7 +86,7 @@ function getGlobalRules(dirname) {
 
 		// Too annoying when using keys that don't adhere to naming convention
 		'@typescript-eslint/naming-convention': 'off',
-		'camelcase': 'off'
+		'camelcase': 'off',
 
 		'new-cap': 'off',
 		'import/extensions': [
