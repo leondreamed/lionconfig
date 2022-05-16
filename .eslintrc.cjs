@@ -1,4 +1,4 @@
-const createESLintConfig = require('lionconfig/eslint');
+const createESLintConfig = require('./src/eslint.cjs');
 
 module.exports = createESLintConfig(__dirname, {
 	ignorePatterns: ['test'],
