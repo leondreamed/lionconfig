@@ -32,7 +32,6 @@
 	},
 	"homepage": "https://github.com/leonzalion/lionconfigs#readme",
 	"scripts": {
-		"preinstall": "pnpm build",
 		"prettier": "prettier --write .",
 		"lint": "eslint --fix .",
 		"prepare": "lion-git-hooks",

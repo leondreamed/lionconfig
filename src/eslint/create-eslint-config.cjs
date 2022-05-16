@@ -122,12 +122,6 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 		rules: { ...globalRules, ...projectConfig.rules },
 		overrides: [
 			{
-				files: ['**/*.md'],
-				parserOptions: {
-					project: null,
-				},
-			},
-			{
 				// Code blocks in markdown file
 				files: ['**/*.md/*.*'],
 				parserOptions: {
@@ -153,6 +147,8 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 				rules: {
 					'import/no-default-export': 'off',
 					'import/no-anonymous-default-export': 'off', // export default { inheritAttrs: false }
+					// Reactivity transform
+					'vue/no-setup-props-destructure': 'off',
 				},
 			},
 			{
@@ -177,7 +173,11 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 				},
 			},
 			{
-				files: ['*.ts', '*.vue'],
+				files: [
+					// Explicitly exclude markdown files because they need to have `parserOptions.project` disabled (see https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-843769189)
+					'[!*md/]*.ts',
+					'[!*md/]*.vue',
+				],
 				extends: [
 					'xo',
 					'xo-typescript',

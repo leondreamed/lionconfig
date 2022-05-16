@@ -6,14 +6,14 @@ import { beforeAll, describe, expect, test } from 'vitest';
 
 const { fixture, fixturesDir } = lionFixture(import.meta.url);
 
-describe('works with typescript-project', async () => {
-	let tempFixturePath: string;
-	let originalFixturePath: string;
-	beforeAll(async () => {
-		tempFixturePath = await fixture('typescript-project');
-		originalFixturePath = path.join(fixturesDir, 'typescript-project');
-	});
+let tempFixturePath: string;
+let originalFixturePath: string;
+beforeAll(async () => {
+	tempFixturePath = await fixture('typescript-project');
+	originalFixturePath = path.join(fixturesDir, 'typescript-project');
+});
 
+describe('works with a TypeScript project', async () => {
 	test('eslint works', async () => {
 		await execaCommand('pnpm exec eslint --fix .', {
 			cwd: tempFixturePath,
@@ -101,7 +101,7 @@ describe('works with typescript-project', async () => {
 		});
 	});
 
-	test('typecheck works', async () => {
+	test('typecheck utility script works', async () => {
 		await execaCommand('pnpm exec typecheck', {
 			cwd: tempFixturePath,
 			stdio: 'inherit',
