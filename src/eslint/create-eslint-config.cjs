@@ -168,9 +168,9 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			},
 			{
 				files: [
-					// Explicitly exclude markdown files because they need to have `parserOptions.project` disabled (see https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-843769189)
-					'[!*md/]*.ts',
-					'[!*md/]*.vue',
+					// TODO: Explicitly exclude markdown files because they need to have `parserOptions.project` disabled (see https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-843769189)
+					'*.ts',
+					'*.vue',
 				],
 				extends: [
 					'xo',
