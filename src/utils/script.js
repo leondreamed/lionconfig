@@ -58,10 +58,14 @@ export async function runScript(scriptName, scriptArgs, condition) {
 
 			// The script will be run from the context of the workspace root, so run linting recursively
 			process.exit(
-				execaSync('pnpm', [...pnpmFilterArgs, 'exec', ...scriptArgs], {
-					stdio: 'inherit',
-					reject: false,
-				}).exitCode
+				execaSync(
+					'pnpm',
+					[...pnpmFilterArgs, 'recursive', 'exec', ...scriptArgs],
+					{
+						stdio: 'inherit',
+						reject: false,
+					}
+				).exitCode
 			);
 		}
 	} else {
