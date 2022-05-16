@@ -18,7 +18,7 @@ function shouldStubTsconfigEslintJson(filePath) {
 
 	const dir = path.dirname(filePath);
 
-	return existsSync(path.join(dir, 'tsconfig.json'));
+	return !existsSync(filePath) && existsSync(path.join(dir, 'tsconfig.json'));
 }
 
 /**
