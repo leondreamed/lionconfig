@@ -167,12 +167,6 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 				},
 			},
 			{
-				files: ['**/vitest.config.ts', '**/.eslintrc.cjs'],
-				rules: {
-					'@typescript-eslint/naming-convention': 'off',
-				},
-			},
-			{
 				files: [
 					// Explicitly exclude markdown files because they need to have `parserOptions.project` disabled (see https://github.com/eslint/eslint-plugin-markdown/issues/114#issuecomment-843769189)
 					'[!*md/]*.ts',
