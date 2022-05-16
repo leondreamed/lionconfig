@@ -262,6 +262,10 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 				},
 			},
 			{
+				files: ['**/*.md'],
+				processor: 'markdown/markdown',
+			},
+			{
 				// Code blocks in markdown file
 				files: ['**/*.md/*.*'],
 				rules: {
