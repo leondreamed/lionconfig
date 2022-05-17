@@ -57,6 +57,11 @@ describe('works with a TypeScript project', async () => {
 				'utf8'
 			)
 		);
+
+		// Prettier should not format with default options
+		expect(
+			fs.readFileSync(path.join(tempFixturePath, 'src/tab-indent.ts'), 'utf8')
+		).to.not.include('  ');
 	});
 
 	test('commitlint works', async () => {

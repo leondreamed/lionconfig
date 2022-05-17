@@ -64,7 +64,8 @@ const argv = process.argv.slice(2);
 
 // If the --custom-config is passed, then `prettier` will use its default config resolution algorithm for determining the project config.
 const customConfigIndex = argv.indexOf('--custom-config');
-if (customConfigIndex !== -1) {
+const hasCustomConfig = customConfigIndex !== -1;
+if (hasCustomConfig) {
 	argv.splice(customConfigIndex, 1);
 }
 
@@ -72,12 +73,12 @@ const ignorePath = join(import.meta.url, '../prettier/.prettierignore');
 
 const prettierOptions = [`--ignore-path=${ignorePath}`];
 
-if (customConfigIndex !== -1) {
+if (!hasCustomConfig) {
 	prettierOptions.push('--config', resolve.sync('../prettier.cjs'));
 }
 
 prettierOptions.push(...argv);
 
 // Overriding argv before importing the Prettier binary
-process.argv = [...process.argv.slice(0, 2), ...argv];
+process.argv = [...process.argv.slice(0, 2), ...prettierOptions];
 await prettierWrapper();

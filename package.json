@@ -3,8 +3,8 @@
 	"scripts": {
 		"release": "pnpm --filter=lionconfig run release",
 		"build": "pnpm --filter=lionconfig run build",
+		"test": "pnpm --filter=lionconfig run test",
 		"format": "pnpm recursive run format",
-		"test": "pnpm recursive run test",
 		"lint": "pnpm recursive run lint",
 		"typecheck": "pnpm recursive run typecheck"
 	},
