@@ -6,6 +6,8 @@ import process from 'node:process';
 
 import { runScript } from '../utils/script.js';
 
-runScript('typecheck', ['tsc', '--noEmit', ...process.argv.slice(2)], (dir) =>
-	fs.existsSync(path.join(dir, 'tsconfig.json'))
-);
+runScript({
+	name: 'typecheck',
+	defaultCommandArgs: ['tsc', '--noEmit', ...process.argv.slice(2)],
+	condition: (dir) => fs.existsSync(path.join(dir, 'tsconfig.json')),
+});
