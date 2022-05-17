@@ -37,7 +37,7 @@
 		"lint": "eslint --fix .",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest run --no-threads",
-		"build": "node --loader ts-node/esm ./scripts/build.ts",
+		"build": "node --loader ./src/tsconfig/ts-loader.js ./scripts/build.ts",
 		"release": "lionp"
 	},
 	"dependencies": {

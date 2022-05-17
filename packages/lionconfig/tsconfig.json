@@ -5,8 +5,7 @@
 		"allowJs": true,
 		"baseUrl": ".",
 		"paths": {
-			"~/*": ["./src/*"],
-			"~test/*": ["./src/*"]
+			"~/*": ["./src/*"]
 		}
 	},
 	"include": ["./src"]

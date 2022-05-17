@@ -1,7 +1,12 @@
 import { chmodrSync } from 'chmodrp';
 import { execaCommandSync as exec } from 'execa';
 
-import { chProjectDir, copyPackageFiles, rmDist } from '../src/index.js';
+import {
+	chProjectDir,
+	copyPackageFiles,
+	rmDist,
+	updateJsonFile,
+} from '../src/index.js';
 
 chProjectDir(import.meta.url);
 rmDist();
@@ -17,3 +22,8 @@ await copyPackageFiles({
 });
 
 chmodrSync('dist/bin', 0o755);
+updateJsonFile(
+	'dist/package.json',
+	'scripts.postinstall',
+	'node ./postinstall.js'
+);
