@@ -1,7 +1,6 @@
 {
 	"name": "@lionconfig/monorepo",
 	"scripts": {
-		"prepare": "lion-git-hooks",
 		"release": "pnpm --filter=lionconfig run release",
 		"build": "pnpm --filter=lionconfig run build",
 		"format": "pnpm recursive run format",
