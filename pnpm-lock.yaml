@@ -16,6 +16,7 @@ specifiers:
   '@types/resolve': ^1.20.2
   '@typescript-eslint/eslint-plugin': ^5.24.0
   '@typescript-eslint/parser': ^5.24.0
+  chmodrp: ^1.0.2
   deepmerge-ts: ^4.0.3
   desm: ^1.2.0
   dotenv: ^16.0.1
@@ -124,6 +125,7 @@ devDependencies:
   '@types/minimist': 1.2.2
   '@types/prettier': 2.6.1
   '@types/resolve': 1.20.2
+  chmodrp: 1.0.2
   globby: 13.1.1
   lion-fixture: 1.1.4
   nanoid: 3.3.4
@@ -1566,6 +1568,10 @@ packages:
 
   /check-error/1.0.2:
     resolution: {integrity: sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==}
+    dev: true
+
+  /chmodrp/1.0.2:
+    resolution: {integrity: sha512-TdngOlFV1FLTzU0o1w8MB6/BFywhtLC0SzRTGJU7T9lmdjlCWeMRt1iVo0Ki+ldwNk0BqNiKoc8xpLZEQ8mY1w==}
     dev: true
 
   /chokidar/3.5.3:
