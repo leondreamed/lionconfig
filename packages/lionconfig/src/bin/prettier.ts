@@ -5,14 +5,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { outdent } from 'outdent';
-import pkgUp from 'pkg-up';
+import { pkgUpSync } from 'pkg-up';
 
 async function prettierWrapper() {
 	const defaultPrettierIgnoreFilePath = join(
 		import.meta.url,
 		'../prettier/.prettierignore'
 	);
-	const projectDir = path.dirname(pkgUp.sync()!);
+	const projectDir = path.dirname(pkgUpSync()!);
 
 	// Wrapping around prettier in order to support extended `.prettierignore` files
 

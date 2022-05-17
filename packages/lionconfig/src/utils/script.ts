@@ -3,7 +3,7 @@ import { execaSync } from 'execa';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'node:process';
-import pkgUp from 'pkg-up';
+import { pkgUp } from 'pkg-up';
 import type { PackageJson } from 'type-fest';
 
 async function runScriptFromWorkspaceRoot({
@@ -113,8 +113,8 @@ export async function runScript({
 	defaultCommandArgs,
 	condition,
 }: RunScriptProps) {
-	const pkgJsonPath = pkgUp.sync({ cwd: process.cwd() });
-	if (pkgJsonPath === null) {
+	const pkgJsonPath = await pkgUp({ cwd: process.cwd() });
+	if (pkgJsonPath === undefined) {
 		throw new Error('`package.json` path could not be found.');
 	}
 

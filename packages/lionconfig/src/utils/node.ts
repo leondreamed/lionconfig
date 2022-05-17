@@ -2,7 +2,7 @@ import execa from '@commonjs/execa';
 import logSymbols from 'log-symbols';
 import path from 'node:path';
 import process from 'node:process';
-import pkgUp from 'pkg-up';
+import { pkgUpSync } from 'pkg-up';
 
 interface NodeTSCliOptions {
 	args?: string[];
@@ -22,11 +22,11 @@ export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
 
 	const nodeOpts = [fileFullPath, ...(cliOptions.args ?? [])];
 
-	const pkgJsonPath = pkgUp.sync({ cwd: path.dirname(fileFullPath) });
+	const pkgJsonPath = pkgUpSync({ cwd: process.cwd() });
 
 	const spawnOptions = {
 		stdio: 'inherit',
-		cwd: pkgJsonPath === null ? process.cwd() : path.dirname(pkgJsonPath),
+		cwd: pkgJsonPath === undefined ? process.cwd() : path.dirname(pkgJsonPath),
 		env: cliOptions.env,
 		extendEnv: true,
 		reject: false,

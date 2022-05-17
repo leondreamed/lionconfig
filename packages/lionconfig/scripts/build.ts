@@ -8,6 +8,7 @@ exec('tsc');
 await copyPackageFiles({
 	additionalFiles: [
 		'src/prettier/.prettierignore',
+		'src/git',
 		'src/tsconfig',
 		'src/tsconfig.json',
 		'src/markdownlint.json',

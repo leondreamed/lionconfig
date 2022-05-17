@@ -1,6 +1,6 @@
 const path = require('path');
 const findUp = require('find-up');
-const pkgUp = require('pkg-up');
+const pkgUp = require('@commonjs/pkg-up');
 
 /**
 	@param {string} dirname

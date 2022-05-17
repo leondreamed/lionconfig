@@ -1,0 +1,6 @@
+{
+	"exports": "./index.js",
+	"dependencies": {
+		"supports-color": "^9.2.2"
+	}
+}

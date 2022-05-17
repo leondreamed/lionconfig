@@ -3,7 +3,11 @@
 	"compilerOptions": {
 		"outDir": "dist",
 		"allowJs": true,
-		"declaration": false
+		"baseUrl": ".",
+		"paths": {
+			"~/*": ["./src/*"],
+			"~test/*": ["./src/*"]
+		}
 	},
 	"include": ["./src"]
 }
