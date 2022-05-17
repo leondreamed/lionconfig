@@ -9,7 +9,6 @@
 		"typecheck": "pnpm recursive run typecheck"
 	},
 	"devDependencies": {
-		"lionconfig": "workspace:^1.7.3",
 		"typescript": "^4.6.4"
 	}
 }
