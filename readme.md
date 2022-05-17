@@ -78,7 +78,7 @@ In the `hooks` folder you just created, add a JavaScript/TypeScript file for eac
 // pre-push.ts
 
 // Change the code below to what you want to run in your pre-push hook
-import { prePush } from 'lion-system';
+import { prePush } from 'lionconfig';
 
 prePush();
 ```

@@ -1,6 +1,7 @@
 import { chmodrSync } from 'chmodrp';
 import { execaCommandSync as exec } from 'execa';
-import { chProjectDir, copyPackageFiles, rmDist } from 'lion-system';
+
+import { chProjectDir, copyPackageFiles, rmDist } from '../src/index.js';
 
 chProjectDir(import.meta.url);
 rmDist();
