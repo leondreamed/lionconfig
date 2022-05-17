@@ -4,7 +4,7 @@
 
 Powerful configuration defaults for various JavaScript and TypeScript tools.
 
-## Purposes
+## Goals
 
 - To reduce as much boilerplate as possible from your projects' configuration files while still maintaining polished IDE support.
 - To provide as many features out-of-the-box for a top-quality development experience while still providing flexible configuration for individual projects.
