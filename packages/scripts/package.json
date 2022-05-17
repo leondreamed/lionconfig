@@ -1,0 +1,6 @@
+{
+	"name": "@lionconfig/scripts",
+	"dependencies": {
+		"lion-system": "^1.3.34"
+	}
+}
