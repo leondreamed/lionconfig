@@ -18,8 +18,7 @@ export function nodeTs(filePath, cliOptions = {}) {
 
 	const spawnOptions = {
 		stdio: 'inherit',
-		// Run `node` from the working directory of the file
-		cwd: path.dirname(fileFullPath),
+		cwd: process.cwd(),
 		env: cliOptions.env,
 		extendEnv: true,
 		reject: false,
