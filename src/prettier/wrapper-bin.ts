@@ -26,7 +26,7 @@ fs.promises.readFile = (async (filename, encoding) => {
 		// testing
 		if (process.env.VITEST) {
 			defaultPrettierIgnore = String(defaultPrettierIgnore).replace(
-				/^temp/,
+				/^temp$/m,
 				''
 			);
 		}

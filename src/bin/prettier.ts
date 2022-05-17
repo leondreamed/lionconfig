@@ -28,8 +28,7 @@ if (customConfigIndex !== -1) {
 prettierOptions.push(...argv);
 
 process.exit(
-	execaSync(prettierWrapperBinPath, prettierOptions, {
+	execaSync('node', [prettierWrapperBinPath, ...prettierOptions], {
 		stdio: 'inherit',
-		reject: false,
 	}).exitCode
 );
