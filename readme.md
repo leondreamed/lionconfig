@@ -4,6 +4,12 @@
 
 Powerful configuration defaults for various JavaScript and TypeScript tools.
 
+## Purposes
+
+- To reduce as much boilerplate as possible from your projects' configuration files while still maintaining polished IDE support.
+- To provide as many features out-of-the-box for a top-quality development experience while still providing flexible configuration for individual projects.
+- To provide helpful utilities that reduce the amount of overhead which comes from working with monorepos.
+
 > **Note:** `lionconfig` is based on on `pnpm` and may not work well with other package managers.
 
 ## Installation
@@ -47,7 +53,7 @@ TypeScript + ESM support is provided out of the box via a wrapper script named `
 {
   "extends": "lionconfig/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist"
     // ... and add your custom project settings here
   }
 }
@@ -146,7 +152,7 @@ To override these default scripts, simply add a script with the same name in the
 ```jsonc
 {
   "scripts": {
-     "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   }
   // ...
 }
