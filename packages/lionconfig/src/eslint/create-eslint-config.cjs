@@ -142,15 +142,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					'no-unused-vars': 'off',
 				},
 			},
-			{
-				files: '*.vue',
-				rules: {
-					'import/no-default-export': 'off',
-					'import/no-anonymous-default-export': 'off', // export default { inheritAttrs: false }
-					// Reactivity transform
-					'vue/no-setup-props-destructure': 'off',
-				},
-			},
+
 			{
 				files: '**/.eslintrc.cjs',
 				env: {
@@ -203,6 +195,16 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					'import/named': 'off',
 					'@typescript-eslint/unified-signatures': 'off', // I prefer to add the events for Vue's defineEmits<{}> separately instead of using a unified signature
 					...projectConfig.rules,
+				},
+			},
+			{
+				files: ['*.vue'],
+				rules: {
+					'import/no-default-export': 'off',
+					'import/no-anonymous-default-export': 'off', // export default { inheritAttrs: false }
+					'import/first': 'off',
+					// Reactivity transform
+					'vue/no-setup-props-destructure': 'off',
 				},
 			},
 			{
