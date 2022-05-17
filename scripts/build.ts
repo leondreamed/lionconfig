@@ -14,4 +14,4 @@ await copyPackageFiles({
 	],
 });
 
-chmodrSync('dist/bin');
+chmodrSync('dist/bin', 0o755);
