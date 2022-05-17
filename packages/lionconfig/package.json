@@ -32,9 +32,8 @@
 	},
 	"homepage": "https://github.com/leonzalion/lionconfigs#readme",
 	"scripts": {
-		"prettier": "prettier --write .",
+		"format": "prettier --write .",
 		"lint": "eslint --fix .",
-		"prepare": "lion-git-hooks",
 		"test": "vitest run",
 		"build": "node --loader ts-node/esm ./scripts/build.ts",
 		"release": "lionp"
