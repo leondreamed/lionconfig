@@ -10,7 +10,7 @@ import pkgUp from 'pkg-up';
 async function prettierWrapper() {
 	const defaultPrettierIgnoreFilePath = join(
 		import.meta.url,
-		'.prettierignore'
+		'../prettier/.prettierignore'
 	);
 	const projectDir = path.dirname(pkgUp.sync()!);
 
