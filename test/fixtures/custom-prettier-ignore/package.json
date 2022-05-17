@@ -1,7 +1,7 @@
 {
 	"name": "custom-prettier-ignore",
 	"dependencies": {
-		"lionconfig": "link:../../.."
+		"lionconfig": "link:../../../dist"
 	}
 }
 

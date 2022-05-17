@@ -1,6 +1,6 @@
 {
 	"name": "javascript-only-project",
 	"dependencies": {
-		"lionconfig": "link:../../.."
+		"lionconfig": "link:../../../dist"
 	}
 }

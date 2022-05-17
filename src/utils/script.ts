@@ -85,7 +85,7 @@ function runScriptFromWorkspacePackage({
 	// Run the default script if the package does not specify a custom script
 	if (pkgJson.scripts?.[scriptName] === undefined) {
 		process.exit(
-			execaSync('pnpm', ['run', scriptName], {
+			execaSync('pnpm', ['exec', ...defaultCommandArgs], {
 				stdio: 'inherit',
 				reject: false,
 			}).exitCode
@@ -94,7 +94,7 @@ function runScriptFromWorkspacePackage({
 	// Run the custom script specified by the package
 	else {
 		process.exit(
-			execaSync('pnpm', ['exec', ...defaultCommandArgs], {
+			execaSync('pnpm', ['run', scriptName], {
 				stdio: 'inherit',
 				reject: false,
 			}).exitCode

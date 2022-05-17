@@ -1,8 +1,7 @@
 dist
 pnpm-lock.yaml
 generated
-# Need to ignore for tests, added during build time
-# temp
+temp
 
 # macOS
 .DS_Store

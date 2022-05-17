@@ -1,7 +1,7 @@
 {
 	"name": "markdown",
 	"dependencies": {
-		"lionconfig": "link:../../.."
+		"lionconfig": "link:../../../dist"
 	}
 }
 

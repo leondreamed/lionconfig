@@ -2,7 +2,7 @@
 	"name": "my-project",
 	"type": "module",
 	"dependencies": {
-		"lionconfig": "link:../../.."
+		"lionconfig": "link:../../../dist"
 	},
 	"devDependencies": {
 		"vitest": "^0.6.0",

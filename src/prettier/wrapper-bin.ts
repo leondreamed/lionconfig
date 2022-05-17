@@ -3,6 +3,7 @@
 import { join } from 'desm';
 import fs from 'node:fs';
 import path from 'node:path';
+import process from 'node:process';
 import { outdent } from 'outdent';
 import pkgUp from 'pkg-up';
 
@@ -19,7 +20,16 @@ const readFileAsync = fs.promises.readFile;
 
 fs.promises.readFile = (async (filename, encoding) => {
 	if (filename === defaultPrettierIgnoreFilePath) {
-		const defaultPrettierIgnore = await readFileAsync(filename, encoding);
+		let defaultPrettierIgnore = await readFileAsync(filename, encoding);
+
+		// This is ugly but it's the only way to prevent Prettier from ignoring the `temp` folder during
+		// testing
+		if (process.env.VITEST) {
+			defaultPrettierIgnore = String(defaultPrettierIgnore).replace(
+				/^temp/,
+				''
+			);
+		}
 
 		const projectPrettierIgnorePath = path.join(projectDir, '.prettierignore');
 		// Check if the user has a .prettierignore in their project
