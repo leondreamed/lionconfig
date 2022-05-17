@@ -1,4 +1,4 @@
-import execa from 'execa-cjs';
+import execa from '@commonjs/execa';
 import logSymbols from 'log-symbols';
 import path from 'node:path';
 import process from 'node:process';
