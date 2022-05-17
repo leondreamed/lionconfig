@@ -1,5 +1,0 @@
-{
-	"extends": "./tsconfig.json",
-	"include": ["suites", "utils", ".eslintrc.cjs", "setup.ts"],
-	"exclude": ["fixtures"]
-}
