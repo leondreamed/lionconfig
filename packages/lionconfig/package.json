@@ -9,6 +9,7 @@
 		"url": "https://github.com/leonzalion/lionconfigs.git"
 	},
 	"exports": {
+		".": "./index.js",
 		"./*": "./src/*",
 		"./eslint": "./src/eslint.cjs"
 	},
