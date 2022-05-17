@@ -6,7 +6,7 @@ import process from 'node:process';
 
 import { runScript } from '../utils/script.js';
 
-runScript({
+await runScript({
 	name: 'lint',
 	defaultCommandArgs: [
 		'eslint',

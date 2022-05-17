@@ -42,6 +42,7 @@
 	"dependencies": {
 		"@commitlint/cli": "^17.0.0",
 		"@commitlint/config-conventional": "^16.2.4",
+		"@commonjs/execa": "npm:execa@^5.1.1",
 		"@pnpm/find-workspace-packages": "^4.0.5",
 		"@pnpm/logger": "^4.0.0",
 		"@rushstack/eslint-patch": "^1.1.3",
@@ -70,7 +71,6 @@
 		"eslint-plugin-vue": "^8.7.1",
 		"eslint-plugin-yml": "^0.15.0",
 		"execa": "^6.1.0",
-		"@commonjs/execa": "npm:execa@^5.1.1",
 		"find-up": "^5.0.0",
 		"is-ci": "^3.0.1",
 		"lint-staged": "^12.4.1",
@@ -88,12 +88,14 @@
 		"ts-node": "^10.7.0",
 		"tsc-alias": "^1.6.7",
 		"tsconfig-paths": "^4.0.0",
+		"type-fest": "^2.12.2",
 		"update-notifier": "^5.1.0",
 		"webpack": "npm:ignoredep@^25.9999.0",
 		"xo": "^0.49.0"
 	},
 	"devDependencies": {
 		"@types/is-ci": "^3.0.0",
+		"@types/minimist": "^1.2.2",
 		"@types/prettier": "^2.6.1",
 		"@types/resolve": "^1.20.2",
 		"globby": "^13.1.1",

@@ -7,7 +7,7 @@ import { outdent } from 'outdent';
 import pkgUp from 'pkg-up';
 
 const defaultPrettierIgnoreFilePath = join(import.meta.url, '.prettierignore');
-const projectDir = path.dirname(pkgUp.sync());
+const projectDir = path.dirname(pkgUp.sync()!);
 
 /**
 	A wrapper around prettier in order to support extended `.prettierignore` files
@@ -16,7 +16,8 @@ const projectDir = path.dirname(pkgUp.sync());
 const readFileAsync = fs.promises.readFile;
 
 // prettier uses `fs.promises` to read files: https://github.com/prettier/prettier/blob/main/src/utils/get-file-content-or-null.js
-fs.promises.readFile = async (filename, encoding) => {
+
+fs.promises.readFile = (async (filename, encoding) => {
 	if (filename === defaultPrettierIgnoreFilePath) {
 		const defaultPrettierIgnore = await readFileAsync(filename, encoding);
 
@@ -37,6 +38,7 @@ fs.promises.readFile = async (filename, encoding) => {
 	} else {
 		return readFileAsync(filename, encoding);
 	}
-};
+}) as typeof fs.promises.readFile;
 
+// @ts-expect-error: Prettier doesn't export the type of their `bin-prettier.js` file
 await import('prettier/bin-prettier.js');

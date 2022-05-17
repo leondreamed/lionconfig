@@ -3,7 +3,11 @@ import { execaSync } from 'execa';
 import process from 'node:process';
 import resolve from 'resolve';
 
-export function executeBin(packageName, relativeBinPath, args = []) {
+export function executeBin(
+	packageName: string,
+	relativeBinPath: string,
+	args: string[] = []
+) {
 	const binPath = resolve.sync(packageName, {
 		basedir: dirname(import.meta.url),
 		packageFilter(pkg) {

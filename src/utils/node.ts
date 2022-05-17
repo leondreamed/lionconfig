@@ -3,7 +3,12 @@ import logSymbols from 'log-symbols';
 import path from 'node:path';
 import process from 'node:process';
 
-export function nodeTs(filePath, cliOptions = {}) {
+interface NodeTSCliOptions {
+	args?: string[];
+	env?: Record<string, string>;
+}
+
+export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
 	let fileFullPath;
 	// Absolute path
 	if (filePath.startsWith('/')) {
@@ -22,7 +27,7 @@ export function nodeTs(filePath, cliOptions = {}) {
 		env: cliOptions.env,
 		extendEnv: true,
 		reject: false,
-	};
+	} as const;
 
 	const result = execa.sync(
 		'node',
@@ -40,9 +45,9 @@ export function nodeTs(filePath, cliOptions = {}) {
 		console.debug(result);
 	}
 
-	if (result.error || result.exitCode !== 0) {
-		if (result.error) {
-			console.error('Error from node-ts:', result.error);
+	if (result.failed || result.exitCode !== 0) {
+		if (result.stderr) {
+			console.error('Error from node-ts:', result.stderr);
 		}
 
 		if (result.exitCode !== 0) {

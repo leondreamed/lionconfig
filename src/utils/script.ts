@@ -4,14 +4,17 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'node:process';
 import pkgUp from 'pkg-up';
+import type { PackageJson } from 'type-fest';
 
 async function runScriptFromWorkspaceRoot({
 	directory: workspaceDirectory,
 	name: scriptName,
 	condition,
-}) {
+}: Omit<RunScriptProps, 'defaultCommandArgs'> & { directory: string }) {
 	const pkgJsonPath = path.join(workspaceDirectory, 'package.json');
-	const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+	const pkgJson = JSON.parse(
+		fs.readFileSync(pkgJsonPath, 'utf8')
+	) as PackageJson;
 
 	// If the workspace defines a custom script, run it
 	if (pkgJson.scripts?.[scriptName] !== undefined) {
@@ -43,7 +46,7 @@ async function runScriptFromWorkspaceRoot({
 
 		// Filter the workspaces which meet the condition specified
 		for (const workspacePackage of workspacePackages) {
-			if (workspacePackage === workspaceDirectory) {
+			if (workspacePackage.dir === workspaceDirectory) {
 				continue;
 			}
 
@@ -56,7 +59,7 @@ async function runScriptFromWorkspaceRoot({
 
 		const pnpmFilterArgs = workspacesToRunScript.flatMap((workspace) => [
 			'--filter',
-			workspace.manifest.name,
+			workspace.manifest.name!,
 		]);
 
 		// The script will be run from the context of the workspace root, so run it recursively
@@ -73,9 +76,11 @@ function runScriptFromWorkspacePackage({
 	directory,
 	name: scriptName,
 	defaultCommandArgs,
-}) {
+}: Omit<RunScriptProps, 'condition'> & { directory: string }) {
 	const pkgJsonPath = path.join(directory, 'package.json');
-	const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+	const pkgJson = JSON.parse(
+		fs.readFileSync(pkgJsonPath, 'utf8')
+	) as PackageJson;
 
 	// Run the default script if the package does not specify a custom script
 	if (pkgJson.scripts?.[scriptName] === undefined) {
@@ -97,9 +102,19 @@ function runScriptFromWorkspacePackage({
 	}
 }
 
-export async function runScript({ name, defaultCommandArgs, condition }) {
+interface RunScriptProps {
+	name: string;
+	defaultCommandArgs: string[];
+	condition?: (path: string) => boolean;
+}
+
+export async function runScript({
+	name,
+	defaultCommandArgs,
+	condition,
+}: RunScriptProps) {
 	const pkgJsonPath = pkgUp.sync({ cwd: process.cwd() });
-	if (pkgJsonPath === undefined) {
+	if (pkgJsonPath === null) {
 		throw new Error('`package.json` path could not be found.');
 	}
 
@@ -107,7 +122,7 @@ export async function runScript({ name, defaultCommandArgs, condition }) {
 
 	// If the project is the workspace `package.json`
 	if (fs.existsSync(path.join(pkgJsonDir, 'pnpm-workspace.yaml'))) {
-		runScriptFromWorkspaceRoot({
+		await runScriptFromWorkspaceRoot({
 			directory: pkgJsonDir,
 			name,
 			condition,
