@@ -11,6 +11,7 @@ import {
 chProjectDir(import.meta.url);
 rmDist();
 exec('tsc');
+exec('tsc-alias');
 await copyPackageFiles({
 	additionalFiles: [
 		'src/prettier/.prettierignore',
