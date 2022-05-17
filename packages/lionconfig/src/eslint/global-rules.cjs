@@ -86,7 +86,7 @@ function getGlobalRules(dirname) {
 
 		// Too annoying when using keys that don't adhere to naming convention
 		'@typescript-eslint/naming-convention': 'off',
-		'camelcase': 'off',
+		camelcase: 'off',
 
 		'new-cap': 'off',
 		'import/extensions': [
@@ -126,6 +126,8 @@ function getGlobalRules(dirname) {
 		],
 		'yml/quotes': ['error', { prefer: 'single', avoidEscape: false }],
 		'yml/no-empty-document': 'off',
+		// I prefer redundant types (e.g. unknown | undefined) for self-documentation purposes
+		'@typescript-eslint/no-redundant-type-constituents': 'off',
 	};
 
 	return rules;
