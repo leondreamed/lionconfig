@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/leonzalion/lionconfigs.git"
+		"url": "https://github.com/leonzalion/lionconfig.git"
 	},
 	"exports": {
 		".": "./src/index.ts",
@@ -31,7 +31,7 @@
 		"tsc-alias": "./src/bin/tsc-alias.js",
 		"typecheck": "./src/bin/typecheck.js"
 	},
-	"homepage": "https://github.com/leonzalion/lionconfigs#readme",
+	"homepage": "https://github.com/leonzalion/lionconfig#readme",
 	"scripts": {
 		"postinstall": "node ./src/postinstall.js",
 		"format": "prettier --write .",
