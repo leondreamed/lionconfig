@@ -10,8 +10,8 @@
 	},
 	"exports": {
 		".": "./index.js",
-		"./*": "./src/*",
-		"./eslint": "./src/eslint.cjs"
+		"./*": "./*",
+		"./eslint": "./eslint.cjs"
 	},
 	"bin": {
 		"node-ts": "./src/tsconfig/node-ts.js",
