@@ -99,9 +99,8 @@
 		"@types/resolve": "^1.20.2",
 		"chmodrp": "^1.0.2",
 		"globby": "^13.1.1",
-		"lion-fixture": "^1.1.4",
+		"lion-fixture": "^1.1.6",
 		"nanoid": "^3.3.4",
-		"replace-in-file": "^6.3.2",
 		"tmp-promise": "^3.0.3",
 		"typescript": "^4.6.4",
 		"vitest": "^0.12.6"

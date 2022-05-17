@@ -5,7 +5,7 @@
 		"lionconfig": "link:../../../dist"
 	},
 	"devDependencies": {
-		"vitest": "^0.6.0",
+		"vitest": "^0.12.6",
 		"desm": "^1.2.0"
 	}
 }
