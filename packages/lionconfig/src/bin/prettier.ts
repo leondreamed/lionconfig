@@ -6,7 +6,6 @@ import path from 'node:path';
 import process from 'node:process';
 import { outdent } from 'outdent';
 import pkgUp from 'pkg-up';
-import resolve from 'resolve';
 
 async function prettierWrapper() {
 	const defaultPrettierIgnoreFilePath = join(
@@ -74,7 +73,7 @@ const ignorePath = join(import.meta.url, '../prettier/.prettierignore');
 const prettierOptions = [`--ignore-path=${ignorePath}`];
 
 if (!hasCustomConfig) {
-	prettierOptions.push('--config', resolve.sync('../prettier.cjs'));
+	prettierOptions.push('--config', join(import.meta.url, '../prettier.cjs'));
 }
 
 prettierOptions.push(...argv);
