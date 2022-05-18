@@ -28,6 +28,17 @@ Otherwise, run:
 pnpm add --dev lionconfig
 ```
 
+Then, add `lionconfig` as the `prepare` script of your `package.json` file:
+
+```jsonc
+{
+  "scripts": {
+    "prepare": "lionconfig"
+  },
+  // ...
+}
+```
+
 ### IDE Integration
 
 #### Prettier

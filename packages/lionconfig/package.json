@@ -19,6 +19,7 @@
 		"format": "./src/bin/format.js",
 		"lint": "./src/bin/lint.js",
 		"lint-staged": "./src/bin/lint-staged.js",
+		"lionconfig": "./src/bin/lionconfig.js",
 		"lionp": "./src/bin/lionp.js",
 		"lion-git-hooks": "./src/bin/lion-git-hooks.js",
 		"markdownlint": "./src/bin/markdownlint.js",
