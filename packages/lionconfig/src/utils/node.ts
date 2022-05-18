@@ -31,7 +31,7 @@ export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
 		resolvePkgFromFile = true;
 	}
 
-	const nodeOpts = [fileFullPath, ...(args ?? [])];
+	const nodeOpts = [fileFullPath, ...args];
 
 	let pkgJsonPath: string | undefined;
 	if (resolvePkgFromFile) {
