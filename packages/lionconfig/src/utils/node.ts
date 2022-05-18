@@ -33,7 +33,7 @@ export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
 
 	const nodeOpts = [fileFullPath, ...(cliOptions.args ?? [])];
 
-	let pkgJsonPath: string;
+	let pkgJsonPath: string | undefined;
 	if (resolvePkgFromFile) {
 		pkgJsonPath = pkgUpSync({ cwd: path.dirname(fileFullPath) });
 	} else {
