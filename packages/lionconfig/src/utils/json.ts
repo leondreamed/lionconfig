@@ -1,10 +1,10 @@
+import detectIndent from 'detect-indent';
 import { setProperty } from 'dot-prop';
 import * as fs from 'node:fs';
-import detectIndent from 'detect-indent';
 
 export function updateJsonFile(
 	jsonFilePath: string,
-	propertyMappings: [string, string][]
+	propertyMappings: Array<[string, string]>
 ): void;
 export function updateJsonFile(
 	jsonFilePath: string,
@@ -13,12 +13,12 @@ export function updateJsonFile(
 ): void;
 export function updateJsonFile(
 	jsonFilePath: string,
-	propertyMappingsOrPath: [string, string][] | string,
+	propertyMappingsOrPath: Array<[string, string]> | string,
 	maybePropertyValue?: string
 ) {
 	const json = fs.readFileSync(jsonFilePath, 'utf8');
 	const indent = detectIndent(json).indent ?? '';
-	const jsonObject = JSON.parse(json);
+	const jsonObject = JSON.parse(json) as Record<string, any>;
 
 	if (typeof propertyMappingsOrPath === 'string') {
 		const propertyPath = propertyMappingsOrPath;

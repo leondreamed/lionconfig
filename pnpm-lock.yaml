@@ -61,6 +61,7 @@ importers:
       lint-staged: ^12.4.1
       lion-fixture: ^1.1.8
       lion-git-hooks: ^1.0.10
+      lion-utils: ^0.1.2
       lionp: ^1.0.30
       log-symbols: ^5.1.0
       markdownlint-cli: ^0.31.1
@@ -132,6 +133,7 @@ importers:
       is-ci: 3.0.1
       lint-staged: 12.4.1
       lion-git-hooks: 1.0.10
+      lion-utils: 0.1.2
       lionp: 1.0.30_typescript@4.6.4
       log-symbols: 5.1.0
       markdownlint-cli: 0.31.1
@@ -4229,6 +4231,14 @@ packages:
       tslib: 2.4.0
     transitivePeerDependencies:
       - typescript
+    dev: false
+
+  /lion-utils/0.1.2:
+    resolution: {integrity: sha512-dnh/DSySAw3/jfFEdS4ILjSv37NQfWiLfn/u9e82ZNzbhdwhiC4qgU/P726qFzCGCwnFCAj/9InF4UkdFK3Gaw==}
+    dependencies:
+      detect-indent: 7.0.0
+      dot-prop: 7.2.0
+      pkg-up: 4.0.0
     dev: false
 
   /lionp/1.0.30_typescript@4.6.4:
