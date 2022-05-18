@@ -20,9 +20,25 @@ export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
 		fileFullPath = path.join(process.cwd(), filePath);
 	}
 
+	let resolvePkgFromFile = false;
+	const args: string[] = [...(cliOptions.args ?? [])];
+	const resolvePkgFromFileOptionIndex = args.indexOf('--resolve-pkg-from-file');
+	if (
+		resolvePkgFromFileOptionIndex !== undefined &&
+		resolvePkgFromFileOptionIndex !== -1
+	) {
+		args.splice(resolvePkgFromFileOptionIndex, 1);
+		resolvePkgFromFile = true;
+	}
+
 	const nodeOpts = [fileFullPath, ...(cliOptions.args ?? [])];
 
-	const pkgJsonPath = pkgUpSync({ cwd: process.cwd() });
+	let pkgJsonPath: string;
+	if (resolvePkgFromFile) {
+		pkgJsonPath = pkgUpSync({ cwd: path.dirname(fileFullPath) });
+	} else {
+		pkgJsonPath = pkgUpSync({ cwd: process.cwd() });
+	}
 
 	const spawnOptions = {
 		stdio: 'inherit',
