@@ -37,4 +37,7 @@ if (filePath === undefined) {
 	throw new Error('No file specified.');
 }
 
-nodeTs(filePath, { args: program.args.slice(1) });
+nodeTs(filePath, {
+	resolvePkgFromFile: opts.resolvePkgFromFile,
+	args: program.args.slice(1),
+});

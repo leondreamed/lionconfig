@@ -4,12 +4,13 @@ import path from 'node:path';
 import process from 'node:process';
 import { pkgUpSync } from 'pkg-up';
 
-interface NodeTSCliOptions {
+interface NodeTSOptions {
 	args?: string[];
 	env?: Record<string, string>;
+	resolvePkgFromFile?: boolean;
 }
 
-export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
+export function nodeTs(filePath: string, options: NodeTSOptions = {}) {
 	let fileFullPath;
 	// Absolute path
 	if (filePath.startsWith('/')) {
@@ -20,21 +21,10 @@ export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
 		fileFullPath = path.join(process.cwd(), filePath);
 	}
 
-	let resolvePkgFromFile = false;
-	const args: string[] = [...(cliOptions.args ?? [])];
-	const resolvePkgFromFileOptionIndex = args.indexOf('--resolve-pkg-from-file');
-	if (
-		resolvePkgFromFileOptionIndex !== undefined &&
-		resolvePkgFromFileOptionIndex !== -1
-	) {
-		args.splice(resolvePkgFromFileOptionIndex, 1);
-		resolvePkgFromFile = true;
-	}
-
-	const nodeOpts = [fileFullPath, ...args];
+	const nodeOpts = [fileFullPath, ...(options.args ?? [])];
 
 	let pkgJsonPath: string | undefined;
-	if (resolvePkgFromFile) {
+	if (options.resolvePkgFromFile) {
 		pkgJsonPath = pkgUpSync({ cwd: path.dirname(fileFullPath) });
 	} else {
 		pkgJsonPath = pkgUpSync({ cwd: process.cwd() });
@@ -43,7 +33,7 @@ export function nodeTs(filePath: string, cliOptions: NodeTSCliOptions = {}) {
 	const spawnOptions = {
 		stdio: 'inherit',
 		cwd: pkgJsonPath === undefined ? process.cwd() : path.dirname(pkgJsonPath),
-		env: cliOptions.env,
+		env: options.env,
 		extendEnv: true,
 		reject: false,
 	} as const;

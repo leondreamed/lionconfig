@@ -42,5 +42,6 @@ const env = fs.existsSync(envFilePath)
 
 nodeTs(filePath, {
 	args: args._.slice(1),
+	resolvePkgFromFile: false,
 	env,
 });
