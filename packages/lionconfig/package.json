@@ -14,7 +14,6 @@
 		"./eslint": "./eslint.cjs"
 	},
 	"bin": {
-		"node-ts": "./src/tsconfig/node-ts.js",
 		"commitlint": "./src/bin/commitlint.js",
 		"eslint": "./src/bin/eslint.js",
 		"format": "./src/bin/format.js",
@@ -23,6 +22,7 @@
 		"lionp": "./src/bin/lionp.js",
 		"lion-git-hooks": "./src/bin/lion-git-hooks.js",
 		"markdownlint": "./src/bin/markdownlint.js",
+		"node-ts": "./src/bin/node-ts.js",
 		"prettier": "./src/bin/prettier.js",
 		"release": "./src/bin/release.js",
 		"run-bin": "./src/bin/run-bin.js",
@@ -58,6 +58,7 @@
 		"@types/node": "^17.0.34",
 		"@typescript-eslint/eslint-plugin": "^5.25.0",
 		"@typescript-eslint/parser": "^5.25.0",
+		"commander": "^9.2.0",
 		"deepmerge-ts": "^4.0.3",
 		"desm": "^1.2.0",
 		"detect-indent": "^7.0.0",
