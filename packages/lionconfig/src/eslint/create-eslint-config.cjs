@@ -6,6 +6,8 @@ const getGlobalRules = require('./global-rules.cjs');
 const { defineConfig } = require('eslint-define-config');
 const { deepmerge } = require('deepmerge-ts');
 const { outdent } = require('outdent');
+const findUp = require('find-up');
+const pkgUp = require('@commonjs/pkg-up');
 
 const statSync = fs.statSync;
 const existsSync = fs.existsSync;
@@ -35,6 +37,15 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			'`dirname`, the first argument passed to `createESLintConfig`, must be a string'
 		);
 	}
+
+	const pkgJsonFile = pkgUp.sync({ cwd: dirname });
+	const pnpmWorkspaceFile = findUp.sync('pnpm-workspace.yaml', {
+		cwd: dirname,
+	});
+	const pnpmWorkspaceDir =
+		pnpmWorkspaceFile === undefined
+			? undefined
+			: path.dirname(pnpmWorkspaceFile);
 
 	if (!options.noStubs && !fs.__lionConfigStubbed) {
 		fs.statSync = (...args) => {
@@ -218,7 +229,12 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 				rules: {
 					'import/no-extraneous-dependencies': [
 						'error',
-						{ devDependencies: false },
+						{
+							packageDir:
+								pnpmWorkspaceDir === undefined
+									? [path.dirname(pkgJsonFile)]
+									: [path.dirname(pkgJsonFile), pnpmWorkspaceDir],
+						},
 					],
 					...projectConfig.rules,
 				},
