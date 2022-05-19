@@ -5,12 +5,6 @@ import { pathToFileURL } from 'node:url';
 import { resolve as resolveTs } from 'ts-node/esm';
 import * as tsConfigPaths from 'tsconfig-paths';
 
-const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig();
-const matchPath =
-	paths === undefined
-		? () => false
-		: tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
-
 /**
 	@type {Record<string, import('tsconfig-paths').MatchPath>}
 */
@@ -29,6 +23,7 @@ const tsconfigPathToMatchPath = {};
 */
 export function resolve(specifier, context, defaultResolve) {
 	let tsconfigPath;
+
 	if (context.parentURL !== null) {
 		// Check all the existing parent folders of each known `tsconfig.json` file and see
 		// if the current file's directory falls under a known directory containing a
@@ -38,13 +33,39 @@ export function resolve(specifier, context, defaultResolve) {
 				tsconfigPath = knownTsconfigPath;
 			}
 		}
+
+		if (tsconfigPath === undefined) {
+			// Could not find an existing `tsconfig.json` which is associated with the current file
+			// Thus, find it manually by finding the nearest `tsconfig.json` in an above directory
+			const tsconfigJsonPath = findUp.sync('tsconfig.json', {
+				cwd: context.parentURL,
+			});
+			if (tsconfigJsonPath !== undefined) {
+				const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig({
+					cwd: path.dirname(tsconfigJsonPath),
+				});
+				let matchPath;
+				if (paths === undefined) {
+					matchPath = () => false;
+				} else {
+					matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
+				}
+
+				tsconfigPathToMatchPath[tsconfigPath] = matchPath;
+
+				tsconfigPath = tsconfigJsonPath;
+			}
+		}
 	}
+
+	const matchPath =
+		tsconfigPath === undefined
+			? () => false
+			: tsconfigPathToMatchPath[tsconfigPath];
 
 	if (specifier.endsWith('.js')) {
 		// Handle *.js
 		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 3));
-
-		// Check if the specifier
 		const match = matchPath(trimmed);
 
 		if (match) {

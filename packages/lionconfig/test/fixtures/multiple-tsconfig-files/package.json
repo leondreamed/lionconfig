@@ -1,0 +1,7 @@
+{
+	"name": "@lionconfig-fixtures/multiple-tsconfig-paths",
+	"type": "module",
+	"devDependencies": {
+		"lionconfig": "link:../../../dist"
+	}
+}
