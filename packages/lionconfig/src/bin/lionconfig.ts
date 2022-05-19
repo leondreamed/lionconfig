@@ -13,12 +13,12 @@ async function setGitignoreAndGitattributes() {
 	const gitInfoDir = path.join(gitRepo, 'info');
 	await fs.promises.mkdir(gitInfoDir, { recursive: true });
 	const gitignore = await fs.promises.readFile(
-		join(import.meta.url, './git/_gitignore'),
+		join(import.meta.url, '../git/_gitignore'),
 		'utf8'
 	);
 	await fs.promises.writeFile(path.join(gitInfoDir, 'exclude'), gitignore);
 	const gitattributes = await fs.promises.readFile(
-		join(import.meta.url, './git/_gitattributes'),
+		join(import.meta.url, '../git/_gitattributes'),
 		'utf8'
 	);
 	await fs.promises.writeFile(
