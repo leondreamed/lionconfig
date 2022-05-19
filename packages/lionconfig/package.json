@@ -85,6 +85,7 @@
 		"find-up": "^5.0.0",
 		"import-meta-resolve": "^1.1.1",
 		"is-ci": "^3.0.1",
+		"is-path-inside": "^4.0.0",
 		"lint-staged": "^12.4.1",
 		"lion-git-hooks": "^1.0.10",
 		"lion-utils": "^0.1.2",
