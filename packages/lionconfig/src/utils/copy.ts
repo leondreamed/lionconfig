@@ -1,10 +1,11 @@
+import { getProjectDir } from 'lion-utils';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import process from 'node:process';
 import type { RollupOptions } from 'rollup';
 import type { PackageJson } from 'type-fest';
 
 import { transformPackageJson } from '~/utils/package-json.js';
-import { getMonorepoRoot } from '~/utils/project-dir.js';
 
 export const packageFiles = ['readme.md', 'license', 'package.json'];
 
@@ -26,7 +27,7 @@ export async function copyPackageFiles({
 		fs.mkdirSync('dist');
 	}
 
-	const monorepoRoot = getMonorepoRoot();
+	const monorepoRoot = getProjectDir(process.cwd(), { monorepoRoot: true });
 	for (const packageFilePath of [...packageFiles, ...(additionalFiles ?? [])]) {
 		let distPackageFilePath: string;
 		if (
