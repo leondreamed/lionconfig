@@ -39,9 +39,8 @@ if (fs.existsSync(pkgJsonPath)) {
 		// There is	already a script in `prepare`, instead of overwriting it, warn the user
 		else {
 			console.error(
-				"`lionconfig` was not added to your project's prepare script."
+				"Warning: `lionconfig` was not added to your project's prepare script."
 			);
-			process.exit(1);
 		}
 	}
 }
