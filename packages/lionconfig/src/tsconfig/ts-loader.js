@@ -1,7 +1,7 @@
 import findUp from 'find-up';
 import isPathInside from 'is-path-inside';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolve as resolveTs } from 'ts-node/esm';
 import * as tsConfigPaths from 'tsconfig-paths';
 
@@ -24,7 +24,7 @@ const tsconfigPathToMatchPath = {};
 export function resolve(specifier, context, defaultResolve) {
 	let tsconfigPath;
 
-	if (context.parentURL !== null) {
+	if (context.parentURL !== undefined) {
 		// Check all the existing parent folders of each known `tsconfig.json` file and see
 		// if the current file's directory falls under a known directory containing a
 		// `tsconfig.json` file
@@ -38,12 +38,12 @@ export function resolve(specifier, context, defaultResolve) {
 			// Could not find an existing `tsconfig.json` which is associated with the current file
 			// Thus, find it manually by finding the nearest `tsconfig.json` in an above directory
 			const tsconfigJsonPath = findUp.sync('tsconfig.json', {
-				cwd: context.parentURL,
+				cwd: path.dirname(fileURLToPath(context.parentURL)),
 			});
 			if (tsconfigJsonPath !== undefined) {
-				const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig({
-					cwd: path.dirname(tsconfigJsonPath),
-				});
+				const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig(
+					tsconfigJsonPath
+				);
 				let matchPath;
 				if (paths === undefined) {
 					matchPath = () => false;
@@ -51,17 +51,24 @@ export function resolve(specifier, context, defaultResolve) {
 					matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
 				}
 
-				tsconfigPathToMatchPath[tsconfigPath] = matchPath;
+				tsconfigPathToMatchPath[tsconfigJsonPath] = matchPath;
 
 				tsconfigPath = tsconfigJsonPath;
 			}
 		}
 	}
 
-	const matchPath =
-		tsconfigPath === undefined
-			? () => false
-			: tsconfigPathToMatchPath[tsconfigPath];
+	let matchPath;
+	if (tsconfigPath === undefined) {
+		const { paths, absoluteBaseUrl } = tsConfigPaths.loadConfig();
+		if (paths === undefined) {
+			matchPath = () => false;
+		} else {
+			matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
+		}
+	} else {
+		matchPath = tsconfigPathToMatchPath[tsconfigPath];
+	}
 
 	if (specifier.endsWith('.js')) {
 		// Handle *.js

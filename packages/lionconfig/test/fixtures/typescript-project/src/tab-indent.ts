@@ -1,3 +1,3 @@
 export function tabIndent() {
-	console.log('should have tab indent')
+	console.info('should have tab indent')
 }

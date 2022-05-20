@@ -3,5 +3,5 @@
 ## Markdown
 
 ```ts
-console.log('Should be linted and not throw any errors')
+console.info('Should be linted and not throw any errors')
 ```
