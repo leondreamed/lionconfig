@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable prefer-destructuring */
-
 /**
 	A wrapper around ESLint to provide a default `.eslintrc.cjs` file if the project doesn't contain one.
 */

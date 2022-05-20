@@ -1,5 +1,3 @@
-/* eslint-disable prefer-destructuring */
-
 const fs = require('fs');
 const path = require('path');
 const getGlobalRules = require('./global-rules.cjs');
