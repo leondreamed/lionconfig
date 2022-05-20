@@ -1,0 +1,9 @@
+{
+	"name": "@multiple-tsconfig-files/subpackage1",
+	"type": "module",
+	"main": "./src/entry.ts",
+	"exports": "./src/entry.ts",
+	"dependencies": {
+		"subpackage2": "link:../subpackage2"
+	}
+}

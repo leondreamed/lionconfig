@@ -1,0 +1,6 @@
+{
+	"name": "@multiple-tsconfig-files/subpackage2",
+	"type": "module",
+	"main": "./src/file2.ts",
+	"exports": "./src/file2.ts"
+}

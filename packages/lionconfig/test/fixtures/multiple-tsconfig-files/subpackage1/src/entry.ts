@@ -1,3 +1,3 @@
-import { file2Path } from '../../subpackage2/src/file2.js';
+import { file2Path } from 'subpackage2';
 
 console.info(file2Path);
