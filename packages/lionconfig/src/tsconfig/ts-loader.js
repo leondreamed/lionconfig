@@ -29,7 +29,9 @@ export function resolve(specifier, context, defaultResolve) {
 		// Check all the existing parent folders of each known `tsconfig.json` file and see
 		// if the current file's directory falls under a known directory containing a
 		// `tsconfig.json` file
-		for (const knownTsconfigPath of Object.keys(tsconfigPathToMatchPath)) {
+		for (const knownTsconfigPath of Object.keys(tsconfigPathToMatchPath).sort(
+			(a, b) => a.length - b.length
+		)) {
 			if (isPathInside(filePathOfImporter, path.dirname(knownTsconfigPath))) {
 				tsconfigPath = knownTsconfigPath;
 			}
@@ -42,9 +44,8 @@ export function resolve(specifier, context, defaultResolve) {
 				cwd: path.dirname(filePathOfImporter),
 			});
 			if (tsconfigJsonPath !== undefined) {
-				const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig(
-					tsconfigJsonPath
-				);
+				const { absoluteBaseUrl, paths } =
+					tsConfigPaths.loadConfig(tsconfigJsonPath);
 				let matchPath;
 				if (paths === undefined) {
 					matchPath = () => false;
