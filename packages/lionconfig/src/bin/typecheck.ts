@@ -3,15 +3,17 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'node:process';
+import { loadSync as loadTsconfigSync } from 'tsconfig';
 
 import { runScript } from '../utils/script.js';
-import { parse as parseTsConfig } from 'tsconfig';
 
 // Run the root-level special tsc-check if the root `tsconfig.json` uses references.
 if (fs.existsSync('tsconfig.json')) {
-	const tsconfigJson = parseTsconfig(fs.readFileSync('tsconfig.json', 'utf8')) as {
-		files?: string[];
-		references?: string[];
+	const { config: tsconfigJson } = loadTsconfigSync('tsconfig.json') as {
+		config: {
+			files?: string[];
+			references?: string[];
+		};
 	};
 
 	if (
