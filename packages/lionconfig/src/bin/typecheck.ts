@@ -5,10 +5,11 @@ import * as path from 'node:path';
 import process from 'node:process';
 
 import { runScript } from '../utils/script.js';
+import { parse as parseTsConfig } from 'tsconfig';
 
 // Run the root-level special tsc-check if the root `tsconfig.json` uses references.
 if (fs.existsSync('tsconfig.json')) {
-	const tsconfigJson = JSON.parse(fs.readFileSync('tsconfig.json', 'utf8')) as {
+	const tsconfigJson = parseTsconfig(fs.readFileSync('tsconfig.json', 'utf8')) as {
 		files?: string[];
 		references?: string[];
 	};

@@ -107,6 +107,7 @@
 		"rollup-plugin-js-imports": "^1.2.1",
 		"ts-node": "^10.7.0",
 		"tsc-alias": "^1.6.7",
+		"tsconfig": "^7.0.0",
 		"tsconfig-paths": "^4.0.0",
 		"tslib": "^2.4.0",
 		"type-fest": "^2.12.2",

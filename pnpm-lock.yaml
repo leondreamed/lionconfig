@@ -81,6 +81,7 @@ importers:
       tmp-promise: ^3.0.3
       ts-node: ^10.7.0
       tsc-alias: ^1.6.7
+      tsconfig: ^7.0.0
       tsconfig-paths: ^4.0.0
       tslib: ^2.4.0
       type-fest: ^2.12.2
@@ -152,6 +153,7 @@ importers:
       rollup-plugin-js-imports: 1.2.1
       ts-node: 10.7.0_rmtgt5sfoo2zpj2imwvmlvvfgi
       tsc-alias: 1.6.7
+      tsconfig: 7.0.0
       tsconfig-paths: 4.0.0
       tslib: 2.4.0
       type-fest: 2.12.2
@@ -1012,6 +1014,14 @@ packages:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
       '@types/node': 17.0.34
+    dev: false
+
+  /@types/strip-bom/3.0.0:
+    resolution: {integrity: sha512-xevGOReSYGM7g/kUBZzPqCrR/KYAo+F0yiPc85WFTJa0MSLtyFTVTU6cJu/aV4mid7IffDIWqo69THF2o4JiEQ==}
+    dev: false
+
+  /@types/strip-json-comments/0.0.30:
+    resolution: {integrity: sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==}
     dev: false
 
   /@types/tar/6.1.1:
@@ -6126,6 +6136,15 @@ packages:
       json5: 2.2.1
       minimist: 1.2.6
       strip-bom: 3.0.0
+    dev: false
+
+  /tsconfig/7.0.0:
+    resolution: {integrity: sha512-vZXmzPrL+EmC4T/4rVlT2jNVMWCi/O4DIiSj3UHg1OE5kCKbk4mfrXc6dZksLgRM/TZlKnousKH9bbTazUWRRw==}
+    dependencies:
+      '@types/strip-bom': 3.0.0
+      '@types/strip-json-comments': 0.0.30
+      strip-bom: 3.0.0
+      strip-json-comments: 2.0.1
     dev: false
 
   /tslib/1.14.1:
