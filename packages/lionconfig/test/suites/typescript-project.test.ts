@@ -92,10 +92,13 @@ describe('works with a TypeScript project', async () => {
 			stdio: 'inherit',
 		});
 
-		await execaCommand('pnpm exec node-ts --resolve-pkg-from-file ./src/file1.ts', {
-			cwd: tempFixturePath,
-			stdio: 'inherit',
-		});
+		await execaCommand(
+			'pnpm exec node-ts --resolve-pkg-from-file ./src/file1.ts',
+			{
+				cwd: tempFixturePath,
+				stdio: 'inherit',
+			}
+		);
 
 		const { stdout } = await execaCommand('pnpm exec run-bin env', {
 			cwd: tempFixturePath,

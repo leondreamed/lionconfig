@@ -6,7 +6,7 @@ import { expect, test } from 'vitest';
 
 const { fixture } = lionFixture(import.meta.url);
 
-test('lionconfig works with multiple tsconfig files', async () => {
+test.todo('lionconfig works with multiple tsconfig files', async () => {
 	const fixtureTempDir = await fixture('multiple-tsconfig-files', {
 		ignoreWorkspace: false,
 	});

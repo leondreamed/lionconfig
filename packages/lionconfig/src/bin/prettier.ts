@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { cosmiconfigSync } from 'cosmiconfig';
 import { join } from 'desm';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -61,18 +62,15 @@ async function prettierWrapper() {
 
 const argv = process.argv.slice(2);
 
-// If the --custom-config is passed, then `prettier` will use its default config resolution algorithm for determining the project config.
-const customConfigIndex = argv.indexOf('--custom-config');
-const hasCustomConfig = customConfigIndex !== -1;
-if (hasCustomConfig) {
-	argv.splice(customConfigIndex, 1);
-}
+const result = cosmiconfigSync('prettier', {
+	stopDir: process.cwd(),
+}).search();
 
 const ignorePath = join(import.meta.url, '../prettier/.prettierignore');
 
 const prettierOptions = [`--ignore-path=${ignorePath}`];
 
-if (!hasCustomConfig) {
+if (result === null) {
 	prettierOptions.push('--config', join(import.meta.url, '../prettier.cjs'));
 }
 
