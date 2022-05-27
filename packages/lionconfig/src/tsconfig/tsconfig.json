@@ -26,5 +26,12 @@
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
 		"jsx": "preserve"
+	},
+	"tsc-alias": {
+		"replacers": {
+			"base-url": {
+				"enabled": false
+			}
+		}
 	}
 }
