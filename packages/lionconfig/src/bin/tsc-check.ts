@@ -22,7 +22,9 @@ fs.readFileSync = ((...args) => {
 		const pkgJson = readFileSync(...args);
 		const pkg = JSON.parse(String(pkgJson)) as PackageJson;
 		if (pkg.main?.endsWith('.ts') && /^(\.\/)?src\//.test(pkg.main)) {
-			pkg.main = pkg.main.replace(/^(\.\/)src\//, './dist/');
+			pkg.main = pkg.main
+				.replace(/^(\.\/)src\//, './dist/')
+				.replace(/\.ts$/, '.js');
 		}
 
 		return JSON.stringify(pkg);
