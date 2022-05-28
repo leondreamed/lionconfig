@@ -48,9 +48,11 @@ const clone = rfdc();
 
 type TransformPackageJsonProps =
 	| {
+			cwd?: string;
 			commonjs?: boolean | CommonjsBundleOptions;
 	  }
 	| {
+			cwd?: string;
 			pkg: PackageJson;
 			pkgPath: string;
 			commonjs?: boolean | CommonjsBundleOptions;
@@ -73,7 +75,7 @@ export async function transformPackageJson(
 		pkg = JSON.parse(
 			await fs.promises.readFile('package.json', 'utf8')
 		) as PackageJson;
-		pkgPath = path.join(process.cwd(), 'package.json');
+		pkgPath = path.join(props.cwd ?? process.cwd(), 'package.json');
 	}
 
 	if (commonjs !== false) {

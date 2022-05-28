@@ -1,10 +1,8 @@
-import { join } from 'desm';
 import { execaCommandSync } from 'execa';
 import lionFixture from 'lion-fixture';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import * as process from 'node:process';
-import { beforeEach, describe, expect, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import {
 	copyPackageFiles,
@@ -16,53 +14,49 @@ import { projectTestPath } from '~test/utils/paths.js';
 
 const { fixture } = lionFixture(import.meta.url);
 
-beforeEach(() => {
-	fs.rmSync(join(import.meta.url, '../temp'), { recursive: true, force: true });
+test('successfully copies files', async () => {
+	const myProjectTempDir = await fixture('my-project');
+
+	await copyPackageFiles({
+		cwd: myProjectTempDir,
+		additionalFiles: [
+			'custom-file',
+			'custom-folder',
+			'src/file1.html',
+			'./src/file2.html',
+		],
+	});
+
+	const distDir = path.join(myProjectTempDir, 'dist');
+
+	expect(fs.existsSync(path.join(distDir, 'readme.md'))).toBe(true);
+	expect(fs.existsSync(path.join(distDir, 'custom-file'))).toBe(true);
+	expect(fs.existsSync(path.join(distDir, 'custom-folder'))).toBe(true);
+	expect(
+		fs.existsSync(path.join(distDir, 'custom-folder/custom-folder-file'))
+	).toBe(true);
+	expect(fs.existsSync(path.join(distDir, 'file1.html'))).toBe(true);
+	expect(fs.existsSync(path.join(distDir, 'file2.html'))).toBe(true);
+
+	// Adds a .gitkeep file
+	expect(fs.existsSync(path.join(distDir, '.gitkeep'))).toBe(true);
 });
 
-describe('successfully copies files', () => {
-	test('successfully copies files', async () => {
-		const tempMyProjectDir = await fixture('my-project');
-		process.chdir(tempMyProjectDir);
-
-		await copyPackageFiles({
-			additionalFiles: [
-				'custom-file',
-				'custom-folder',
-				'src/file1.html',
-				'./src/file2.html',
-			],
-		});
-		expect(fs.existsSync('dist/readme.md')).toBe(true);
-		expect(fs.existsSync('dist/custom-file')).toBe(true);
-		expect(fs.existsSync('dist/custom-folder')).toBe(true);
-		expect(fs.existsSync('dist/custom-folder/custom-folder-file')).toBe(true);
-		expect(fs.existsSync('dist/file1.html')).toBe(true);
-		expect(fs.existsSync('dist/file2.html')).toBe(true);
-
-		// Adds a .gitkeep file
-		expect(fs.existsSync('dist/.gitkeep')).toBe(true);
-	});
-
-	test('successfully gets the correct project directory', () => {
-		const projectFixturePath = path.join(
-			projectTestPath,
-			'fixtures/my-project'
-		);
-		const subprojectFolderPath = `file://${path.join(
-			projectFixturePath,
-			'packages/subproject/subproject-folder'
-		)}`;
-		expect(getProjectDir(subprojectFolderPath)).toBe(
-			path.join(projectFixturePath, 'packages/subproject')
-		);
-		expect(getProjectDir(subprojectFolderPath, { monorepoRoot: false })).toBe(
-			path.join(projectFixturePath, 'packages/subproject')
-		);
-		expect(getProjectDir(subprojectFolderPath, { monorepoRoot: true })).toBe(
-			projectFixturePath
-		);
-	});
+test('successfully gets the correct project directory', () => {
+	const projectFixturePath = path.join(projectTestPath, 'fixtures/my-project');
+	const subprojectFolderPath = `file://${path.join(
+		projectFixturePath,
+		'packages/subproject/subproject-folder'
+	)}`;
+	expect(getProjectDir(subprojectFolderPath)).toBe(
+		path.join(projectFixturePath, 'packages/subproject')
+	);
+	expect(getProjectDir(subprojectFolderPath, { monorepoRoot: false })).toBe(
+		path.join(projectFixturePath, 'packages/subproject')
+	);
+	expect(getProjectDir(subprojectFolderPath, { monorepoRoot: true })).toBe(
+		projectFixturePath
+	);
 });
 
 test('rewriteDistPaths() works', async () => {
@@ -121,33 +115,41 @@ test('rewriteDistPaths() works', async () => {
 	expect(rewritePackageJsonPaths(beforeObj)).toEqual(afterObj);
 });
 
-describe('commonjs bundle', () => {
+describe.todo('commonjs bundle', () => {
 	test('works with commonjs-bundle/', async () => {
 		const commonjsBundleTempDir = await fixture('commonjs-bundle');
-		process.chdir(commonjsBundleTempDir);
 
-		const pkg = await transformPackageJson();
+		const pkg = await transformPackageJson({
+			cwd: commonjsBundleTempDir,
+		});
 
 		expect(pkg.exports).toEqual({
 			import: './index.js',
 			require: './index.cjs',
 		});
-		expect(fs.existsSync('./dist/index.cjs')).toBe(true);
+		expect(
+			fs.existsSync(path.join(commonjsBundleTempDir, 'dist/index.cjs'))
+		).toBe(true);
 	});
 
 	test('works with commonjs-bundle-object-exports/', async () => {
 		const commonjsBundleObjectExportsTempDir = await fixture(
 			'commonjs-bundle-object-exports'
 		);
-		process.chdir(commonjsBundleObjectExportsTempDir);
 
-		const pkg = await transformPackageJson();
+		const pkg = await transformPackageJson({
+			cwd: commonjsBundleObjectExportsTempDir,
+		});
 
 		expect((pkg.exports as Record<string, string>)['.']).toEqual({
 			import: './index.js',
 			require: './index.cjs',
 		});
-		expect(fs.existsSync('./dist/index.cjs')).toBe(true);
+		expect(
+			fs.existsSync(
+				path.join(commonjsBundleObjectExportsTempDir, 'dist/index.cjs')
+			)
+		).toBe(true);
 	});
 
 	test('works with maybe-browser-bundle/', async () => {
@@ -155,22 +157,27 @@ describe('commonjs bundle', () => {
 			'maybe-browser-bundle',
 			'browser-bundle'
 		);
-		process.chdir(browserBundleTempDir);
-		await copyPackageFiles();
+		await copyPackageFiles({
+			cwd: browserBundleTempDir,
+		});
 
-		expect(() => execaCommandSync('node dist/index.cjs')).not.toThrow();
+		expect(() =>
+			execaCommandSync('node dist/index.cjs', { cwd: browserBundleTempDir })
+		).not.toThrow();
 
 		const browserBundleNodeTempDir = await fixture(
 			'maybe-browser-bundle',
 			'browser-bundle-node'
 		);
-		process.chdir(browserBundleNodeTempDir);
 		await copyPackageFiles({
+			cwd: browserBundleNodeTempDir,
 			commonjs: {
 				browser: true,
 			},
 		});
 
-		expect(() => execaCommandSync('node dist/index.cjs')).toThrow();
+		expect(() =>
+			execaCommandSync('node dist/index.cjs', { cwd: browserBundleNodeTempDir })
+		).toThrow();
 	});
 });

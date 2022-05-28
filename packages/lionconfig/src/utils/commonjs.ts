@@ -6,6 +6,7 @@ import { resolve as importMetaResolve } from 'import-meta-resolve';
 import * as fs from 'node:fs';
 import { builtinModules } from 'node:module';
 import * as path from 'node:path';
+import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import type { ExternalOption, Plugin } from 'rollup';
 import { rollup } from 'rollup';
@@ -20,6 +21,7 @@ interface CreateCommonjsBundleProps {
 	pkgPath: string;
 	pkg: PackageJson;
 	rollupOptions?: CommonjsBundleOptions;
+	cwd?: string;
 }
 /**
 	Bundles all dependencies with Rollup to produce a CommonJS bundle
@@ -28,6 +30,7 @@ export async function createCommonjsBundle({
 	pkgPath,
 	pkg,
 	rollupOptions,
+	cwd = process.cwd(),
 }: CreateCommonjsBundleProps) {
 	if (pkg.exports === undefined || pkg.exports === null) {
 		return pkg;
@@ -101,10 +104,10 @@ export async function createCommonjsBundle({
 		external,
 	});
 
-	fs.mkdirSync('dist', { recursive: true });
+	fs.mkdirSync(path.join(cwd, 'dist'), { recursive: true });
 
 	await bundle.write({
-		file: './dist/index.cjs',
+		file: path.join(cwd, 'dist/index.cjs'),
 		format: 'commonjs',
 		inlineDynamicImports: true,
 	});

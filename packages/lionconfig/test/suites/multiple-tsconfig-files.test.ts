@@ -15,7 +15,7 @@ test.todo('lionconfig works with multiple tsconfig files', async () => {
 		cwd: path.join(fixtureTempDir, 'subpackage1'),
 	});
 
-	await execaCommand('pnpm exec tsc-check', {
+	await execaCommand('pnpm exec typecheck', {
 		cwd: fixtureTempDir,
 	});
 	expect(fs.existsSync(path.join(fixtureTempDir, 'subpackage1/dist'))).toBe(

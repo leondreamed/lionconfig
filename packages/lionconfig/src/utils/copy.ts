@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import { getProjectDir } from 'lion-utils';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -13,21 +14,23 @@ interface CopyPackageFilesProps {
 	additionalFiles?: string[];
 	/**
 		Whether or not to also create a CommonJS bundle for the project
-
 		@default true
 	*/
 	commonjs?: boolean | (RollupOptions & { browser?: boolean });
+	cwd?: string;
 }
 
 export async function copyPackageFiles({
 	additionalFiles,
 	commonjs,
+	cwd = process.cwd(),
 }: CopyPackageFilesProps = {}) {
-	if (!fs.existsSync('dist')) {
-		fs.mkdirSync('dist');
+	const distDir = path.join(cwd, 'dist');
+	if (!fs.existsSync(distDir)) {
+		fs.mkdirSync(distDir, { recursive: true });
 	}
 
-	const monorepoRoot = getProjectDir(process.cwd(), { monorepoRoot: true });
+	const monorepoRoot = getProjectDir(cwd, { monorepoRoot: true });
 	for (const packageFilePath of [...packageFiles, ...(additionalFiles ?? [])]) {
 		let distPackageFilePath: string;
 		if (
@@ -35,30 +38,30 @@ export async function copyPackageFiles({
 			packageFilePath.startsWith('./src')
 		) {
 			distPackageFilePath = path.join(
-				'dist',
+				distDir,
 				packageFilePath.replace(/^(\.\/)?src\//, '')
 			);
 		} else {
-			distPackageFilePath = path.join('dist', packageFilePath);
+			distPackageFilePath = path.join(distDir, packageFilePath);
 		}
 
-		if (fs.existsSync(packageFilePath)) {
-			fs.cpSync(packageFilePath, distPackageFilePath, {
+		const packageFileFullPath = path.resolve(cwd, packageFilePath);
+
+		if (fs.existsSync(packageFileFullPath)) {
+			await fs.promises.cp(packageFileFullPath, distPackageFilePath, {
 				recursive: true,
 			});
 
 			if (path.parse(packageFilePath).base === 'package.json') {
-				const transformedPackageJson =
-					// eslint-disable-next-line no-await-in-loop
-					await transformPackageJson({
-						pkg: JSON.parse(
-							fs.readFileSync(packageFilePath, 'utf8')
-						) as PackageJson,
-						pkgPath: packageFilePath,
-						commonjs,
-					});
+				const transformedPackageJson = await transformPackageJson({
+					pkg: JSON.parse(
+						await fs.promises.readFile(packageFileFullPath, 'utf8')
+					) as PackageJson,
+					pkgPath: packageFileFullPath,
+					commonjs,
+				});
 
-				fs.writeFileSync(
+				await fs.promises.writeFile(
 					distPackageFilePath,
 					JSON.stringify(transformedPackageJson, null, '\t')
 				);
@@ -67,15 +70,19 @@ export async function copyPackageFiles({
 		// If the project is a monorepo, try copying the project files from the monorepo root
 		else if (monorepoRoot !== undefined) {
 			// Don't copy monorepo package.json files
-			if (packageFilePath === 'package.json') continue;
+			if (packageFilePath === 'package.json') {
+				continue;
+			}
 
 			const monorepoFilePath = path.join(monorepoRoot, packageFilePath);
 
 			if (fs.existsSync(monorepoFilePath)) {
-				fs.cpSync(monorepoFilePath, distPackageFilePath, { recursive: true });
+				await fs.promises.cp(monorepoFilePath, distPackageFilePath, {
+					recursive: true,
+				});
 			}
 		}
 	}
 
-	fs.writeFileSync('dist/.gitkeep', '');
+	await fs.promises.writeFile(path.join(distDir, '.gitkeep'), '');
 }
