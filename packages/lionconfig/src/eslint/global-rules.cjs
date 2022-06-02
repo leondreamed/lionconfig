@@ -128,7 +128,6 @@ function getGlobalRules(dirname) {
 		'yml/no-empty-document': 'off',
 		// I prefer redundant types (e.g. unknown | undefined) for self-documentation purposes
 		'@typescript-eslint/no-redundant-type-constituents': 'off',
-		'@typescript-eslint/no-unnecessary-condition': 'error',
 	};
 
 	return rules;

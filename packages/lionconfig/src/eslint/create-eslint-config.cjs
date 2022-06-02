@@ -203,6 +203,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					],
 					'import/named': 'off',
 					'@typescript-eslint/unified-signatures': 'off', // I prefer to add the events for Vue's defineEmits<{}> separately instead of using a unified signature
+					'@typescript-eslint/no-unnecessary-condition': 'error',
 					...projectConfig.rules,
 				},
 			},
