@@ -72,10 +72,6 @@ TypeScript + ESM support is provided out of the box via a wrapper script named `
 
 In addition, `tsc-alias` is exposed as a binary so you can use it to turn your aliased paths into relative paths at compile time.
 
-### Git
-
-With `lionconfig`, you don't need to add a `.gitignore` file to your JavaScript/TypeScript project. `lionconfig` comes with a postinstall hook that automatically adds a default `.gitignore` at `.git/info/exclude`. If you want to add custom files to exclude or if you want to add a file that is excluded by default, all you need to do is add a `.gitignore` file to your project root and it will be automatically appended to `.git/info/exclude` on postinstall.
-
 #### Git Hooks
 
 Git hooks are set with [`lion-git-hooks`](https://github.com/leonzalion/lion-git-hooks). To add git hooks to your project, create one of the following folders in your project's filesystem:

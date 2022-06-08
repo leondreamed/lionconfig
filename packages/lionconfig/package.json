@@ -34,7 +34,6 @@
 	},
 	"homepage": "https://github.com/leonzalion/lionconfig#readme",
 	"scripts": {
-		"postinstall": "node --loader ./src/tsconfig/ts-loader.js ./src/postinstall.js",
 		"format": "prettier --write .",
 		"lint": "eslint --fix .",
 		"typecheck": "tsc --noEmit",

@@ -22,7 +22,7 @@ function shouldStubTsconfigEslintJson(filePath) {
 }
 
 /**
-	@param {string} dirname
+	@param {string | undefined} dirname
 	@param {import('eslint-define-config').EslintConfig} config
 */
 function createESLintConfig(dirname, projectConfig = {}, options = {}) {
