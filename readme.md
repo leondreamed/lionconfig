@@ -41,17 +41,6 @@ Then, add `lionconfig` as the `prepare` script of your `package.json` file:
 
 ### IDE Integration
 
-#### Prettier
-
-For optimal Prettier support in VSCode, add the following configuration to your VSCode settings:
-
-```jsonc
-{
-  // ...
-  "prettier.configPath": "./node_modules/lionconfig/prettier.cjs"
-}
-```
-
 ## Features
 
 ### TypeScript
