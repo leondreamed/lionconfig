@@ -12,7 +12,8 @@
 		".": "./src/index.ts",
 		"./*": "./*",
 		"./eslint": "./eslint.cjs",
-		"./prettier": "./prettier.cjs"
+		"./prettier": "./prettier.cjs",
+		"./tsconfig": "./tsconfig.json"
 	},
 	"bin": {
 		"commitlint": "./src/bin/commitlint.js",
