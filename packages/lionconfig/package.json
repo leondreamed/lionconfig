@@ -11,7 +11,8 @@
 	"exports": {
 		".": "./src/index.ts",
 		"./*": "./*",
-		"./eslint": "./eslint.cjs"
+		"./eslint": "./eslint.cjs",
+		"./prettier": "./prettier.cjs"
 	},
 	"bin": {
 		"commitlint": "./src/bin/commitlint.js",
