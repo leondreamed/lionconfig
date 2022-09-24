@@ -68,6 +68,7 @@ export async function copyPackageFiles({
 			}
 		}
 		// If the project is a monorepo, try copying the project files from the monorepo root
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		else if (monorepoRoot !== undefined) {
 			// Don't copy monorepo package.json files
 			if (packageFilePath === 'package.json') {

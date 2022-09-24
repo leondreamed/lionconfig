@@ -52,7 +52,7 @@ async function runScriptFromWorkspaceRoot({
 
 			if (workspacePackage.manifest.scripts?.[scriptName] !== undefined) {
 				workspacesToRunScript.push(workspacePackage);
-			} else if (condition?.(workspacePackage.dir)) {
+			} else if (condition(workspacePackage.dir)) {
 				workspacesToRunScript.push(workspacePackage);
 			}
 		}

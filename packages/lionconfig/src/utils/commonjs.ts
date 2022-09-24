@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+// @ts-expect-error: https://github.com/rollup/plugins/pull/1196
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+// @ts-expect-error: https://github.com/rollup/plugins/pull/1196
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import { resolve as importMetaResolve } from 'import-meta-resolve';
@@ -55,7 +58,7 @@ export async function createCommonjsBundle({
 		jsImports() as any,
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
-		json(),
+		(json as any)(),
 		browser
 			? nodeResolve({
 					browser: true,
@@ -73,7 +76,7 @@ export async function createCommonjsBundle({
 
 	if (fs.existsSync(tsconfigPath)) {
 		plugins.push(
-			typescript({
+			(typescript as any)({
 				tsconfig: tsconfigPath,
 				tslib: fileURLToPath(await importMetaResolve('tslib', import.meta.url)),
 			})

@@ -1,9 +1,9 @@
-import * as fs from "node:fs";
+import * as fs from 'node:fs';
 
 export function rmDist() {
-  if (!fs.existsSync("dist")) {
-    return;
-  }
+	if (!fs.existsSync('dist')) {
+		return;
+	}
 
-  fs.rmSync("dist", { recursive: true, force: true });
+	fs.rmSync('dist', { recursive: true, force: true });
 }
