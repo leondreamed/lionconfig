@@ -1,11 +1,11 @@
 import { join } from 'desm';
 import { execa } from 'execa';
-import findUp from 'find-up';
+import { findUpSync } from 'find-up';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 async function setGitignoreAndGitattributes() {
-	const gitRepo = findUp.sync('.git', { type: 'directory' });
+	const gitRepo = findUpSync('.git', { type: 'directory' });
 	if (gitRepo === undefined) {
 		return;
 	}

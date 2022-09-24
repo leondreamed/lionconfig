@@ -1,4 +1,4 @@
-import findUp from 'find-up';
+import { findUpSync } from 'find-up';
 import isPathInside from 'is-path-inside';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -40,7 +40,7 @@ export function resolve(specifier, context, defaultResolve) {
 		if (tsconfigPath === undefined) {
 			// Could not find an existing `tsconfig.json` which is associated with the current file
 			// Thus, find it manually by finding the nearest `tsconfig.json` in an above directory
-			const tsconfigJsonPath = findUp.sync('tsconfig.json', {
+			const tsconfigJsonPath = findUpSync('tsconfig.json', {
 				cwd: path.dirname(filePathOfImporter),
 			});
 			if (tsconfigJsonPath !== undefined) {
