@@ -87,12 +87,6 @@ prePush();
 
 [`lint-staged`](https://github.com/okonet/lint-staged) is also provided as an out-of-the-box-supported binary.
 
-### Prettier
-
-Prettier comes in the form of a wrapper binary which comes with a default `.prettierignore` configuration while also allowing you to specify a custom `.prettierignore` for your project which extends the default.
-
-> Since prettier doesn't yet provide native support for this feature, this feature is added through a custom node script which makes overloads `fs.promises.readFile` to stub a "virtual" `.prettierignore` file that is a "combined" version of the default `.prettierignore` file and the project's `.prettierignore`.
-
 ### ESLint
 
 ESLint support is provided via a powerful `createESLintConfig` function that you can use like this:
@@ -112,6 +106,8 @@ module.exports = createESLintConfig(__dirname, {
 The [default ESLint configuration](https://github.com/leonzalion/lionconfig/blob/main/src/eslint/create-eslint-config.cjs) is based off of [xo](https://github.com/xojs/xo) with some modifications.
 
 To prevent unnecessary boilerplate in projects, `lionconfig` provides a wrapper over the ESLint binary which stubs certain files that aren't present in a folder:
+
+ESLint also includes `eslint-plugin-prettier` to also format files on lint.
 
 #### `tsconfig.eslint.json`
 
@@ -142,7 +138,6 @@ To reduce boilerplate in the `scripts` property of each codebase's `package.json
 
 - `pnpm exec test`: `vitest run`
 - `pnpm exec lint`: `eslint --cache --fix .`
-- `pnpm exec format`: `prettier --write .`
 - `pnpm exec typecheck`: `tsc --noEmit`
 
 When run from the workspace root, these scripts will intelligently run recursively based on the contents of the workspace packages (e.g. `typecheck` will only run in workspace packages that have a `tsconfig.json` file).

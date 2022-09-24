@@ -15,7 +15,7 @@ beforeAll(async () => {
 
 describe('markdown override works', async () => {
 	test('does not format markdown code blocks with tabs', async () => {
-		await execaCommand('pnpm exec prettier --write .', {
+		await execaCommand('pnpm exec eslint --fix .', {
 			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});

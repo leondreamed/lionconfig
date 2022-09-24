@@ -83,6 +83,4 @@ export async function copyPackageFiles({
 			}
 		}
 	}
-
-	await fs.promises.writeFile(path.join(distDir, '.gitkeep'), '');
 }

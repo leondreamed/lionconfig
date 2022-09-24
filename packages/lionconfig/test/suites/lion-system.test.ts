@@ -37,9 +37,6 @@ test('successfully copies files', async () => {
 	).toBe(true);
 	expect(fs.existsSync(path.join(distDir, 'file1.html'))).toBe(true);
 	expect(fs.existsSync(path.join(distDir, 'file2.html'))).toBe(true);
-
-	// Adds a .gitkeep file
-	expect(fs.existsSync(path.join(distDir, '.gitkeep'))).toBe(true);
 });
 
 test('successfully gets the correct project directory', () => {

@@ -1,4 +1,2 @@
 # Need to ignore for tests, added during build time
-# temp
-
 test/fixtures

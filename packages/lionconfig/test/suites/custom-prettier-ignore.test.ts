@@ -14,8 +14,8 @@ beforeAll(async () => {
 });
 
 describe('supports custom .prettierignore', async () => {
-	test('prettier formatting works', async () => {
-		await execaCommand('pnpm exec prettier --write .', {
+	test('prettier formatting with eslint works', async () => {
+		await execaCommand('pnpm exec eslint --fix .', {
 			cwd: tempFixturePath,
 			stdio: 'inherit',
 		});

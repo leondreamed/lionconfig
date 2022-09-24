@@ -50,8 +50,9 @@ export async function createCommonjsBundle({
 	const tsconfigPath = path.join(pkgDir, 'tsconfig.json');
 
 	// Weird typing for `plugins` comes from rollup
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const plugins: Array<false | null | undefined | Plugin> = [
-		jsImports(),
+		jsImports() as any,
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
 		json(),

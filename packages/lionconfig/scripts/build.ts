@@ -9,7 +9,6 @@ exec('tsc');
 exec('tsc-alias');
 await copyPackageFiles({
 	additionalFiles: [
-		'src/prettier/.prettierignore',
 		'src/git',
 		'src/tsconfig',
 		'src/tsconfig.json',

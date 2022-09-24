@@ -12,13 +12,11 @@
 		".": "./src/index.ts",
 		"./*": "./*",
 		"./eslint": "./eslint.cjs",
-		"./prettier": "./prettier.cjs",
 		"./tsconfig": "./tsconfig.json"
 	},
 	"bin": {
 		"commitlint": "./src/bin/commitlint.js",
 		"eslint": "./src/bin/eslint.js",
-		"format": "./src/bin/format.js",
 		"lint": "./src/bin/lint.js",
 		"lint-staged": "./src/bin/lint-staged.js",
 		"lionconfig": "./src/bin/lionconfig.js",
@@ -26,7 +24,6 @@
 		"lion-git-hooks": "./src/bin/lion-git-hooks.js",
 		"markdownlint": "./src/bin/markdownlint.js",
 		"node-ts": "./src/bin/node-ts.js",
-		"prettier": "./src/bin/prettier.js",
 		"release": "./src/bin/release.js",
 		"run-bin": "./src/bin/run-bin.js",
 		"test": "./src/bin/test.js",
@@ -36,7 +33,6 @@
 	},
 	"homepage": "https://github.com/leonzalion/lionconfig#readme",
 	"scripts": {
-		"format": "prettier --write .",
 		"lint": "eslint --fix .",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest run",
@@ -121,6 +117,7 @@
 		"@types/minimist": "^1.2.2",
 		"@types/prettier": "^2.6.1",
 		"@types/resolve": "^1.20.2",
+		"@yarnpkg/core": "4.0.0-rc.20",
 		"chmodrp": "^1.0.2",
 		"globby": "^13.1.1",
 		"lion-fixture": "^1.1.8",

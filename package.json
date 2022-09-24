@@ -4,12 +4,8 @@
 		"release": "pnpm --filter=lionconfig run release",
 		"build": "pnpm --filter=lionconfig run build",
 		"test": "pnpm --filter=lionconfig run test",
-		"format": "pnpm recursive run format",
 		"lint": "pnpm recursive run lint",
 		"typecheck": "pnpm recursive run typecheck"
-	},
-	"devDependencies": {
-		"typescript": "^4.7.2"
 	},
 	"lionconfig": {
 		"noPrepare": true
