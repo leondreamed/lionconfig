@@ -4,7 +4,7 @@ const getGlobalRules = require('./global-rules.cjs');
 const { defineConfig } = require('eslint-define-config');
 const { deepmerge } = require('deepmerge-ts');
 const { outdent } = require('outdent');
-const findUp = require('find-up');
+const findUp = require('@commonjs/find-up');
 const pkgUp = require('@commonjs/pkg-up');
 
 const statSync = fs.statSync;

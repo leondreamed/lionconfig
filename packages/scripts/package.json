@@ -1,6 +1,0 @@
-{
-	"name": "@lionconfig/scripts",
-	"dependencies": {
-		"lionconfig": "link:../lionconfig/dist"
-	}
-}

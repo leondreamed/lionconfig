@@ -1,5 +1,5 @@
 const path = require('path');
-const findUp = require('find-up');
+const findUp = require('@commonjs/find-up');
 const pkgUp = require('@commonjs/pkg-up');
 
 /**
