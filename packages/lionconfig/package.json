@@ -79,6 +79,7 @@
 		"eslint-plugin-markdown": "^2.2.1",
 		"eslint-plugin-no-use-extend-native": "^0.5.0",
 		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
 		"eslint-plugin-unicorn": "^42.0.0",
 		"eslint-plugin-vue": "^8.7.1",
@@ -125,8 +126,8 @@
 		"lion-fixture": "^1.1.8",
 		"nanoid": "^3.3.4",
 		"tmp-promise": "^3.0.3",
-		"typescript": "^4.6.4",
-		"vitest": "^0.12.6"
+		"typescript": "^4.8.3",
+		"vitest": "^0.18.1"
 	},
 	"publishConfig": {
 		"directory": "dist"

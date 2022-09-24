@@ -107,7 +107,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			project: parserOptionsProject,
 			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 		},
-		plugins: ['simple-import-sort', 'vue'],
+		plugins: ['simple-import-sort', 'vue', 'prettier'],
 		// From @antfu/eslint-config https://github.com/antfu/eslint-config/blob/f6180054022fa554e313257d724ab26664c1b1b4/packages/basic/index.js#L15
 		ignorePatterns: [
 			'dist',
@@ -151,7 +151,6 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					'no-unused-vars': 'off',
 				},
 			},
-
 			{
 				files: '**/.eslintrc.cjs',
 				env: {

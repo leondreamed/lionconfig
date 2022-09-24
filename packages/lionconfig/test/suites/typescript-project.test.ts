@@ -26,13 +26,6 @@ describe('works with a TypeScript project', async () => {
 				.includes('  '),
 			'package.json should not be formatted by `eslint-plugin-jsonc` with two-space indentation'
 		).toBe(false);
-	});
-
-	test('prettier works', async () => {
-		await execaCommand('pnpm exec prettier --write .', {
-			cwd: tempFixturePath,
-			stdio: 'inherit',
-		});
 
 		expect(
 			fs.readFileSync(
@@ -58,7 +51,7 @@ describe('works with a TypeScript project', async () => {
 			)
 		);
 
-		// Prettier should not format with default options
+		// ESLint's Prettier should not format with default options
 		expect(
 			fs.readFileSync(path.join(tempFixturePath, 'src/tab-indent.ts'), 'utf8')
 		).to.not.include('  ');
