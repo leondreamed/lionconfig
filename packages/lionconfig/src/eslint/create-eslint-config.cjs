@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const getGlobalRules = require('./global-rules.cjs');
 const { defineConfig } = require('eslint-define-config');
 const { deepmerge } = require('deepmerge-ts');

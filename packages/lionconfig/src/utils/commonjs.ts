@@ -1,4 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+import * as fs from 'node:fs';
+import { builtinModules } from 'node:module';
+import * as path from 'node:path';
+import process from 'node:process';
+import { fileURLToPath } from 'node:url';
+
 // @ts-expect-error: https://github.com/rollup/plugins/pull/1196
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
@@ -6,11 +12,6 @@ import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import { resolve as importMetaResolve } from 'import-meta-resolve';
-import * as fs from 'node:fs';
-import { builtinModules } from 'node:module';
-import * as path from 'node:path';
-import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 import type { ExternalOption, Plugin } from 'rollup';
 import { rollup } from 'rollup';
 import bundleESM from 'rollup-plugin-bundle-esm';
@@ -20,12 +21,12 @@ import type { PackageJson } from 'type-fest';
 
 import type { CommonjsBundleOptions } from '~/types/commonjs.js';
 
-interface CreateCommonjsBundleProps {
+type CreateCommonjsBundleProps = {
 	pkgPath: string;
 	pkg: PackageJson;
 	rollupOptions?: CommonjsBundleOptions;
 	cwd?: string;
-}
+};
 /**
 	Bundles all dependencies with Rollup to produce a CommonJS bundle
 */

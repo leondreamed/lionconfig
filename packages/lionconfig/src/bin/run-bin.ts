@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import dotenv from 'dotenv';
-import minimist from 'minimist';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+
+import dotenv from 'dotenv';
+import minimist from 'minimist';
 
 import { nodeTs } from '../utils/node.js';
 import { findWorkspaceOfPackage } from '../utils/pnpm.js';

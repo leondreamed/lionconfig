@@ -1,8 +1,9 @@
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+
 import { join } from 'desm';
 import { execa } from 'execa';
 import { findUpSync } from 'find-up';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
 
 async function setGitignoreAndGitattributes() {
 	const gitRepo = findUpSync('.git', { type: 'directory' });
@@ -31,4 +32,5 @@ async function runLionGitHooks() {
 	await execa('lion-git-hooks');
 }
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 await Promise.all([runLionGitHooks(), setGitignoreAndGitattributes()]);

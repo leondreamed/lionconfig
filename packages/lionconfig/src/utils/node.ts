@@ -1,14 +1,15 @@
-import execa from '@commonjs/execa';
-import logSymbols from 'log-symbols';
 import path from 'node:path';
 import process from 'node:process';
+
+import execa from '@commonjs/execa';
+import logSymbols from 'log-symbols';
 import { pkgUpSync } from 'pkg-up';
 
-interface NodeTSOptions {
+type NodeTSOptions = {
 	args?: string[];
 	env?: Record<string, string>;
 	resolvePkgFromFile?: boolean;
-}
+};
 
 export function nodeTs(filePath: string, options: NodeTSOptions = {}) {
 	let fileFullPath;

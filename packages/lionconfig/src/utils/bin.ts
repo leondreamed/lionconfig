@@ -1,6 +1,7 @@
+import process from 'node:process';
+
 import { dirname } from 'desm';
 import { execaSync } from 'execa';
-import process from 'node:process';
 import resolve from 'resolve';
 
 export function executeBin(

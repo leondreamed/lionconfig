@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
+import process from 'node:process';
+
 import { program } from 'commander';
 import isCi from 'is-ci';
-import process from 'node:process';
 
 import { nodeTs } from '../utils/node.js';
 

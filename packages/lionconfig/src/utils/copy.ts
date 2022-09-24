@@ -1,8 +1,9 @@
 /* eslint-disable no-await-in-loop */
-import { getProjectDir } from 'lion-utils';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'node:process';
+
+import { getProjectDir } from 'lion-utils';
 import type { RollupOptions } from 'rollup';
 import type { PackageJson } from 'type-fest';
 
@@ -10,7 +11,7 @@ import { transformPackageJson } from '~/utils/package-json.js';
 
 export const packageFiles = ['readme.md', 'license', 'package.json'];
 
-interface CopyPackageFilesProps {
+type CopyPackageFilesProps = {
 	additionalFiles?: string[];
 	/**
 		Whether or not to also create a CommonJS bundle for the project
@@ -18,7 +19,7 @@ interface CopyPackageFilesProps {
 	*/
 	commonjs?: boolean | (RollupOptions & { browser?: boolean });
 	cwd?: string;
-}
+};
 
 export async function copyPackageFiles({
 	additionalFiles,

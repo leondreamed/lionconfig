@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import process from 'node:process';
+
 import type { PackageJson } from 'type-fest';
 
 const tscPath = createRequire(import.meta.url).resolve('typescript/lib/tsc');

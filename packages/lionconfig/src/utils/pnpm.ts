@@ -1,6 +1,7 @@
+import * as path from 'node:path';
+
 import { findWorkspacePackagesNoCheck } from '@pnpm/find-workspace-packages';
 import { findUp } from 'find-up';
-import * as path from 'node:path';
 
 export async function findWorkspaceOfPackage(
 	packageDir: string

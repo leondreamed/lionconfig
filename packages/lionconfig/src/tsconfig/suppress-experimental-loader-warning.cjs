@@ -1,4 +1,5 @@
-/* eslint-disable node/prefer-global/process, prefer-rest-params */
+/* eslint-disable n/prefer-global/process */
+/* eslint-disable prefer-rest-params */
 
 // From: https://github.com/yarnpkg/berry/blob/2cf0a8fe3e4d4bd7d4d344245d24a85a45d4c5c9/packages/yarnpkg-pnp/sources/loader/applyPatch.ts#L414-L435
 

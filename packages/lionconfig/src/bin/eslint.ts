@@ -7,6 +7,7 @@
 import type { PathOrFileDescriptor } from 'node:fs';
 import fs from 'node:fs';
 import path from 'node:path';
+
 import { outdent } from 'outdent';
 import resolve from 'resolve';
 

@@ -1,7 +1,8 @@
-import { deepKeys, getProperty, setProperty } from 'dot-prop';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'node:process';
+
+import { deepKeys, getProperty, setProperty } from 'dot-prop';
 import rfdc from 'rfdc';
 import type { PackageJson } from 'type-fest';
 
@@ -15,7 +16,6 @@ import { createCommonjsBundle } from '~/utils/commonjs.js';
 */
 export function rewritePackageJsonPaths(pkg: PackageJson): PackageJson {
 	for (const property of deepKeys(pkg)) {
-		// eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
 		let value = getProperty(pkg, property) as unknown as string;
 
 		if (typeof value === 'string') {

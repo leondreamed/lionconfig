@@ -1,7 +1,8 @@
-import { findUpSync } from 'find-up';
-import isPathInside from 'is-path-inside';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+
+import { findUpSync } from 'find-up';
+import isPathInside from 'is-path-inside';
 import { resolve as resolveTs } from 'ts-node/esm';
 import * as tsConfigPaths from 'tsconfig-paths';
 

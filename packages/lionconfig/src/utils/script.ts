@@ -1,8 +1,9 @@
-import { findWorkspacePackagesNoCheck } from '@pnpm/find-workspace-packages';
-import { execaSync } from 'execa';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'node:process';
+
+import { findWorkspacePackagesNoCheck } from '@pnpm/find-workspace-packages';
+import { execaSync } from 'execa';
 import { pkgUp } from 'pkg-up';
 import type { PackageJson } from 'type-fest';
 
@@ -102,11 +103,11 @@ function runScriptFromWorkspacePackage({
 	}
 }
 
-interface RunScriptProps {
+type RunScriptProps = {
 	name: string;
 	defaultCommandArgs: string[];
 	condition?: (path: string) => boolean;
-}
+};
 
 export async function runScript({
 	name,
