@@ -57,6 +57,7 @@
 		"@types/node": "^18.7.20",
 		"@typescript-eslint/eslint-plugin": "^5.38.0",
 		"@typescript-eslint/parser": "^5.38.0",
+		"@yarnpkg/core": "npm:ignoredep@^4.0.0-rc.14",
 		"commander": "^9.4.0",
 		"cosmiconfig": "^7.0.1",
 		"deepmerge-ts": "^4.2.2",
