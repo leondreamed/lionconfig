@@ -113,7 +113,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			'dist',
 			'generated',
 			'__snapshots__',
-			// 'temp',
+			'temp',
 			'*.min.*',
 			'changelog.md',
 			'license*',
