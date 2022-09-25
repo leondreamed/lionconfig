@@ -7,10 +7,6 @@ const { outdent } = require('outdent');
 const findUp = require('@commonjs/find-up');
 const pkgUp = require('@commonjs/pkg-up');
 
-const statSync = fs.statSync;
-const existsSync = fs.existsSync;
-const readFileSync = fs.readFileSync;
-
 function shouldStubTsconfigEslintJson(filePath) {
 	if (path.basename(filePath) !== 'tsconfig.eslint.json') {
 		return false;
@@ -18,7 +14,9 @@ function shouldStubTsconfigEslintJson(filePath) {
 
 	const dir = path.dirname(filePath);
 
-	return !existsSync(filePath) && existsSync(path.join(dir, 'tsconfig.json'));
+	return (
+		!fs.existsSync(filePath) && fs.existsSync(path.join(dir, 'tsconfig.json'))
+	);
 }
 
 /**
@@ -46,6 +44,10 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			: path.dirname(pnpmWorkspaceFile);
 
 	if (!options.noStubs && !fs.__lionConfigStubbed?.[dirname]) {
+		const statSync = fs.statSync;
+		const existsSync = fs.existsSync;
+		const readFileSync = fs.readFileSync;
+
 		fs.statSync = (...args) => {
 			if (shouldStubTsconfigEslintJson(args[0])) {
 				return statSync(path.join(path.dirname(args[0]), 'tsconfig.json'));
