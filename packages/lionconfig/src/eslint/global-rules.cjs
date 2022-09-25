@@ -31,6 +31,10 @@ function getGlobalRules(dirname) {
 			'error',
 			{ assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
 		],
+		'@typescript-eslint/consistent-type-definitions': [
+			'error',
+			'interface'
+		],
 		'vue/component-name-in-template-casing': ['error', 'PascalCase'],
 		'@typescript-eslint/ban-types': [
 			'error',
