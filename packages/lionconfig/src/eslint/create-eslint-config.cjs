@@ -45,7 +45,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			? undefined
 			: path.dirname(pnpmWorkspaceFile);
 
-	if (!options.noStubs && !fs.__lionConfigStubbed) {
+	if (!options.noStubs && !fs.__lionConfigStubbed?.[dirname]) {
 		fs.statSync = (...args) => {
 			if (shouldStubTsconfigEslintJson(args[0])) {
 				return statSync(path.join(path.dirname(args[0]), 'tsconfig.json'));
@@ -77,7 +77,11 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			}
 		};
 
-		fs.__lionConfigStubbed = true;
+		if (fs.__lionConfigStubbed) {
+			fs.__lionConfigStubbed[dirname] = true;
+		} else {
+			fs.__lionConfigStubbed = { [dirname]: true };
+		}
 	}
 
 	const globalRules = getGlobalRules(dirname);
