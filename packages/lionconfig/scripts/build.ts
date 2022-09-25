@@ -5,8 +5,6 @@ import { chProjectDir, copyPackageFiles, rmDist } from '../src/index.js';
 
 chProjectDir(import.meta.url);
 rmDist();
-exec('tsc');
-exec('tsc-alias');
 await copyPackageFiles({
 	additionalFiles: [
 		'src/git',
@@ -15,5 +13,7 @@ await copyPackageFiles({
 		'src/markdownlint.json',
 	],
 });
+exec('tsc');
+exec('tsc-alias');
 
 chmodrSync('dist/bin', 0o755);
