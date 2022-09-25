@@ -83,9 +83,6 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 	const globalRules = getGlobalRules(dirname);
 
 	const tsconfigEslintPath = path.resolve(dirname, 'tsconfig.eslint.json');
-	const parserOptionsProject = fs.existsSync(tsconfigEslintPath)
-		? tsconfigEslintPath
-		: undefined;
 
 	const defaultConfig = defineConfig({
 		root: true,
@@ -104,8 +101,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			parser: '@typescript-eslint/parser',
 			ecmaVersion: 2018,
 			sourceType: 'module',
-			tsconfigRootDir: dirname,
-			project: parserOptionsProject,
+			project: tsconfigEslintPath,
 			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 		},
 		plugins: ['simple-import-sort', 'vue', 'prettier'],
@@ -187,7 +183,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					parser: '@typescript-eslint/parser',
 					ecmaVersion: 2018,
 					sourceType: 'module',
-					project: parserOptionsProject,
+					project: tsconfigEslintPath,
 					extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 				},
 				rules: {
