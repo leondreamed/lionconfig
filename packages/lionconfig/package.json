@@ -89,7 +89,7 @@
 		"lint-staged": "^13.0.3",
 		"lion-git-hooks": "^1.0.13",
 		"lion-utils": "^0.1.6",
-		"lionp": "^1.0.31",
+		"lionp": "^1.0.32",
 		"log-symbols": "^5.1.0",
 		"markdownlint-cli": "^0.32.2",
 		"minimist": "^1.2.6",
