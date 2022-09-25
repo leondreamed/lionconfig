@@ -103,11 +103,11 @@ function runScriptFromWorkspacePackage({
 	}
 }
 
-type RunScriptProps = {
+interface RunScriptProps {
 	name: string;
 	defaultCommandArgs: string[];
 	condition?: (path: string) => boolean;
-};
+}
 
 export async function runScript({
 	name,

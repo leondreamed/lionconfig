@@ -21,12 +21,12 @@ import type { PackageJson } from 'type-fest';
 
 import type { CommonjsBundleOptions } from '~/types/commonjs.js';
 
-type CreateCommonjsBundleProps = {
+interface CreateCommonjsBundleProps {
 	pkgPath: string;
 	pkg: PackageJson;
 	rollupOptions?: CommonjsBundleOptions;
 	cwd?: string;
-};
+}
 /**
 	Bundles all dependencies with Rollup to produce a CommonJS bundle
 */

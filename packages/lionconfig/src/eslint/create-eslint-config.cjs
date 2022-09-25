@@ -7,6 +7,8 @@ const { outdent } = require('outdent');
 const findUp = require('@commonjs/find-up');
 const pkgUp = require('@commonjs/pkg-up');
 
+const existsSync = fs.existsSync;
+
 function shouldStubTsconfigEslintJson(filePath) {
 	if (path.basename(filePath) !== 'tsconfig.eslint.json') {
 		return false;
@@ -14,9 +16,7 @@ function shouldStubTsconfigEslintJson(filePath) {
 
 	const dir = path.dirname(filePath);
 
-	return (
-		!fs.existsSync(filePath) && fs.existsSync(path.join(dir, 'tsconfig.json'))
-	);
+	return !existsSync(filePath) && existsSync(path.join(dir, 'tsconfig.json'));
 }
 
 /**
@@ -88,7 +88,11 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 
 	const globalRules = getGlobalRules(dirname);
 
-	const tsconfigEslintPath = path.resolve(dirname, 'tsconfig.eslint.json');
+	const tsconfigEslintPath = fs.existsSync(
+		path.resolve(dirname, 'tsconfig.json')
+	)
+		? path.resolve(dirname, 'tsconfig.eslint.json')
+		: undefined;
 
 	const defaultConfig = defineConfig({
 		root: true,

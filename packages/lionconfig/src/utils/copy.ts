@@ -11,7 +11,7 @@ import { transformPackageJson } from '~/utils/package-json.js';
 
 export const packageFiles = ['readme.md', 'license', 'package.json'];
 
-type CopyPackageFilesProps = {
+interface CopyPackageFilesProps {
 	additionalFiles?: string[];
 	/**
 		Whether or not to also create a CommonJS bundle for the project
@@ -19,7 +19,7 @@ type CopyPackageFilesProps = {
 	*/
 	commonjs?: boolean | (RollupOptions & { browser?: boolean });
 	cwd?: string;
-};
+}
 
 export async function copyPackageFiles({
 	additionalFiles,

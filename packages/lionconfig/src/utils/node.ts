@@ -5,11 +5,11 @@ import execa from '@commonjs/execa';
 import logSymbols from 'log-symbols';
 import { pkgUpSync } from 'pkg-up';
 
-type NodeTSOptions = {
+interface NodeTSOptions {
 	args?: string[];
 	env?: Record<string, string>;
 	resolvePkgFromFile?: boolean;
-};
+}
 
 export function nodeTs(filePath: string, options: NodeTSOptions = {}) {
 	let fileFullPath;
