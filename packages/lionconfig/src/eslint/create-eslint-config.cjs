@@ -104,6 +104,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			parser: '@typescript-eslint/parser',
 			ecmaVersion: 2018,
 			sourceType: 'module',
+			tsconfigRootDir: dirname,
 			project: parserOptionsProject,
 			extraFileExtensions: ['.vue', '.cjs', '.cts', '.mjs', '.mts'],
 		},
