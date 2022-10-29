@@ -13,11 +13,7 @@
 	"pnpm": {
 		"updateConfig": {
 			"ignoreDependencies": [
-				"@commonjs/*"
-			]
-		},
-		"peerDependencyRules": {
-			"ignoreMissing": [
+				"@commonjs/*",
 				"@yarnpkg/core",
 				"webpack"
 			]

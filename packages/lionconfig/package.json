@@ -57,6 +57,7 @@
 		"@types/node": "^18.11.7",
 		"@typescript-eslint/eslint-plugin": "^5.41.0",
 		"@typescript-eslint/parser": "^5.41.0",
+		"@yarnpkg/core": "npm:ignoredep@^4.0.0-rc.25",
 		"commander": "^9.4.1",
 		"cosmiconfig": "^7.0.1",
 		"deepmerge-ts": "^4.2.2",
@@ -109,6 +110,7 @@
 		"turbo": "^1.6.2",
 		"type-fest": "^3.1.0",
 		"update-notifier": "^6.0.2",
+		"webpack": "npm:ignoredep@>=1.11.0",
 		"xo": "^0.52.4"
 	},
 	"devDependencies": {
