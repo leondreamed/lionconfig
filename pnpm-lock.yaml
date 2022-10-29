@@ -86,6 +86,7 @@ importers:
       tsconfig: ^7.0.0
       tsconfig-paths: ^4.1.0
       tslib: ^2.4.0
+      turbo: ^1.6.2
       type-fest: ^3.1.0
       typescript: ^4.8.4
       update-notifier: ^6.0.2
@@ -159,6 +160,7 @@ importers:
       tsconfig: 7.0.0
       tsconfig-paths: 4.1.0
       tslib: 2.4.0
+      turbo: 1.6.2
       type-fest: 3.1.0
       update-notifier: 6.0.2
       xo: 0.52.4
@@ -8341,7 +8343,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-darwin-arm64/1.6.2:
@@ -8349,7 +8350,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-linux-64/1.6.2:
@@ -8357,7 +8357,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-linux-arm64/1.6.2:
@@ -8365,7 +8364,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-windows-64/1.6.2:
@@ -8373,7 +8371,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo-windows-arm64/1.6.2:
@@ -8381,7 +8378,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /turbo/1.6.2:
@@ -8395,7 +8391,6 @@ packages:
       turbo-linux-arm64: 1.6.2
       turbo-windows-64: 1.6.2
       turbo-windows-arm64: 1.6.2
-    dev: true
 
   /typanion/3.12.1:
     resolution: {integrity: sha512-3SJF/czpzqq6G3lprGFLa6ps12yb1uQ1EmitNnep2fDMNh1aO/Zbq9sWY+3lem0zYb2oHJnQWyabTGUZ+L1ScQ==}
