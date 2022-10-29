@@ -4,8 +4,8 @@
 		"release": "pnpm --filter=lionconfig run release",
 		"build": "pnpm --filter=lionconfig run build",
 		"test": "pnpm --filter=lionconfig run test",
-		"lint": "pnpm recursive run lint",
-		"typecheck": "pnpm recursive run typecheck"
+		"lint": "pnpm turbo lint --continue",
+		"typecheck": "pnpm turbo typecheck --continue"
 	},
 	"lionconfig": {
 		"noPrepare": true
@@ -16,11 +16,14 @@
 				"@commonjs/*"
 			]
 		},
-		"peerDependencyRules":  {
+		"peerDependencyRules": {
 			"ignoreMissing": [
 				"@yarnpkg/core",
 				"webpack"
 			]
 		}
+	},
+	"devDependencies": {
+		"turbo": "^1.6.2"
 	}
 }
