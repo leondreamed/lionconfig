@@ -1,10 +1,14 @@
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
+import { resolve as resolveTs } from '@leondreamed/ts-node/esm.mjs';
 import { findUpSync } from 'find-up';
 import isPathInside from 'is-path-inside';
-import { resolve as resolveTs } from 'ts-node/esm';
+import { getProjectDir } from 'lion-utils';
 import * as tsConfigPaths from 'tsconfig-paths';
+
+// Deliberately using `getProjectDir` here because ts-node will be patched in Cypress
+const monorepoDir = getProjectDir(import.meta.url, { monorepoRoot: true });
 
 /**
 	@type {Record<string, import('tsconfig-paths').MatchPath>}
@@ -27,6 +31,7 @@ export function resolve(specifier, context, defaultResolve) {
 
 	if (context.parentURL !== undefined) {
 		const filePathOfImporter = fileURLToPath(context.parentURL);
+
 		// Check all the existing parent folders of each known `tsconfig.json` file and see
 		// if the current file's directory falls under a known directory containing a
 		// `tsconfig.json` file
@@ -44,7 +49,11 @@ export function resolve(specifier, context, defaultResolve) {
 			const tsconfigJsonPath = findUpSync('tsconfig.json', {
 				cwd: path.dirname(filePathOfImporter),
 			});
-			if (tsconfigJsonPath !== undefined) {
+
+			if (
+				tsconfigJsonPath !== undefined &&
+				path.dirname(tsconfigJsonPath) !== monorepoDir
+			) {
 				const { absoluteBaseUrl, paths } =
 					tsConfigPaths.loadConfig(tsconfigJsonPath);
 				let matchPath;
@@ -112,4 +121,4 @@ export function resolve(specifier, context, defaultResolve) {
 	return resolveTs(specifier, context, defaultResolve);
 }
 
-export { load, transformSource } from 'ts-node/esm';
+export { load, transformSource } from '@leondreamed/ts-node/esm.mjs';

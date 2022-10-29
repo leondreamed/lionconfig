@@ -62,7 +62,6 @@ export async function copyPackageFiles({
 					commonjs,
 				});
 
-
 				await fs.promises.writeFile(
 					distPackageFilePath,
 					JSON.stringify(transformedPackageJson, null, '\t')

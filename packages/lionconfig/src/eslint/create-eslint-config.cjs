@@ -8,7 +8,7 @@ const findUp = require('@commonjs/find-up');
 const pkgUp = require('@commonjs/pkg-up');
 
 if (!fs._existsSync) {
-	fs._existsSync = fs.existsSync
+	fs._existsSync = fs.existsSync;
 }
 
 function shouldStubTsconfigEslintJson(filePath) {
@@ -18,7 +18,9 @@ function shouldStubTsconfigEslintJson(filePath) {
 
 	const dir = path.dirname(filePath);
 
-	return !fs._existsSync(filePath) && fs._existsSync(path.join(dir, 'tsconfig.json'));
+	return (
+		!fs._existsSync(filePath) && fs._existsSync(path.join(dir, 'tsconfig.json'))
+	);
 }
 
 /**

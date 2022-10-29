@@ -11,7 +11,7 @@ interface NodeTSOptions {
 	resolvePkgFromFile?: boolean;
 }
 
-export function nodeTs(filePath: string, options: NodeTSOptions = {}) {
+export function tsNode(filePath: string, options: NodeTSOptions = {}) {
 	let fileFullPath;
 	// Absolute path
 	if (filePath.startsWith('/')) {

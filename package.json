@@ -9,5 +9,18 @@
 	},
 	"lionconfig": {
 		"noPrepare": true
+	},
+	"pnpm": {
+		"updateConfig": {
+			"ignoreDependencies": [
+				"@commonjs/*"
+			]
+		},
+		"peerDependencyRules":  {
+			"ignoreMissing": [
+				"@yarnpkg/core",
+				"webpack"
+			]
+		}
 	}
 }

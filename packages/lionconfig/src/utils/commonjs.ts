@@ -117,7 +117,10 @@ export async function createCommonjsBundle({
 		inlineDynamicImports: true,
 	});
 
-	fs.writeFileSync(path.join(cwd, 'dist/index.d.cts'), "export * from './index.d'")
+	fs.writeFileSync(
+		path.join(cwd, 'dist/index.d.cts'),
+		"export * from './index.d'"
+	);
 
 	const exportsWithoutExtension = path.join(
 		path.dirname(pkgImportExport),
@@ -132,15 +135,15 @@ export async function createCommonjsBundle({
 		require: {
 			types: './index.d.cts',
 			default: './index.cjs',
-		}
+		},
 	};
 
 	if (typeof pkg.exports === 'string') {
-		pkg.exports = exportsObject
+		pkg.exports = exportsObject;
 	} else {
 		pkg.exports = {
 			...pkg.exports,
-			'.': exportsObject
+			'.': exportsObject,
 		};
 	}
 }

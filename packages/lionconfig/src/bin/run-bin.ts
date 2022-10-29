@@ -7,7 +7,7 @@ import process from 'node:process';
 import dotenv from 'dotenv';
 import minimist from 'minimist';
 
-import { nodeTs } from '../utils/node.js';
+import { tsNode } from '../utils/node.js';
 import { findWorkspaceOfPackage } from '../utils/pnpm.js';
 
 const args = minimist(process.argv.slice(2));
@@ -41,7 +41,7 @@ const env = fs.existsSync(envFilePath)
 	? dotenv.config({ path: envFilePath }).parsed
 	: undefined;
 
-nodeTs(filePath, {
+tsNode(filePath, {
 	args: args._.slice(1),
 	resolvePkgFromFile: false,
 	env,

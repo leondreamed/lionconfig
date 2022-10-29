@@ -1,7 +1,8 @@
-import { execaCommand } from 'execa';
-import lionFixture from 'lion-fixture';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+
+import { execaCommand } from 'execa';
+import lionFixture from 'lion-fixture';
 import { beforeAll, describe, expect, test } from 'vitest';
 
 const { fixture } = lionFixture(import.meta.url);

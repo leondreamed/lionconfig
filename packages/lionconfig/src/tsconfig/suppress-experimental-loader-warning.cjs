@@ -6,13 +6,17 @@
 const originalEmit = process.emit;
 process.emit = function (name, data) {
 	if (
-		name === `warning` &&
-		typeof data === `object` &&
-		data.name === `ExperimentalWarning` &&
-		(data.message.includes(`--experimental-loader`) ||
-			data.message.includes(`Custom ESM Loaders is an experimental feature`))
-	)
+		name === 'warning' &&
+		typeof data === 'object' &&
+		data.name === 'ExperimentalWarning' &&
+		(data.message.includes('--experimental-loader') ||
+			data.message.includes('Custom ESM Loaders is an experimental feature') ||
+			data.message.includes(
+				'Importing JSON modules is an experimental feature.'
+			))
+	) {
 		return false;
+	}
 
 	return originalEmit.apply(process, arguments);
 };
