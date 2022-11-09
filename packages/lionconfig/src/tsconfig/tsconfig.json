@@ -29,5 +29,6 @@
 		"composite": true,
 		"isolatedModules": true,
 		"noEmit": false
-	}
+	},
+	"exclude": ["dist"]
 }
