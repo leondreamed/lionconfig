@@ -12,6 +12,7 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"declaration": true,
+		"declarationDir": "dist",
 		"pretty": true,
 		"newLine": "lf",
 		"stripInternal": true,
