@@ -1,3 +1,6 @@
+const builtinRules = require('./rules/builtin-rules.cjs');
+const eslintPluginUnicornRules = require('./rules/eslint-plugin-unicorn-rules.cjs');
+
 const path = require('node:path');
 const findUp = require('@commonjs/find-up');
 const pkgUp = require('@commonjs/pkg-up');
@@ -20,13 +23,14 @@ function getGlobalRules(dirname) {
 		@type {import('eslint-define-config').EslintConfig['rules']}
 	*/
 	const rules = {
+		...builtinRules,
+		...eslintPluginUnicornRules,
+
+		// `process.env.NODE_ENV` is a common pattern
+		'n/prefer-global/process': 'off',
+
 		'import/no-unassigned-import': 'off',
 		'@typescript-eslint/consistent-type-imports': 'error',
-		'unicorn/prevent-abbreviations': 'off', // code is sometimes clearer with abbreviations
-		'no-else-return': 'off', // code is sometimes clearer with an else
-		'no-lonely-if': 'off', // code is sometimes clearer with a lonely if
-		'unicorn/prefer-ternary': 'off', // ternaries sometimes make code harder to read
-		'unicorn/no-null': 'off',
 		'@typescript-eslint/consistent-type-assertions': [
 			'error',
 			{ assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
@@ -82,24 +86,14 @@ function getGlobalRules(dirname) {
 				},
 			},
 		],
-		'capitalized-comments': 'off', // Want to be able to comment out code without it autofixing that
 		// Too annoying when using keys that don't adhere to naming convention
 		'@typescript-eslint/naming-convention': 'off',
-		camelcase: 'off',
 
-		'new-cap': 'off',
 		'import/extensions': [
 			'error',
 			'always',
 			{
 				ignorePackages: true,
-			},
-		],
-		'unicorn/prefer-json-parse-buffer': 'off',
-		'unicorn/template-indent': [
-			'warn',
-			{
-				indent: '\t',
 			},
 		],
 		'import/order': 'off',
