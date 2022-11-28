@@ -59,6 +59,12 @@ export async function createCommonjsBundles({
 				if (exportsKey.includes('*')) continue
 
 				if (typeof exportsValue === 'string') {
+					if (pkg.type === 'module') {
+						if (!/\.(ts|js|mjs)$/.test(exportsValue)) continue
+					} else {
+						if (!/\.(ts|mjs)$/.test(exportsValue)) continue
+					}
+
 					entryPoints.push({
 						sourcePath: exportsKey,
 						destinationPath: exportsValue,
@@ -67,12 +73,24 @@ export async function createCommonjsBundles({
 					'import' in exportsValue &&
 					typeof exportsValue.import === 'string'
 				) {
+					if (pkg.type === 'module') {
+						if (!/\.(ts|js|mjs)$/.test(exportsValue.import)) continue
+					} else {
+						if (!/\.(ts|mjs)$/.test(exportsValue.import)) continue
+					}
+
 					entryPoints.push({
 						sourcePath: exportsKey,
 						destinationPath: exportsValue.import,
 					})
 				}
 			} else if (exportsKey === 'import' && typeof exportsValue === 'string') {
+				if (pkg.type === 'module') {
+					if (!/\.(ts|js|mjs)$/.test(exportsValue)) continue
+				} else {
+					if (!/\.(ts|mjs)$/.test(exportsValue)) continue
+				}
+
 				entryPoints.push({ sourcePath: '.', destinationPath: exportsValue })
 			}
 		}
@@ -128,12 +146,6 @@ export async function createCommonjsBundles({
 
 	await Promise.all(
 		entryPoints.map(async (entryPoint) => {
-			if (pkg.type === 'module') {
-				if (!/\.(ts|js|mjs)$/.test(entryPoint.destinationPath)) return
-			} else {
-				if (!/\.(ts|mjs)$/.test(entryPoint.destinationPath)) return
-			}
-
 			const bundle = await rollup({
 				plugins,
 				input: path.join(pkgDir, entryPoint.destinationPath),
