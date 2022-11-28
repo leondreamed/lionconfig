@@ -1,34 +1,34 @@
-import path from 'node:path';
-import process from 'node:process';
+import path from 'node:path'
+import process from 'node:process'
 
-import execa from '@commonjs/execa';
-import logSymbols from 'log-symbols';
-import { pkgUpSync } from 'pkg-up';
+import execa from '@commonjs/execa'
+import logSymbols from 'log-symbols'
+import { pkgUpSync } from 'pkg-up'
 
 interface NodeTSOptions {
-	args?: string[];
-	env?: Record<string, string>;
-	resolvePkgFromFile?: boolean;
+	args?: string[]
+	env?: Record<string, string>
+	resolvePkgFromFile?: boolean
 }
 
 export function tsNode(filePath: string, options: NodeTSOptions = {}) {
-	let fileFullPath;
+	let fileFullPath
 	// Absolute path
 	if (filePath.startsWith('/')) {
-		fileFullPath = filePath;
+		fileFullPath = filePath
 	}
 	// Relative path
 	else {
-		fileFullPath = path.join(process.cwd(), filePath);
+		fileFullPath = path.join(process.cwd(), filePath)
 	}
 
-	const nodeOpts = [fileFullPath, ...(options.args ?? [])];
+	const nodeOpts = [fileFullPath, ...(options.args ?? [])]
 
-	let pkgJsonPath: string | undefined;
+	let pkgJsonPath: string | undefined
 	if (options.resolvePkgFromFile) {
-		pkgJsonPath = pkgUpSync({ cwd: path.dirname(fileFullPath) });
+		pkgJsonPath = pkgUpSync({ cwd: path.dirname(fileFullPath) })
 	} else {
-		pkgJsonPath = pkgUpSync({ cwd: process.cwd() });
+		pkgJsonPath = pkgUpSync({ cwd: process.cwd() })
 	}
 
 	const spawnOptions = {
@@ -37,7 +37,7 @@ export function tsNode(filePath: string, options: NodeTSOptions = {}) {
 		env: options.env,
 		extendEnv: true,
 		reject: false,
-	} as const;
+	} as const
 
 	const result = execa.sync(
 		'node',
@@ -49,23 +49,23 @@ export function tsNode(filePath: string, options: NodeTSOptions = {}) {
 			...nodeOpts,
 		],
 		spawnOptions
-	);
+	)
 
 	if (process.env.NODE_TS_DEBUG) {
-		console.debug(result);
+		console.debug(result)
 	}
 
 	if (result.failed || result.exitCode !== 0) {
 		if (result.stderr) {
-			console.error('Error from node-ts:', result.stderr);
+			console.error('Error from node-ts:', result.stderr)
 		}
 
 		if (result.exitCode !== 0) {
 			console.error(
 				logSymbols.error,
 				`node-ts: Process exited with exit code ${result.exitCode}`
-			);
-			process.exit(result.exitCode);
+			)
+			process.exit(result.exitCode)
 		}
 	}
 }

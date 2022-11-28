@@ -1,4 +1,4 @@
-const createESLintConfig = require('./src/eslint.cjs');
+const { createESLintConfig } = require('./src/eslint.cjs')
 
 module.exports = createESLintConfig(__dirname, {
 	ignorePatterns: ['test'],
@@ -6,4 +6,4 @@ module.exports = createESLintConfig(__dirname, {
 		'unicorn/no-process-exit': 'off',
 		'prefer-destructuring': 'off',
 	},
-});
+})

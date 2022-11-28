@@ -1,26 +1,26 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const getGlobalRules = require('./global-rules.cjs');
-const { defineConfig } = require('eslint-define-config');
-const { deepmerge } = require('deepmerge-ts');
-const { outdent } = require('outdent');
-const findUp = require('@commonjs/find-up');
-const pkgUp = require('@commonjs/pkg-up');
+const fs = require('node:fs')
+const path = require('node:path')
+const getGlobalRules = require('./global-rules.cjs')
+const { defineConfig } = require('eslint-define-config')
+const { deepmerge } = require('deepmerge-ts')
+const { outdent } = require('outdent')
+const findUp = require('@commonjs/find-up')
+const pkgUp = require('@commonjs/pkg-up')
 
 if (!fs._existsSync) {
-	fs._existsSync = fs.existsSync;
+	fs._existsSync = fs.existsSync
 }
 
 function shouldStubTsconfigEslintJson(filePath) {
 	if (path.basename(filePath) !== 'tsconfig.eslint.json') {
-		return false;
+		return false
 	}
 
-	const dir = path.dirname(filePath);
+	const dir = path.dirname(filePath)
 
 	return (
 		!fs._existsSync(filePath) && fs._existsSync(path.join(dir, 'tsconfig.json'))
-	);
+	)
 }
 
 /**
@@ -29,46 +29,46 @@ function shouldStubTsconfigEslintJson(filePath) {
 */
 function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 	if (dirname === undefined) {
-		throw new Error('`dirname` must be provided to `createESLintConfig`');
+		throw new Error('`dirname` must be provided to `createESLintConfig`')
 	}
 
 	if (typeof dirname !== 'string') {
 		throw new TypeError(
 			'`dirname`, the first argument passed to `createESLintConfig`, must be a string'
-		);
+		)
 	}
 
-	const pkgJsonFile = pkgUp.sync({ cwd: dirname });
+	const pkgJsonFile = pkgUp.sync({ cwd: dirname })
 	const pnpmWorkspaceFile = findUp.sync('pnpm-workspace.yaml', {
 		cwd: dirname,
-	});
+	})
 	const pnpmWorkspaceDir =
 		pnpmWorkspaceFile === undefined
 			? undefined
-			: path.dirname(pnpmWorkspaceFile);
+			: path.dirname(pnpmWorkspaceFile)
 
 	if (!options.noStubs && !fs.__lionConfigStubbed?.[dirname]) {
-		const statSync = fs.statSync;
-		const existsSync = fs.existsSync;
-		const readFileSync = fs.readFileSync;
+		const statSync = fs.statSync
+		const existsSync = fs.existsSync
+		const readFileSync = fs.readFileSync
 
 		fs.statSync = (...args) => {
 			if (shouldStubTsconfigEslintJson(args[0])) {
-				return statSync(path.join(path.dirname(args[0]), 'tsconfig.json'));
+				return statSync(path.join(path.dirname(args[0]), 'tsconfig.json'))
 			}
 			// Otherwise, just pass through
 			else {
-				return statSync(...args);
+				return statSync(...args)
 			}
-		};
+		}
 
 		fs.existsSync = (...args) => {
 			if (shouldStubTsconfigEslintJson(args[0])) {
-				return true;
+				return true
 			} else {
-				return existsSync(...args);
+				return existsSync(...args)
 			}
-		};
+		}
 
 		fs.readFileSync = (...args) => {
 			if (shouldStubTsconfigEslintJson(args[0])) {
@@ -77,26 +77,49 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 						"extends": "./tsconfig.json",
 						"include": ["*.*", "**/*.*"]
 					}
-				`;
+				`
 			} else {
-				return readFileSync(...args);
+				return readFileSync(...args)
 			}
-		};
+		}
 
 		if (fs.__lionConfigStubbed) {
-			fs.__lionConfigStubbed[dirname] = true;
+			fs.__lionConfigStubbed[dirname] = true
 		} else {
-			fs.__lionConfigStubbed = { [dirname]: true };
+			fs.__lionConfigStubbed = { [dirname]: true }
 		}
 	}
 
-	const globalRules = getGlobalRules(dirname);
+	const globalRules = getGlobalRules(dirname)
 
 	const tsconfigEslintPath = fs.existsSync(
 		path.resolve(dirname, 'tsconfig.json')
 	)
 		? path.resolve(dirname, 'tsconfig.eslint.json')
-		: undefined;
+		: undefined
+
+	// From @antfu/eslint-config https://github.com/antfu/eslint-config/blob/f6180054022fa554e313257d724ab26664c1b1b4/packages/basic/index.js#L15
+	const ignorePatterns = [
+		'dist',
+		'generated',
+		'__snapshots__',
+		'*.min.*',
+		'changelog.md',
+		'license*',
+		'output',
+		'coverage',
+		'public',
+		'package-lock.json',
+		'pnpm-lock.yaml',
+		'yarn.lock',
+		'!.github',
+		'!.vitepress',
+		'!.vscode',
+	]
+
+	if (!options.includeTempFolder) {
+		ignorePatterns.push('temp')
+	}
 
 	const defaultConfig = defineConfig({
 		/**
@@ -112,7 +135,7 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 			project: tsconfigEslintPath,
 			extraFileExtensions: ['.vue', '.json', '.jsonc', '.md'],
 			/** @see https://github.com/typescript-eslint/typescript-eslint/issues/2094 */
-			EXPERIMENTAL_useSourceOfProjectReferenceRedirect: true
+			EXPERIMENTAL_useSourceOfProjectReferenceRedirect: true,
 		},
 
 		extends: [
@@ -129,25 +152,8 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 
 		plugins: ['simple-import-sort', 'vue', 'prettier'],
 
-		// From @antfu/eslint-config https://github.com/antfu/eslint-config/blob/f6180054022fa554e313257d724ab26664c1b1b4/packages/basic/index.js#L15
-		ignorePatterns: [
-			'dist',
-			'generated',
-			'__snapshots__',
-			'temp',
-			'*.min.*',
-			'changelog.md',
-			'license*',
-			'output',
-			'coverage',
-			'public',
-			'package-lock.json',
-			'pnpm-lock.yaml',
-			'yarn.lock',
-			'!.github',
-			'!.vitepress',
-			'!.vscode',
-		],
+		ignorePatterns,
+
 		// Rules should not be smart-merged but instead overwritten
 		rules: { ...globalRules, ...projectConfig.rules },
 		overrides: [
@@ -165,7 +171,6 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					'@typescript-eslint/comma-dangle': 'off',
 					'import/no-unresolved': 'off',
 					'no-alert': 'off',
-					'no-console': 'off',
 					'no-restricted-imports': 'off',
 					'no-undef': 'off',
 					'no-unused-expressions': 'off',
@@ -318,11 +323,11 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 				},
 			},
 		],
-	});
+	})
 
-	delete projectConfig.rules;
+	delete projectConfig.rules
 
-	return deepmerge(defaultConfig, projectConfig);
+	return deepmerge(defaultConfig, projectConfig)
 }
 
-module.exports = createESLintConfig;
+module.exports = { createESLintConfig }

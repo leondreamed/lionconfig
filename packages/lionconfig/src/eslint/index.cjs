@@ -1,1 +1,1 @@
-module.exports = require('./create-eslint-config.cjs');
+module.exports = require('./create-eslint-config.cjs')

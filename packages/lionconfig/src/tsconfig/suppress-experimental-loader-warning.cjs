@@ -1,10 +1,9 @@
-/* eslint-disable n/prefer-global/process */
 /* eslint-disable prefer-rest-params */
 
 // From: https://github.com/yarnpkg/berry/blob/2cf0a8fe3e4d4bd7d4d344245d24a85a45d4c5c9/packages/yarnpkg-pnp/sources/loader/applyPatch.ts#L414-L435
 
-const originalEmit = process.emit;
-process.emit = function (name, data) {
+const originalEmit = process.emit
+process.emit = function emit(name, data) {
 	if (
 		name === 'warning' &&
 		typeof data === 'object' &&
@@ -15,8 +14,8 @@ process.emit = function (name, data) {
 				'Importing JSON modules is an experimental feature.'
 			))
 	) {
-		return false;
+		return false
 	}
 
-	return originalEmit.apply(process, arguments);
-};
+	return originalEmit.apply(process, arguments)
+}

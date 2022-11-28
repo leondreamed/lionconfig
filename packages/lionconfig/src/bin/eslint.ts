@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import path from 'node:path';
+import path from 'node:path'
 
-import resolve from 'resolve';
+import resolve from 'resolve'
 
-const eslintPath = resolve.sync('eslint');
-const eslintBinPath = path.resolve(eslintPath, '../../bin/eslint.js');
+const eslintPath = resolve.sync('eslint')
+const eslintBinPath = path.resolve(eslintPath, '../../bin/eslint.js')
 
-await import(eslintBinPath);
+await import(eslintBinPath)

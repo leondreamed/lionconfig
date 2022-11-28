@@ -1,5 +1,5 @@
-import { join } from 'desm';
-import { defineConfig } from 'vitest/config';
+import { join } from 'desm'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
 	resolve: {
@@ -12,4 +12,4 @@ export default defineConfig({
 		testTimeout: 30_000,
 		globalSetup: './test/setup.ts',
 	},
-});
+})

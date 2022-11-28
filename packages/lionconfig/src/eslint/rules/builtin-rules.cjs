@@ -41,11 +41,6 @@ const builtinRules = {
 	'no-labels': 'off',
 
 	/**
-		Prefer using @dialect/logger instead of `console` methods.
-	*/
-	'no-console': 'error',
-
-	/**
 		Adding a function name to inline functions makes code more readable.
 	*/
 	'func-names': ['error', 'as-needed'],
@@ -57,18 +52,9 @@ const builtinRules = {
 	'func-style': 'off',
 
 	/**
-		Force unused variables to start with an underscore.
+		We use @typescript-eslint/no-unused-vars instead
 	*/
-	'no-unused-vars': [
-		'error',
-		{
-			args: 'after-used',
-			argsIgnorePattern: '^_',
-			varsIgnorePattern: '^_',
-			caughtErrorsIgnorePattern: '^_',
-			ignoreRestSiblings: true
-		}
-	]
+	'no-unused-vars': 'off',
 }
 
 module.exports = builtinRules

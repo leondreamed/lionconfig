@@ -1,19 +1,19 @@
-import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import path from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
-import { resolve as resolveTs } from '@leondreamed/ts-node/esm.mjs';
-import { findUpSync } from 'find-up';
-import isPathInside from 'is-path-inside';
-import { getProjectDir } from 'lion-utils';
-import * as tsConfigPaths from 'tsconfig-paths';
+import { resolve as resolveTs } from '@leondreamed/ts-node/esm.mjs'
+import { findUpSync } from 'find-up'
+import isPathInside from 'is-path-inside'
+import { getProjectDir } from 'lion-utils'
+import * as tsConfigPaths from 'tsconfig-paths'
 
 // Deliberately using `getProjectDir` here because ts-node will be patched in Cypress
-const monorepoDir = getProjectDir(import.meta.url, { monorepoRoot: true });
+const monorepoDir = getProjectDir(import.meta.url, { monorepoRoot: true })
 
 /**
 	@type {Record<string, import('tsconfig-paths').MatchPath>}
 */
-const tsconfigPathToMatchPath = {};
+const tsconfigPathToMatchPath = {}
 
 // `paths` in `tsconfig.json` are loaded relative to the path of the file being loaded
 
@@ -27,10 +27,10 @@ const tsconfigPathToMatchPath = {};
 	@returns {Promise<{ url: string }>}
 */
 export function resolve(specifier, context, defaultResolve) {
-	let tsconfigPath;
+	let tsconfigPath
 
 	if (context.parentURL !== undefined) {
-		const filePathOfImporter = fileURLToPath(context.parentURL);
+		const filePathOfImporter = fileURLToPath(context.parentURL)
 
 		// Check all the existing parent folders of each known `tsconfig.json` file and see
 		// if the current file's directory falls under a known directory containing a
@@ -39,7 +39,7 @@ export function resolve(specifier, context, defaultResolve) {
 			(a, b) => a.length - b.length
 		)) {
 			if (isPathInside(filePathOfImporter, path.dirname(knownTsconfigPath))) {
-				tsconfigPath = knownTsconfigPath;
+				tsconfigPath = knownTsconfigPath
 			}
 		}
 
@@ -48,77 +48,77 @@ export function resolve(specifier, context, defaultResolve) {
 			// Thus, find it manually by finding the nearest `tsconfig.json` in an above directory
 			const tsconfigJsonPath = findUpSync('tsconfig.json', {
 				cwd: path.dirname(filePathOfImporter),
-			});
+			})
 
 			if (
 				tsconfigJsonPath !== undefined &&
 				path.dirname(tsconfigJsonPath) !== monorepoDir
 			) {
 				const { absoluteBaseUrl, paths } =
-					tsConfigPaths.loadConfig(tsconfigJsonPath);
-				let matchPath;
+					tsConfigPaths.loadConfig(tsconfigJsonPath)
+				let matchPath
 				if (paths === undefined) {
-					matchPath = () => false;
+					matchPath = () => false
 				} else {
-					matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
+					matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths)
 				}
 
-				tsconfigPathToMatchPath[tsconfigJsonPath] = matchPath;
+				tsconfigPathToMatchPath[tsconfigJsonPath] = matchPath
 
-				tsconfigPath = tsconfigJsonPath;
+				tsconfigPath = tsconfigJsonPath
 			}
 		}
 	}
 
-	let matchPath;
+	let matchPath
 	if (tsconfigPath === undefined) {
-		const { paths, absoluteBaseUrl } = tsConfigPaths.loadConfig();
+		const { paths, absoluteBaseUrl } = tsConfigPaths.loadConfig()
 		if (paths === undefined) {
-			matchPath = () => false;
+			matchPath = () => false
 		} else {
-			matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
+			matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths)
 		}
 	} else {
-		matchPath = tsconfigPathToMatchPath[tsconfigPath];
+		matchPath = tsconfigPathToMatchPath[tsconfigPath]
 	}
 
 	if (specifier.endsWith('.js')) {
 		// Handle *.js
-		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 3));
-		const match = matchPath(trimmed);
+		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 3))
+		const match = matchPath(trimmed)
 
 		if (match) {
 			return resolveTs(
 				pathToFileURL(`${match}.js`).href,
 				context,
 				defaultResolve
-			);
+			)
 		}
 	} else if (specifier.endsWith('.cjs')) {
 		// Handle *.cjs
-		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 4));
-		const match = matchPath(trimmed);
+		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 4))
+		const match = matchPath(trimmed)
 		if (match) {
 			return resolveTs(
 				pathToFileURL(`${match}.cjs`).href,
 				context,
 				defaultResolve
-			);
+			)
 		}
 	} else if (specifier.endsWith('.mjs')) {
 		// Handle *.mjs
-		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 4));
-		const match = matchPath(trimmed);
+		const trimmed = specifier.slice(0, Math.max(0, specifier.length - 4))
+		const match = matchPath(trimmed)
 		if (match) {
 			return resolveTs(
 				pathToFileURL(`${match}.mjs`).href,
 				context,
 				defaultResolve
-			);
+			)
 		}
 	}
 
-	return resolveTs(specifier, context, defaultResolve);
+	return resolveTs(specifier, context, defaultResolve)
 }
 
-export { load, transformSource } from '@leondreamed/ts-node/esm.mjs';
+export { load, transformSource } from '@leondreamed/ts-node/esm.mjs'

@@ -1,1 +1,1 @@
-console.log('semi should be removed');
+console.log('semi should be added')

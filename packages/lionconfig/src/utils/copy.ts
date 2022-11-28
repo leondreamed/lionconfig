@@ -1,24 +1,24 @@
 /* eslint-disable no-await-in-loop */
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import process from 'node:process';
+import * as fs from 'node:fs'
+import * as path from 'node:path'
+import process from 'node:process'
 
-import { getProjectDir } from 'lion-utils';
-import type { RollupOptions } from 'rollup';
-import type { PackageJson } from 'type-fest';
+import { getProjectDir } from 'lion-utils'
+import type { RollupOptions } from 'rollup'
+import type { PackageJson } from 'type-fest'
 
-import { transformPackageJson } from '~/utils/package-json.js';
+import { transformPackageJson } from '~/utils/package-json.js'
 
-export const packageFiles = ['readme.md', 'license', 'package.json'];
+export const packageFiles = ['readme.md', 'license', 'package.json']
 
 interface CopyPackageFilesProps {
-	additionalFiles?: string[];
+	additionalFiles?: string[]
 	/**
 		Whether or not to also create a CommonJS bundle for the project
 		@default true
 	*/
-	commonjs?: boolean | (RollupOptions & { browser?: boolean });
-	cwd?: string;
+	commonjs?: boolean | (RollupOptions & { browser?: boolean })
+	cwd?: string
 }
 
 export async function copyPackageFiles({
@@ -26,14 +26,14 @@ export async function copyPackageFiles({
 	commonjs,
 	cwd = process.cwd(),
 }: CopyPackageFilesProps = {}) {
-	const distDir = path.join(cwd, 'dist');
+	const distDir = path.join(cwd, 'dist')
 	if (!fs.existsSync(distDir)) {
-		fs.mkdirSync(distDir, { recursive: true });
+		fs.mkdirSync(distDir, { recursive: true })
 	}
 
-	const monorepoRoot = getProjectDir(cwd, { monorepoRoot: true });
+	const monorepoRoot = getProjectDir(cwd, { monorepoRoot: true })
 	for (const packageFilePath of [...packageFiles, ...(additionalFiles ?? [])]) {
-		let distPackageFilePath: string;
+		let distPackageFilePath: string
 		if (
 			packageFilePath.startsWith('src') ||
 			packageFilePath.startsWith('./src')
@@ -41,17 +41,17 @@ export async function copyPackageFiles({
 			distPackageFilePath = path.join(
 				distDir,
 				packageFilePath.replace(/^(\.\/)?src\//, '')
-			);
+			)
 		} else {
-			distPackageFilePath = path.join(distDir, packageFilePath);
+			distPackageFilePath = path.join(distDir, packageFilePath)
 		}
 
-		const packageFileFullPath = path.resolve(cwd, packageFilePath);
+		const packageFileFullPath = path.resolve(cwd, packageFilePath)
 
 		if (fs.existsSync(packageFileFullPath)) {
 			await fs.promises.cp(packageFileFullPath, distPackageFilePath, {
 				recursive: true,
-			});
+			})
 
 			if (path.parse(packageFilePath).base === 'package.json') {
 				const transformedPackageJson = await transformPackageJson({
@@ -60,12 +60,12 @@ export async function copyPackageFiles({
 					) as PackageJson,
 					pkgPath: packageFileFullPath,
 					commonjs,
-				});
+				})
 
 				await fs.promises.writeFile(
 					distPackageFilePath,
 					JSON.stringify(transformedPackageJson, null, '\t')
-				);
+				)
 			}
 		}
 		// If the project is a monorepo, try copying the project files from the monorepo root
@@ -73,15 +73,15 @@ export async function copyPackageFiles({
 		else if (monorepoRoot !== undefined) {
 			// Don't copy monorepo package.json files
 			if (packageFilePath === 'package.json') {
-				continue;
+				continue
 			}
 
-			const monorepoFilePath = path.join(monorepoRoot, packageFilePath);
+			const monorepoFilePath = path.join(monorepoRoot, packageFilePath)
 
 			if (fs.existsSync(monorepoFilePath)) {
 				await fs.promises.cp(monorepoFilePath, distPackageFilePath, {
 					recursive: true,
-				});
+				})
 			}
 		}
 	}

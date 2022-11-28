@@ -1,23 +1,23 @@
-const builtinRules = require('./rules/builtin-rules.cjs');
-const eslintPluginUnicornRules = require('./rules/eslint-plugin-unicorn-rules.cjs');
+const builtinRules = require('./rules/builtin-rules.cjs')
+const eslintPluginUnicornRules = require('./rules/eslint-plugin-unicorn-rules.cjs')
 
-const path = require('node:path');
-const findUp = require('@commonjs/find-up');
-const pkgUp = require('@commonjs/pkg-up');
+const path = require('node:path')
+const findUp = require('@commonjs/find-up')
+const pkgUp = require('@commonjs/pkg-up')
 
 /**
 	@param {string} dirname
 	@returns {import('eslint-define-config').EslintConfig['rules']}
 */
 function getGlobalRules(dirname) {
-	const pkgJsonFile = pkgUp.sync({ cwd: dirname });
+	const pkgJsonFile = pkgUp.sync({ cwd: dirname })
 	const pnpmWorkspaceFile = findUp.sync('pnpm-workspace.yaml', {
 		cwd: dirname,
-	});
+	})
 	const pnpmWorkspaceDir =
 		pnpmWorkspaceFile === undefined
 			? undefined
-			: path.dirname(pnpmWorkspaceFile);
+			: path.dirname(pnpmWorkspaceFile)
 
 	/**
 		@type {import('eslint-define-config').EslintConfig['rules']}
@@ -126,6 +126,7 @@ function getGlobalRules(dirname) {
 			{
 				useTabs: true,
 				singleQuote: true,
+				semi: false,
 				overrides: [
 					{
 						files: '*.md',
@@ -137,9 +138,9 @@ function getGlobalRules(dirname) {
 				],
 			},
 		],
-	};
+	}
 
-	return rules;
+	return rules
 }
 
-module.exports = getGlobalRules;
+module.exports = getGlobalRules
