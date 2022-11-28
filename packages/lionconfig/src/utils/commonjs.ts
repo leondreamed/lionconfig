@@ -14,6 +14,7 @@ import type { ExternalOption, Plugin } from 'rollup'
 import { rollup } from 'rollup'
 import bundleESM from 'rollup-plugin-bundle-esm'
 import depsExternal from 'rollup-plugin-deps-external'
+// @ts-expect-error: no types
 import jsImports from 'rollup-plugin-js-imports'
 import type { PackageJson } from 'type-fest'
 
