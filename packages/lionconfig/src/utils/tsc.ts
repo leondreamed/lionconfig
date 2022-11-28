@@ -1,9 +1,15 @@
 import { execaCommand } from 'execa'
+import { replaceTscAliasPaths } from 'tsc-alias'
 
+/**
+	For some reason, setting `declarationDir` in `tsconfig.json` to the same value as `outDir` breaks `tsc`.
+
+	Thus, we pass `declarationDir` manually.
+*/
 export async function tsc() {
 	await Promise.all([
 		execaCommand('tsc'),
 		execaCommand('tsc --emitDeclarationOnly --declarationDir dist'),
 	])
-	await execaCommand('tsc-alias')
+	await replaceTscAliasPaths({ declarationDir: 'dist' })
 }
