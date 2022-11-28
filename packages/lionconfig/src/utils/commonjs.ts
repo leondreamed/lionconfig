@@ -105,7 +105,7 @@ export async function createCommonjsBundles({
 		jsImports() as any,
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
-		(json as any)(),
+		(json as unknown as typeof json['default'])(),
 		browser
 			? nodeResolve({
 					browser: true,
@@ -114,7 +114,7 @@ export async function createCommonjsBundles({
 					// Need to remove `default` from the list because some libraries have `default` pointing to the browser version of the package
 					exportConditions: ['node', 'module', 'import'],
 			  }),
-		(commonjs as any)(),
+		(commonjs as unknown as typeof commonjs['default'])(),
 	]
 
 	if (rollupOptions?.extendPlugins !== undefined) {
@@ -123,7 +123,8 @@ export async function createCommonjsBundles({
 
 	if (fs.existsSync(tsconfigPath)) {
 		plugins.push(
-			(typescript as any)({
+			(typescript as unknown as typeof typescript['default'])({
+				declaration: false,
 				outputToFilesystem: true,
 				tsconfig: tsconfigPath,
 				tslib: fileURLToPath(await importMetaResolve('tslib', import.meta.url)),
@@ -146,22 +147,23 @@ export async function createCommonjsBundles({
 
 	await Promise.all(
 		entryPoints.map(async (entryPoint) => {
-			const bundle = await rollup({
-				plugins,
-				input: path.join(pkgDir, entryPoint.destinationPath),
-				...rollupOptions,
-				external,
-			})
-
 			const commonjsDestinationPath = entryPoint.destinationPath
 				.replace(/\/src\//, '/')
 				.replace(/\.(m|c)?ts$/, '.cjs')
 			await fs.promises.mkdir(path.join(cwd, 'dist'), { recursive: true })
-
+			const bundle = await rollup({
+				plugins,
+				input: path.join(pkgDir, entryPoint.destinationPath),
+				output: {
+					file: path.join(cwd, 'dist', commonjsDestinationPath),
+					format: 'commonjs',
+					inlineDynamicImports: true,
+				},
+				...rollupOptions,
+				external,
+			})
 			await bundle.write({
 				file: path.join(cwd, 'dist', commonjsDestinationPath),
-				format: 'commonjs',
-				inlineDynamicImports: true,
 			})
 		})
 	)

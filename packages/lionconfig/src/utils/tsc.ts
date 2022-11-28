@@ -7,9 +7,7 @@ import { replaceTscAliasPaths } from 'tsc-alias'
 	Thus, we pass `declarationDir` manually.
 */
 export async function tsc() {
-	await Promise.all([
-		execaCommand('tsc'),
-		execaCommand('tsc --emitDeclarationOnly --declarationDir dist'),
-	])
+	await execaCommand('tsc')
+	await execaCommand('tsc --emitDeclarationOnly --declarationDir dist')
 	await replaceTscAliasPaths({ declarationDir: 'dist' })
 }
