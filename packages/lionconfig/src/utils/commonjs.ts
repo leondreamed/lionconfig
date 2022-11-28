@@ -105,7 +105,7 @@ export async function createCommonjsBundles({
 		jsImports() as any,
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
-		(json as unknown as typeof json['default'])(),
+		(json as any))(),
 		browser
 			? nodeResolve({
 					browser: true,
@@ -114,7 +114,7 @@ export async function createCommonjsBundles({
 					// Need to remove `default` from the list because some libraries have `default` pointing to the browser version of the package
 					exportConditions: ['node', 'module', 'import'],
 			  }),
-		(commonjs as unknown as typeof commonjs['default'])(),
+		(commonjs as any)(),
 	]
 
 	if (rollupOptions?.extendPlugins !== undefined) {
@@ -123,7 +123,7 @@ export async function createCommonjsBundles({
 
 	if (fs.existsSync(tsconfigPath)) {
 		plugins.push(
-			(typescript as unknown as typeof typescript['default'])({
+			(typescript as any)({
 				outputToFilesystem: true,
 				tsconfig: tsconfigPath,
 				tslib: fileURLToPath(await importMetaResolve('tslib', import.meta.url)),
