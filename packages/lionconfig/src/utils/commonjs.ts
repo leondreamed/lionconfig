@@ -105,7 +105,7 @@ export async function createCommonjsBundles({
 		jsImports() as any,
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
-		(json as any))(),
+		(json as any)(),
 		browser
 			? nodeResolve({
 					browser: true,
