@@ -157,7 +157,6 @@ export async function createCommonjsBundles({
 				.replace(/\/src\//, '/')
 				.replace(/\.(m|c)?ts$/, '.cjs')
 			await fs.promises.mkdir(path.join(cwd, 'dist'), { recursive: true })
-			console.log(commonjsDestinationPath)
 
 			await bundle.write({
 				file: path.join(cwd, 'dist', commonjsDestinationPath),
