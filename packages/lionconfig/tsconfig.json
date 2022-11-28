@@ -5,6 +5,7 @@
 		"allowJs": true,
 		"baseUrl": ".",
 		"rootDir": "src",
+		"declarationDir": "dist",
 		"paths": {
 			"~/*": ["./src/*"]
 		}

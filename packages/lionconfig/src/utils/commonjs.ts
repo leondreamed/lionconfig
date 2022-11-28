@@ -145,9 +145,10 @@ export async function createCommonjsBundles({
 				.replace(/\/src\//, '/')
 				.replace(/\.(m|c)?ts$/, '.cjs')
 			await fs.promises.mkdir(path.join(cwd, 'dist'), { recursive: true })
+			console.log(commonjsDestinationPath)
 
 			await bundle.write({
-				file: path.join(cwd, commonjsDestinationPath),
+				file: path.join(cwd, 'dist', commonjsDestinationPath),
 				format: 'commonjs',
 				inlineDynamicImports: true,
 			})
@@ -165,6 +166,18 @@ export async function createCommonjsBundles({
 			types: `./${entryPointFileName}.d.ts`,
 			import: `./${entryPointFileName}.js`,
 			require: `./${entryPointFileName}.cjs`,
+		}
+	}
+
+	// Adding the subpath exports of the exports we didn't transform
+	if (typeof pkg.exports === 'object') {
+		for (const [exportKey, exportValue] of Object.entries(pkg.exports)) {
+			if (
+				!entryPoints.some((entryPoint) => entryPoint.sourcePath === exportKey)
+			) {
+				// @ts-expect-error: correct type
+				exportsObject[exportKey] = exportValue
+			}
 		}
 	}
 
