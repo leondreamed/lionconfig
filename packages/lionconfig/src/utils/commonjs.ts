@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+
 import * as fs from 'node:fs'
 import { builtinModules } from 'node:module'
 import * as path from 'node:path'
@@ -20,7 +21,7 @@ import type { PackageJson } from 'type-fest'
 
 import type { CommonjsBundleOptions } from '~/types/commonjs.js'
 
-interface CreateCommonjsBundleProps {
+interface CreateCommonjsBundlesProps {
 	pkgPath: string
 	pkg: PackageJson
 	rollupOptions?: CommonjsBundleOptions
@@ -29,24 +30,52 @@ interface CreateCommonjsBundleProps {
 /**
 	Bundles all dependencies with Rollup to produce a CommonJS bundle
 */
-export async function createCommonjsBundle({
+export async function createCommonjsBundles({
 	pkgPath,
 	pkg,
 	rollupOptions,
 	cwd = process.cwd(),
-}: CreateCommonjsBundleProps) {
+}: CreateCommonjsBundlesProps): Promise<void> {
 	if (pkg.exports === undefined || pkg.exports === null) {
-		return pkg
+		console.info(
+			'The `exports` property of `package.json` was not set; skipping creation of CommonJS bundles'
+		)
+		return
 	}
 
 	const browser = rollupOptions?.browser
 	delete rollupOptions?.browser
 
-	if (
-		typeof pkg.exports !== 'string' &&
-		typeof (pkg.exports as Record<string, unknown>)['.'] !== 'string'
-	) {
-		return pkg
+	const entryPoints: Array<{ sourcePath: string; destinationPath: string }> = []
+	if (typeof pkg.exports === 'string') {
+		entryPoints.push({ sourcePath: '.', destinationPath: pkg.exports })
+	} else {
+		const exportsKeys = Object.entries(pkg.exports)
+		for (const [exportsKey, exportsValue] of exportsKeys) {
+			if (exportsKey.startsWith('.')) {
+				if (exportsValue === null) continue
+
+				// We don't support star paths
+				if (exportsKey.includes('*')) continue
+
+				if (typeof exportsValue === 'string') {
+					entryPoints.push({
+						sourcePath: exportsKey,
+						destinationPath: exportsValue,
+					})
+				} else if (
+					'import' in exportsValue &&
+					typeof exportsValue.import === 'string'
+				) {
+					entryPoints.push({
+						sourcePath: exportsKey,
+						destinationPath: exportsValue.import,
+					})
+				}
+			} else if (exportsKey === 'import' && typeof exportsValue === 'string') {
+				entryPoints.push({ sourcePath: '.', destinationPath: exportsValue })
+			}
+		}
 	}
 
 	const pkgDir = path.dirname(pkgPath)
@@ -97,53 +126,47 @@ export async function createCommonjsBundle({
 		}
 	}
 
-	const pkgImportExport =
-		typeof pkg.exports === 'string'
-			? pkg.exports
-			: (pkg.exports as Record<string, string>)['.']!
+	await Promise.all(
+		entryPoints.map(async (entryPoint) => {
+			if (pkg.type === 'module') {
+				if (!/\.(ts|js|mjs)$/.test(entryPoint.destinationPath)) return
+			} else {
+				if (!/\.(ts|mjs)$/.test(entryPoint.destinationPath)) return
+			}
 
-	const bundle = await rollup({
-		plugins,
-		input: path.join(pkgDir, pkgImportExport),
-		...rollupOptions,
-		external,
-	})
+			const bundle = await rollup({
+				plugins,
+				input: path.join(pkgDir, entryPoint.destinationPath),
+				...rollupOptions,
+				external,
+			})
 
-	fs.mkdirSync(path.join(cwd, 'dist'), { recursive: true })
+			const commonjsDestinationPath = entryPoint.destinationPath
+				.replace(/\/src\//, '/')
+				.replace(/\.(m|c)?ts$/, '.cjs')
+			await fs.promises.mkdir(path.join(cwd, 'dist'), { recursive: true })
 
-	await bundle.write({
-		file: path.join(cwd, 'dist/index.cjs'),
-		format: 'commonjs',
-		inlineDynamicImports: true,
-	})
-
-	fs.writeFileSync(
-		path.join(cwd, 'dist/index.d.cts'),
-		"export * from './index.d'"
+			await bundle.write({
+				file: path.join(cwd, commonjsDestinationPath),
+				format: 'commonjs',
+				inlineDynamicImports: true,
+			})
+		})
 	)
 
-	const exportsWithoutExtension = path.join(
-		path.dirname(pkgImportExport),
-		path.parse(pkgImportExport).name
-	)
+	const exportsObject: Record<
+		string,
+		{ types: string; import: string; require: string }
+	> = {}
 
-	const exportsObject = {
-		import: {
-			types: './index.d.ts',
-			default: `./${exportsWithoutExtension}.js`,
-		},
-		require: {
-			types: './index.d.cts',
-			default: './index.cjs',
-		},
-	}
-
-	if (typeof pkg.exports === 'string') {
-		pkg.exports = exportsObject
-	} else {
-		pkg.exports = {
-			...pkg.exports,
-			'.': exportsObject,
+	for (const entryPoint of entryPoints) {
+		const entryPointFileName = path.parse(entryPoint.destinationPath).name
+		exportsObject[entryPoint.sourcePath] = {
+			types: `./${entryPointFileName}.d.ts`,
+			import: `./${entryPointFileName}.js`,
+			require: `./${entryPointFileName}.cjs`,
 		}
 	}
+
+	pkg.exports = exportsObject
 }

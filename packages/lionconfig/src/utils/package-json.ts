@@ -7,7 +7,7 @@ import rfdc from 'rfdc'
 import type { PackageJson } from 'type-fest'
 
 import type { CommonjsBundleOptions } from '~/types/commonjs.js'
-import { createCommonjsBundle } from '~/utils/commonjs.js'
+import { createCommonjsBundles } from '~/utils/commonjs.js'
 
 /**
 	Rewrites `./dist/<path>` and `./src/<path>` paths in an object to `./<path>` paths
@@ -81,7 +81,7 @@ export async function transformPackageJson(
 	if (commonjs !== false) {
 		const rollupOptions = typeof commonjs === 'object' ? commonjs : undefined
 
-		await createCommonjsBundle({
+		await createCommonjsBundles({
 			pkg,
 			pkgPath,
 			rollupOptions,
