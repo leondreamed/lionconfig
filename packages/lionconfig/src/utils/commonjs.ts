@@ -163,6 +163,7 @@ export async function createCommonjsBundles({
 			})
 			await bundle.write({
 				file: path.join(cwd, 'dist', commonjsDestinationPath),
+				format: 'commonjs'
 			})
 		})
 	)
