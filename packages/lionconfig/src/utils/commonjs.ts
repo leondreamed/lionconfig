@@ -124,7 +124,7 @@ export async function createCommonjsBundles({
 	if (fs.existsSync(tsconfigPath)) {
 		plugins.push(
 			(typescript as any)({
-				outputToFilesystem: true,
+				outputToFilesystem: false,
 				tsconfig: tsconfigPath,
 				tslib: fileURLToPath(await importMetaResolve('tslib', import.meta.url)),
 			})
