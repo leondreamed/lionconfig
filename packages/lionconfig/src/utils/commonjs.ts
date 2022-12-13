@@ -13,7 +13,6 @@ import { rollup } from 'rollup'
 import bundleESM from 'rollup-plugin-bundle-esm'
 import depsExternal from 'rollup-plugin-deps-external'
 import esbuild from 'rollup-plugin-esbuild'
-// @ts-expect-error: bad types
 import workspaceImports from 'rollup-plugin-workspace-imports'
 import type { PackageJson } from 'type-fest'
 
