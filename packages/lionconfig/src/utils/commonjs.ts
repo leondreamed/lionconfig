@@ -4,22 +4,20 @@ import * as fs from 'node:fs'
 import { builtinModules } from 'node:module'
 import * as path from 'node:path'
 import process from 'node:process'
-import { fileURLToPath } from 'node:url'
 
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import typescript from '@rollup/plugin-typescript'
-import { resolve as importMetaResolve } from 'import-meta-resolve'
 import type { ExternalOption, Plugin } from 'rollup'
 import { rollup } from 'rollup'
 import bundleESM from 'rollup-plugin-bundle-esm'
 import depsExternal from 'rollup-plugin-deps-external'
+import esbuild from 'rollup-plugin-esbuild'
 // @ts-expect-error: no types
 import jsImports from 'rollup-plugin-js-imports'
 import type { PackageJson } from 'type-fest'
 
-import type { CommonjsBundleOptions } from '~/types/commonjs.js'
+import type { CommonjsBundleOptions } from '../types/commonjs.js'
 
 interface CreateCommonjsBundlesProps {
 	pkgPath: string
@@ -115,20 +113,13 @@ export async function createCommonjsBundles({
 					exportConditions: ['node', 'module', 'import'],
 			  }),
 		(commonjs as any)(),
+		(esbuild as any)({
+			tsconfig: tsconfigPath,
+		}),
 	]
 
 	if (rollupOptions?.extendPlugins !== undefined) {
 		plugins.push(...rollupOptions.extendPlugins)
-	}
-
-	if (fs.existsSync(tsconfigPath)) {
-		plugins.push(
-			(typescript as any)({
-				outputToFilesystem: false,
-				tsconfig: tsconfigPath,
-				tslib: fileURLToPath(await importMetaResolve('tslib', import.meta.url)),
-			})
-		)
 	}
 
 	let external: ExternalOption = builtinModules.flatMap((module) => [
@@ -163,7 +154,7 @@ export async function createCommonjsBundles({
 			})
 			await bundle.write({
 				file: path.join(cwd, 'dist', commonjsDestinationPath),
-				format: 'commonjs'
+				format: 'commonjs',
 			})
 		})
 	)

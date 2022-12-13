@@ -2,7 +2,7 @@ import process from 'node:process'
 
 import { execaCommandSync as exec, execaSync } from 'execa'
 
-import { getCurrentGitBranch } from '~/utils/git.js'
+import { getCurrentGitBranch } from './git.js'
 
 export function preCommit() {
 	if (getCurrentGitBranch() === 'dev') {

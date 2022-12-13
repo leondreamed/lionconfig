@@ -7,7 +7,7 @@ import { getProjectDir } from 'lion-utils'
 import type { RollupOptions } from 'rollup'
 import type { PackageJson } from 'type-fest'
 
-import { transformPackageJson } from '~/utils/package-json.js'
+import { transformPackageJson } from './package-json.js'
 
 export const packageFiles = ['readme.md', 'license', 'package.json']
 
