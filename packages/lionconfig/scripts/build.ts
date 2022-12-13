@@ -1,10 +1,10 @@
 import { chmodrSync } from 'chmodrp'
-import { execaCommandSync } from 'execa'
 
-import { chProjectDir, copyPackageFiles, rmDist } from '../src/index.js'
+import { chProjectDir, copyPackageFiles, rmDist, tsc } from '../src/index.js'
 
 chProjectDir(import.meta.url)
 rmDist()
+await tsc()
 await copyPackageFiles({
 	additionalFiles: [
 		'src/git',
@@ -14,7 +14,5 @@ await copyPackageFiles({
 		'src/bin/ts-node.sh',
 	],
 })
-execaCommandSync('tsc')
-execaCommandSync('tsc-alias')
 
 chmodrSync('dist/bin', 0o755)
