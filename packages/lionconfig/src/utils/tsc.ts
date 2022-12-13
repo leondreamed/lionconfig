@@ -1,4 +1,4 @@
-import { execaCommand } from 'execa'
+import { execa } from 'execa'
 import { replaceTscAliasPaths } from 'tsc-alias'
 
 /**
@@ -6,8 +6,29 @@ import { replaceTscAliasPaths } from 'tsc-alias'
 
 	Thus, we pass `declarationDir` manually.
 */
-export async function tsc() {
-	await execaCommand('tsc')
-	await execaCommand('tsc --emitDeclarationOnly --declarationDir dist')
-	await replaceTscAliasPaths({ declarationDir: 'dist' })
+export async function tsc(options?: { tsConfigPath?: string }) {
+	if (options?.tsConfigPath === undefined) {
+		await execa('tsc', { stdio: 'inherit' })
+		await execa('tsc', ['--emitDeclarationOnly', '--declarationDir', 'dist'], {
+			stdio: 'inherit',
+		})
+		await replaceTscAliasPaths({ declarationDir: 'dist' })
+	} else {
+		await execa('tsc', ['-p', options.tsConfigPath], { stdio: 'inherit' })
+		await execa(
+			'tsc',
+			[
+				'-p',
+				options.tsConfigPath,
+				'--emitDeclarationOnly',
+				'--declarationDir',
+				'dist',
+			],
+			{ stdio: 'inherit' }
+		)
+		await replaceTscAliasPaths({
+			declarationDir: 'dist',
+			configFile: options.tsConfigPath,
+		})
+	}
 }
