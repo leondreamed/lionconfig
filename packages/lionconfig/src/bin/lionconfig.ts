@@ -4,7 +4,7 @@ import path from 'node:path'
 import { execaSync } from 'execa'
 
 const lefthookDir = path.join(
-	createRequire(import.meta.url)('lefthook/package.json'),
+	createRequire(import.meta.url).resolve('lefthook/package.json'),
 	'..'
 )
 
