@@ -1,3 +1,3 @@
 import { execaSync } from 'execa'
 
-execaSync('lefthook', ['install'])
+execaSync('pnpm', ['exec', 'lefthook', 'install'])
