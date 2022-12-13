@@ -15,6 +15,7 @@ import depsExternal from 'rollup-plugin-deps-external'
 import esbuild from 'rollup-plugin-esbuild'
 // @ts-expect-error: bad types
 import workspaceImports from 'rollup-plugin-workspace-imports'
+import jsImports from 'rollup-plugin-js-imports'
 import type { PackageJson } from 'type-fest'
 
 import type { CommonjsBundleOptions } from '~/types/commonjs.js'
@@ -101,6 +102,7 @@ export async function createCommonjsBundles({
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const plugins: Array<false | null | undefined | Plugin> = [
 		workspaceImports(),
+		jsImports(),
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
 		(json as any)(),
