@@ -15,9 +15,10 @@ import depsExternal from 'rollup-plugin-deps-external'
 import esbuild from 'rollup-plugin-esbuild'
 // @ts-expect-error: no types
 import jsImports from 'rollup-plugin-js-imports'
+import { typescriptPaths } from 'rollup-plugin-typescript-paths'
 import type { PackageJson } from 'type-fest'
 
-import type { CommonjsBundleOptions } from '../types/commonjs.js'
+import type { CommonjsBundleOptions } from '~/types/commonjs.js'
 
 interface CreateCommonjsBundlesProps {
 	pkgPath: string
@@ -112,6 +113,7 @@ export async function createCommonjsBundles({
 					// Need to remove `default` from the list because some libraries have `default` pointing to the browser version of the package
 					exportConditions: ['node', 'module', 'import'],
 			  }),
+		typescriptPaths(),
 		(commonjs as any)(),
 		(esbuild as any)({
 			tsconfig: tsconfigPath,

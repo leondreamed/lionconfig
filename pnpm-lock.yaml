@@ -85,6 +85,7 @@ importers:
       rollup-plugin-deps-external: ^0.2.1
       rollup-plugin-esbuild: ^5.0.0
       rollup-plugin-js-imports: ^1.2.2
+      rollup-plugin-typescript-paths: ^1.4.0
       tmp-promise: ^3.0.3
       tsc-alias: ^1.7.1
       tsconfig: ^7.0.0
@@ -166,6 +167,7 @@ importers:
       rollup-plugin-deps-external: 0.2.1
       rollup-plugin-esbuild: 5.0.0_v4ai7eslsrpguiwpy6q7wirzfq
       rollup-plugin-js-imports: 1.2.2
+      rollup-plugin-typescript-paths: 1.4.0_typescript@4.9.3
       tsc-alias: 1.7.1
       tsconfig: 7.0.0
       tsconfig-paths: 4.1.0
@@ -8024,6 +8026,14 @@ packages:
 
   /rollup-plugin-js-imports/1.2.2:
     resolution: {integrity: sha512-c+Fjib368RcRHj3mM3ITqFZC2CkV3A+auzCw+C2i29YmxCQIsFt5xf7gtZERXW41cexhFk8Dqol6GRjPP/FGkQ==}
+    dev: false
+
+  /rollup-plugin-typescript-paths/1.4.0_typescript@4.9.3:
+    resolution: {integrity: sha512-6EgeLRjTVmymftEyCuYu91XzY5XMB5lR0YrJkeT0D7OG2RGSdbNL+C/hfPIdc/sjMa9Sl5NLsxIr6C/+/5EUpA==}
+    peerDependencies:
+      typescript: '>=3.4'
+    dependencies:
+      typescript: 4.9.3
     dev: false
 
   /rollup/2.79.1:
