@@ -84,9 +84,8 @@ importers:
       rollup-plugin-bundle-esm: ^0.1.1
       rollup-plugin-deps-external: ^0.2.1
       rollup-plugin-esbuild: ^5.0.0
-      rollup-plugin-js-imports: ^1.2.2
       rollup-plugin-tsconfig-paths: ^1.4.0
-      rollup-plugin-workspace-imports: ^0.1.0
+      rollup-plugin-workspace-imports: ^0.1.4
       tmp-promise: ^3.0.3
       tsc-alias: ^1.7.1
       tsconfig: ^7.0.0
@@ -167,8 +166,7 @@ importers:
       rollup-plugin-bundle-esm: 0.1.1
       rollup-plugin-deps-external: 0.2.1
       rollup-plugin-esbuild: 5.0.0_v4ai7eslsrpguiwpy6q7wirzfq
-      rollup-plugin-js-imports: 1.2.2
-      rollup-plugin-workspace-imports: 0.1.0
+      rollup-plugin-workspace-imports: 0.1.4
       tsc-alias: 1.7.1
       tsconfig: 7.0.0
       tsconfig-paths: 4.1.0
@@ -2359,17 +2357,17 @@ packages:
       tunnel: 0.0.6
     dev: false
 
-  /@yarnpkg/core/4.0.0-rc.31:
-    resolution: {integrity: sha512-NDMfjNevKB8Mpwp387FjlAvqcd2n44mo9NNLE004Rrv4va/t4KfUqEIujLdgX3LUESG+XTZ1XXM+2RhgpLE96A==}
+  /@yarnpkg/core/4.0.0-rc.33:
+    resolution: {integrity: sha512-Y4R4b52cXvwtfOb/5EvvjTb6dHnA53TXAyB02LV+dwbPprQV/nX+KzGf5JoTCJs/zljrtjDWziS85cfHRkoGwg==}
     engines: {node: '>=14.15.0'}
     dependencies:
       '@arcanis/slice-ansi': 1.1.1
       '@types/semver': 7.3.13
       '@types/treeify': 1.0.0
-      '@yarnpkg/fslib': 3.0.0-rc.31
-      '@yarnpkg/libzip': 3.0.0-rc.31
-      '@yarnpkg/parsers': 3.0.0-rc.31
-      '@yarnpkg/shell': 4.0.0-rc.31
+      '@yarnpkg/fslib': 3.0.0-rc.33
+      '@yarnpkg/libzip': 3.0.0-rc.33_@yarnpkg+fslib@3.0.0-rc.33
+      '@yarnpkg/parsers': 3.0.0-rc.33
+      '@yarnpkg/shell': 4.0.0-rc.33
       camelcase: 5.3.1
       chalk: 3.0.0
       ci-info: 3.7.0
@@ -2414,6 +2412,13 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /@yarnpkg/fslib/3.0.0-rc.33:
+    resolution: {integrity: sha512-XM0krdIJ59Hz9IKOHMrfCVyoVUAQ2jeJ2/Yw96iSwF/ZUDhsZhg9AjfdEd+NrsiybEANEWtuIzBFBbHVvFAQJA==}
+    engines: {node: '>=14.15.0'}
+    dependencies:
+      tslib: 2.4.1
+    dev: false
+
   /@yarnpkg/libzip/2.2.4:
     resolution: {integrity: sha512-QP0vUP+w0d7Jlo7jqTnlRChSnIB/dOF7nJFLD/gsPvFIHsVWLQQuAiolOcXQUD2hezLD1mQd2qb0yOKqPYRcfQ==}
     engines: {node: '>=12 <14 || 14.2 - 14.9 || >14.10.0'}
@@ -2431,6 +2436,17 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /@yarnpkg/libzip/3.0.0-rc.33_@yarnpkg+fslib@3.0.0-rc.33:
+    resolution: {integrity: sha512-eNKPyIBzTqjotlqW79/4Gwqpg+77xiEc8toYarF3oqMhVAJo7qKXZYq/Kts5Y/YjRRxXCSgI+9H5qcNzAvVlGw==}
+    engines: {node: '>=14.15.0'}
+    peerDependencies:
+      '@yarnpkg/fslib': ^3.0.0-rc.33
+    dependencies:
+      '@types/emscripten': 1.39.6
+      '@yarnpkg/fslib': 3.0.0-rc.33
+      tslib: 2.4.1
+    dev: false
+
   /@yarnpkg/lockfile/1.1.0:
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
     dev: false
@@ -2439,7 +2455,7 @@ packages:
     resolution: {integrity: sha512-KfoYI38XY0PjpPu+LGvRHxg3OFO+5nwbQy/c5FuLR0ipQkXcinS3JbG+de17Mf6QdKnBTcghA7mdrUKs5JbxyA==}
     engines: {node: '>=14.15.0'}
     dependencies:
-      '@yarnpkg/core': 4.0.0-rc.31
+      '@yarnpkg/core': 4.0.0-rc.33
       '@yarnpkg/fslib': 3.0.0-rc.31
       '@yarnpkg/pnp': 4.0.0-rc.31
     dev: false
@@ -2454,6 +2470,14 @@ packages:
 
   /@yarnpkg/parsers/3.0.0-rc.31:
     resolution: {integrity: sha512-7M67TPmTM5OmtoypK0KHV3vIY9z0v4qZ6zF7flH8THLgjGuoA7naop8pEfL9x5vCtid1PDC4A4COrcym4WAZpQ==}
+    engines: {node: '>=14.15.0'}
+    dependencies:
+      js-yaml: 3.14.1
+      tslib: 2.4.1
+    dev: false
+
+  /@yarnpkg/parsers/3.0.0-rc.33:
+    resolution: {integrity: sha512-az35wEPH00kW6eZDqHC0BumzAB4XD+YJb1b5tHEfsy73viCN7uGy8kvutwig5bgVwt1Hx7GuU09G50Sc5osBlA==}
     engines: {node: '>=14.15.0'}
     dependencies:
       js-yaml: 3.14.1
@@ -2500,6 +2524,21 @@ packages:
     dependencies:
       '@yarnpkg/fslib': 3.0.0-rc.31
       '@yarnpkg/parsers': 3.0.0-rc.31
+      chalk: 3.0.0
+      clipanion: 3.2.0-rc.14
+      cross-spawn: 7.0.3
+      fast-glob: 3.2.12
+      micromatch: 4.0.5
+      tslib: 2.4.1
+    dev: false
+
+  /@yarnpkg/shell/4.0.0-rc.33:
+    resolution: {integrity: sha512-oUzbzi+YWtazW/KHtxqFHTTXrG2YUSy+hkISMVL3cNLdibjlseMTAQHNd7eZuYj6gICnfIbYyqjlR7HvdFzCQQ==}
+    engines: {node: '>=14.15.0'}
+    hasBin: true
+    dependencies:
+      '@yarnpkg/fslib': 3.0.0-rc.33
+      '@yarnpkg/parsers': 3.0.0-rc.33
       chalk: 3.0.0
       clipanion: 3.2.0-rc.14
       cross-spawn: 7.0.3
@@ -8026,10 +8065,6 @@ packages:
       - supports-color
     dev: false
 
-  /rollup-plugin-js-imports/1.2.2:
-    resolution: {integrity: sha512-c+Fjib368RcRHj3mM3ITqFZC2CkV3A+auzCw+C2i29YmxCQIsFt5xf7gtZERXW41cexhFk8Dqol6GRjPP/FGkQ==}
-    dev: false
-
   /rollup-plugin-tsconfig-paths/1.4.0_thigodkhmbmbgju2inwjpgoskq:
     resolution: {integrity: sha512-mZm3up1di2s6aveD05WViY3IYnY6aAerKAq3XVUyxfE+So8dUUHSZ++7LOLUe5De4zsR46mxV/A3lMg81CRuPw==}
     peerDependencies:
@@ -8041,8 +8076,8 @@ packages:
       - typescript
     dev: true
 
-  /rollup-plugin-workspace-imports/0.1.0:
-    resolution: {integrity: sha512-IOMQYwHtDbd+gBysFheFz4je26zSICAt381PbkD9IhWHU5DNgr4gP5ULHqHhio1PbbfVQU0CO7WoYuyF5zSs2Q==}
+  /rollup-plugin-workspace-imports/0.1.4:
+    resolution: {integrity: sha512-4orEvNurmwOogX2r9yxVT9EsiJexJM0/AaNJ0atRCCXy/wON3GozXQzy7v0eCkWhvZvfYSYwoerGGD18EqObDQ==}
     dependencies:
       find-up: 6.3.0
       tsconfig-paths: 4.1.1
