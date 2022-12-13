@@ -85,6 +85,7 @@
 		"import-meta-resolve": "^2.2.0",
 		"is-ci": "^3.0.1",
 		"is-path-inside": "^4.0.0",
+		"lefthook": "^1.2.4",
 		"lint-staged": "^13.0.4",
 		"lion-utils": "^0.1.11",
 		"lionp": "^1.0.32",

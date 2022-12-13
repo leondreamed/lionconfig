@@ -64,6 +64,7 @@ importers:
       import-meta-resolve: ^2.2.0
       is-ci: ^3.0.1
       is-path-inside: ^4.0.0
+      lefthook: ^1.2.4
       lint-staged: ^13.0.4
       lion-fixture: ^1.1.8
       lion-utils: ^0.1.11
@@ -144,6 +145,7 @@ importers:
       import-meta-resolve: 2.2.0
       is-ci: 3.0.1
       is-path-inside: 4.0.0
+      lefthook: 1.2.4
       lint-staged: 13.0.4
       lion-utils: 0.1.11
       lionp: 1.0.32
@@ -5806,6 +5808,85 @@ packages:
     engines: {node: '>=14.16'}
     dependencies:
       package-json: 8.1.0
+    dev: false
+
+  /lefthook-darwin-arm64/1.2.4:
+    resolution: {integrity: sha512-c3pzGWT6YuStgH0BWzlOpghJSiQTDvoXbjOmlolBKbN46KSLwclbVbeSpp2vfAtuQvGP1RIo02aMYngsVjX5DA==}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook-darwin-x64/1.2.4:
+    resolution: {integrity: sha512-7HrmSd9GR3pe2bKq0She2pvdGLjaB2KKlREDqbREfe+vWrC+WqzeV/xUncKk+8mz6BCHyPq0XfuZqsztluXN5w==}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook-freebsd-arm64/1.2.4:
+    resolution: {integrity: sha512-VkUoz3xrW70XJ82y3vAz1vfZOdUCe/8z4W2h3YMIBaR/Ovrt9PwtWHtSWEM5LrTBkgi1BbIP7hZtu7HbMw/siQ==}
+    cpu: [arm64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook-freebsd-x64/1.2.4:
+    resolution: {integrity: sha512-e/ycIWt9WB3T/8KGy1aXY16AbVRGYXI4kw7jDp+GT5Lqile609mA9HCPubm4uPQK5PEtvYTB8R3c19LCDGqyeQ==}
+    cpu: [x64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook-linux-arm64/1.2.4:
+    resolution: {integrity: sha512-GDpfnt71Tx3+H14RcZr294of+ZTSANZ8v7dp86fATc2odZnvRCi31mGb2b0SjWGTvnsD9fnXcdvhOPsG2/+qIA==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook-linux-x64/1.2.4:
+    resolution: {integrity: sha512-wNVsG0oOZVYqK5RIYZgY7aYPCoVaWkx4SGpTQiPrgiVeXRm2AgY/+U7Pv6Nim9KZppQXemNjaA83dA0DvOOufg==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook-windows-arm64/1.2.4:
+    resolution: {integrity: sha512-t2xdxZQdbEYSlAaCwxJVphwmz1XQI9guGVkTfZEEbBswzNvDAUBr+w2l/ySDvA8fLrIyQI3D2czMQSslhAXqAQ==}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook-windows-x64/1.2.4:
+    resolution: {integrity: sha512-0K2UeSEAdMXDNHF8FSjGS/ZlAhfMDQ8lHSkBnGXF+68W7Uo62X27yDAJHKAMDjmQKh45V7NuDaVj8dq+m0mnwQ==}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lefthook/1.2.4:
+    resolution: {integrity: sha512-DQOqqub4WmRFDsiTBye5GWy2TIsGdtJmkOrkK3zYBmUWoD7nuHodtMI4+JgrDgHCC1crB8LV/pMSaQOo2dsOHA==}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      lefthook-darwin-arm64: 1.2.4
+      lefthook-darwin-x64: 1.2.4
+      lefthook-freebsd-arm64: 1.2.4
+      lefthook-freebsd-x64: 1.2.4
+      lefthook-linux-arm64: 1.2.4
+      lefthook-linux-x64: 1.2.4
+      lefthook-windows-arm64: 1.2.4
+      lefthook-windows-x64: 1.2.4
     dev: false
 
   /levn/0.4.1:
