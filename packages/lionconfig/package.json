@@ -1,7 +1,7 @@
 {
 	"name": "lionconfig",
 	"type": "module",
-	"version": "2.1.6",
+	"version": "2.1.7",
 	"description": "Powerful configuration utilities for various JavaScript and TypeScript tools.",
 	"license": "MIT",
 	"repository": {
