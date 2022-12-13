@@ -8,16 +8,18 @@ import { replaceTscAliasPaths } from 'tsc-alias'
 */
 export async function tsc(options?: { tsConfigPath?: string }) {
 	if (options?.tsConfigPath === undefined) {
-		await execa('tsc', { stdio: 'inherit' })
-		await execa('tsc', ['--emitDeclarationOnly', '--declarationDir', 'dist'], {
+		await execa('pnpm', ['exec', 'tsc'], { stdio: 'inherit' })
+		await execa('pnpm', ['exec', 'tsc', '--emitDeclarationOnly', '--declarationDir', 'dist'], {
 			stdio: 'inherit',
 		})
 		await replaceTscAliasPaths({ declarationDir: 'dist' })
 	} else {
-		await execa('tsc', ['-p', options.tsConfigPath], { stdio: 'inherit' })
+		await execa('pnpm', ['exec', 'tsc', '-p', options.tsConfigPath], { stdio: 'inherit' })
 		await execa(
-			'tsc',
+			'pnpm',
 			[
+				'exec',
+				'tsc',
 				'-p',
 				options.tsConfigPath,
 				'--emitDeclarationOnly',

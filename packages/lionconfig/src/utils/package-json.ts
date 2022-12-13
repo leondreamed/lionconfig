@@ -6,8 +6,8 @@ import { deepKeys, getProperty, setProperty } from 'dot-prop'
 import rfdc from 'rfdc'
 import type { PackageJson } from 'type-fest'
 
-import type { CommonjsBundleOptions } from '../types/commonjs.js'
-import { createCommonjsBundles } from '../utils/commonjs.js'
+import type { CommonjsBundleOptions } from '~/types/commonjs.js'
+import { createCommonjsBundles } from '~/utils/commonjs.js'
 
 /**
 	Rewrites `./dist/<path>` and `./src/<path>` paths in an object to `./<path>` paths

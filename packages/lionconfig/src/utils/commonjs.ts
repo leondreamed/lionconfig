@@ -13,9 +13,8 @@ import { rollup } from 'rollup'
 import bundleESM from 'rollup-plugin-bundle-esm'
 import depsExternal from 'rollup-plugin-deps-external'
 import esbuild from 'rollup-plugin-esbuild'
-// @ts-expect-error: no types
-import jsImports from 'rollup-plugin-js-imports'
-import { typescriptPaths } from 'rollup-plugin-typescript-paths'
+// @ts-expect-error: bad types
+import workspaceImports from 'rollup-plugin-workspace-imports'
 import type { PackageJson } from 'type-fest'
 
 import type { CommonjsBundleOptions } from '~/types/commonjs.js'
@@ -101,7 +100,7 @@ export async function createCommonjsBundles({
 	// Weird typing for `plugins` comes from rollup
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const plugins: Array<false | null | undefined | Plugin> = [
-		jsImports() as any,
+		workspaceImports(),
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
 		(json as any)(),
@@ -113,7 +112,6 @@ export async function createCommonjsBundles({
 					// Need to remove `default` from the list because some libraries have `default` pointing to the browser version of the package
 					exportConditions: ['node', 'module', 'import'],
 			  }),
-		typescriptPaths(),
 		(commonjs as any)(),
 		(esbuild as any)({
 			tsconfig: tsconfigPath,
