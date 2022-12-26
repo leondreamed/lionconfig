@@ -25,8 +25,9 @@ export function rewritePackageJsonPaths(pkg: PackageJson): PackageJson {
 				value = value.replace(/^\.\/src\//, './')
 			}
 
-			if (value.endsWith('.ts') && !value.endsWith('.d.ts')) {
-				value = value.replace(/\.ts$/, '.js')
+			// Replace exports that point to TypeScript source files with the compiled JavaScript file (but don't replace TypeScript type declarations)
+			if (/\.(c|m)?ts$/.test(value) && !/\.d\.(c|m)ts$/.test(value)) {
+				value = value.replace(/\ts$/, 'js')
 			}
 		}
 
