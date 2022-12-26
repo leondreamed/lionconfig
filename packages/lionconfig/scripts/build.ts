@@ -1,8 +1,7 @@
 import { chmodrSync } from 'chmodrp'
 
-import { chProjectDir, copyPackageFiles, rmDist, tsc } from '../src/index.js'
+import { copyPackageFiles, rmDist, tsc } from '../src/index.js'
 
-chProjectDir(import.meta.url)
 rmDist()
 await tsc()
 await copyPackageFiles({

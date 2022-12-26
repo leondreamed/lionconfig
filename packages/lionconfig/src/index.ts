@@ -7,4 +7,4 @@ export {
 } from './utils/package-json.js'
 export { rmDist } from './utils/rm.js'
 export { tsc } from './utils/tsc.js'
-export { chProjectDir, getProjectDir, updateJsonFile } from 'lion-utils'
+export { getProjectDir, updateJsonFile } from 'lion-utils'
