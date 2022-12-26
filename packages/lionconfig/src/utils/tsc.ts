@@ -11,7 +11,9 @@ import { replaceTscAliasPaths } from 'tsc-alias'
 */
 export async function tsc(options?: { tsConfigPath?: string }) {
 	const tscPath = path.join(
-		createRequire(process.cwd()).resolve('typescript/package.json'),
+		path.dirname(
+			createRequire(process.cwd()).resolve('typescript/package.json')
+		),
 		'bin/tsc'
 	)
 
