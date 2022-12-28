@@ -1,4 +1,3 @@
-import { createRequire } from 'node:module'
 import path from 'node:path'
 
 import { execa } from 'execa'
@@ -10,12 +9,7 @@ import { replaceTscAliasPaths } from 'tsc-alias'
 	Thus, we pass `declarationDir` manually.
 */
 export async function tsc(options?: { tsConfigPath?: string }) {
-	const tscPath = path.join(
-		path.dirname(
-			createRequire(process.cwd()).resolve('typescript/package.json')
-		),
-		'bin/tsc'
-	)
+	const tscPath = path.join(process.cwd(), 'node_modules/.bin/tsc')
 
 	if (options?.tsConfigPath === undefined) {
 		await execa(tscPath, { stdio: 'inherit' })
