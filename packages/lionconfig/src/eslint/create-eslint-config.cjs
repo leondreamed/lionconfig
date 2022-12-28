@@ -175,6 +175,11 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					'no-undef': 'off',
 					'no-unused-expressions': 'off',
 					'no-unused-vars': 'off',
+					'@typescript-eslint/no-unsafe-member-access': 'off',
+					'@typescript-eslint/no-unsafe-call': 'off',
+					'@typescript-eslint/no-unsafe-return': 'off',
+					'@typescript-eslint/no-unsafe-argument': 'off',
+					'@typescript-eslint/no-unsafe-assignment': 'off',
 				},
 			},
 			{
