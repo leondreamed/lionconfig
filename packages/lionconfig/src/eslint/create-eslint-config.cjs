@@ -175,11 +175,6 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					'no-undef': 'off',
 					'no-unused-expressions': 'off',
 					'no-unused-vars': 'off',
-					'@typescript-eslint/no-unsafe-member-access': 'off',
-					'@typescript-eslint/no-unsafe-call': 'off',
-					'@typescript-eslint/no-unsafe-return': 'off',
-					'@typescript-eslint/no-unsafe-argument': 'off',
-					'@typescript-eslint/no-unsafe-assignment': 'off',
 				},
 			},
 			{
@@ -234,6 +229,11 @@ function createESLintConfig(dirname, projectConfig = {}, options = {}) {
 					'import/named': 'off',
 					'@typescript-eslint/unified-signatures': 'off', // I prefer to add the events for Vue's defineEmits<{}> separately instead of using a unified signature
 					'@typescript-eslint/no-unnecessary-condition': 'error',
+					'@typescript-eslint/no-unsafe-member-access': 'off',
+					'@typescript-eslint/no-unsafe-call': 'off',
+					'@typescript-eslint/no-unsafe-return': 'off',
+					'@typescript-eslint/no-unsafe-argument': 'off',
+					'@typescript-eslint/no-unsafe-assignment': 'off',
 					...projectConfig.rules,
 				},
 			},
