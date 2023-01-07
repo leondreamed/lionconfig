@@ -17,6 +17,7 @@
 	"bin": {
 		"commitlint": "./src/bin/commitlint.js",
 		"eslint": "./src/bin/eslint.js",
+		"lefthook": "./src/bin/lefthook.js",
 		"lint": "./src/bin/lint.js",
 		"lionconfig": "./src/bin/lionconfig.js",
 		"lionp": "./src/bin/lionp.js",
