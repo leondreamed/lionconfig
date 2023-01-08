@@ -1,5 +1,5 @@
 {
-	"extends": "../../../dist/tsconfig.json",
+	"extends": "../../../dist/tsconfig",
 	"compilerOptions": {
 		"paths": {
 			"~/*": [

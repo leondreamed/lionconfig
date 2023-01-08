@@ -11,8 +11,7 @@
 	"exports": {
 		".": "./src/index.ts",
 		"./*": "./*",
-		"./eslint": "./eslint.cjs",
-		"./tsconfig": "./tsconfigbase.json"
+		"./eslint": "./eslint.cjs"
 	},
 	"bin": {
 		"commitlint": "./src/bin/commitlint.js",
@@ -34,7 +33,7 @@
 		"lint": "eslint --cache --fix .",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest run",
-		"build": "node --loader ./src/tsconfig/ts-loader.js ./scripts/build.ts",
+		"build": "node --loader ./src/typescript/ts-loader.js ./scripts/build.ts",
 		"release": "lionp"
 	},
 	"dependencies": {

@@ -1,5 +1,5 @@
 {
-	"extends": "./src/tsconfigbase.json",
+	"extends": "./src/base.json",
 	"compilerOptions": {
 		"outDir": "dist",
 		"allowJs": true,
