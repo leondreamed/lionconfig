@@ -8,8 +8,7 @@ await tsc({ tsConfigPath: join(import.meta.url, '../tsconfig.json') })
 await copyPackageFiles({
 	additionalFiles: [
 		'src/git',
-		'src/tsconfig',
-		'src/base.json',
+		'src/tsconfig.json',
 		'src/markdownlint.json',
 		'src/bin/ts-node.sh',
 	],
