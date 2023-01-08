@@ -12,7 +12,7 @@
 		".": "./src/index.ts",
 		"./*": "./*",
 		"./eslint": "./eslint.cjs",
-		"./tsconfig": "./tsconfig.json"
+		"./tsconfig": "./tsconfigbase.json"
 	},
 	"bin": {
 		"commitlint": "./src/bin/commitlint.js",

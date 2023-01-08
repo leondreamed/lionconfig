@@ -8,7 +8,7 @@ await copyPackageFiles({
 	additionalFiles: [
 		'src/git',
 		'src/tsconfig',
-		'src/tsconfig.json',
+		'src/tsconfigbase.json',
 		'src/markdownlint.json',
 		'src/bin/ts-node.sh',
 	],
