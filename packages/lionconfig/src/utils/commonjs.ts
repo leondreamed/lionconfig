@@ -3,13 +3,15 @@ import { builtinModules } from 'node:module'
 import * as path from 'node:path'
 import process from 'node:process'
 
+import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import esbuild from 'esbuild'
 import type { ExternalOption, Plugin } from 'rollup'
 import { rollup } from 'rollup'
 import bundleESM from 'rollup-plugin-bundle-esm'
 import depsExternal from 'rollup-plugin-deps-external'
-import esbuild from 'rollup-plugin-esbuild'
+import esbuildPlugin from 'rollup-plugin-esbuild'
 import workspaceImports from 'rollup-plugin-workspace-imports'
 import type { PackageJson } from 'type-fest'
 
@@ -108,8 +110,10 @@ export async function createCommonjsBundles({
 					// Need to remove `default` from the list because some libraries have `default` pointing to the browser version of the package
 					exportConditions: ['node', 'module', 'import'],
 			  }),
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Typings for @rollup/plugin-commonjs are broken
+		(commonjs.default ?? commonjs)(),
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Typings for rollup-plugin-esbuild are broken
-		(esbuild.default ?? esbuild)({
+		(esbuildPlugin.default ?? esbuildPlugin)({
 			tsconfig: tsconfigPath,
 		}),
 	]
@@ -141,17 +145,22 @@ export async function createCommonjsBundles({
 				plugins,
 				input: path.join(pkgDir, entryPoint.destinationPath),
 				output: {
-					file: path.join(cwd, 'dist', commonjsDestinationPath),
-					format: 'commonjs',
+					// Rollup emitting CommonJS code is a bit buggy, so instead, we output ESM and then transform the code into CommonJS using ESBuild
+					format: 'esm',
 					inlineDynamicImports: true,
 				},
 				...rollupOptions,
 				external,
 			})
-			await bundle.write({
-				file: path.join(cwd, 'dist', commonjsDestinationPath),
-				format: 'commonjs',
+			const { output } = await bundle.generate({
+				format: 'esm',
 			})
+			const { code: cjsOutput } = await esbuild.transform(output[0].code, {
+				format: 'cjs',
+			})
+
+			const commonjsFilePath = path.join(cwd, 'dist', commonjsDestinationPath)
+			await fs.promises.writeFile(commonjsFilePath, cjsOutput)
 		})
 	)
 
