@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-
 import * as fs from 'node:fs'
 import { builtinModules } from 'node:module'
 import * as path from 'node:path'
 import process from 'node:process'
 
-import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import type { ExternalOption, Plugin } from 'rollup'
@@ -97,12 +94,12 @@ export async function createCommonjsBundles({
 	const tsconfigPath = path.join(pkgDir, 'tsconfig.json')
 
 	// Weird typing for `plugins` comes from rollup
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const plugins: Array<false | null | undefined | Plugin> = [
 		workspaceImports(),
 		bundleESM(),
 		depsExternal({ packagePath: pkgPath }),
-		(json as any)(),
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Typings for @rollup/plugin-json are broken
+		(json.default ?? json)(),
 		browser
 			? nodeResolve({
 					browser: true,
@@ -111,8 +108,8 @@ export async function createCommonjsBundles({
 					// Need to remove `default` from the list because some libraries have `default` pointing to the browser version of the package
 					exportConditions: ['node', 'module', 'import'],
 			  }),
-		(commonjs as any)(),
-		(esbuild as any)({
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Typings for rollup-plugin-esbuild are broken
+		(esbuild.default ?? esbuild)({
 			tsconfig: tsconfigPath,
 		}),
 	]
