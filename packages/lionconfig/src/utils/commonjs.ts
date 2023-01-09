@@ -155,9 +155,15 @@ export async function createCommonjsBundles({
 			const { output } = await bundle.generate({
 				format: 'esm',
 			})
-			const { code: cjsOutput } = await esbuild.transform(output[0].code, {
+			let { code: cjsOutput } = await esbuild.transform(output[0].code, {
 				format: 'cjs',
 			})
+
+			// An old version of `ansi-styles` uses `Object.defineProperty()` to make the "exports" property immutable (https://github.com/chalk/ansi-styles/pull/12/files). However, this breaks Rollup bundling, so we need to hackily replace it
+			cjsOutput = cjsOutput.replace(
+				/Object\.defineProperty\((\w+),\s*"exports",\s*/,
+				'$1.exports = ((properties) => properties.get())('
+			)
 
 			const commonjsFilePath = path.join(cwd, 'dist', commonjsDestinationPath)
 			await fs.promises.writeFile(commonjsFilePath, cjsOutput)
