@@ -178,7 +178,10 @@ export async function createCommonjsBundles({
 	for (const entryPoint of entryPoints) {
 		const entryPointFileName = path.parse(entryPoint.destinationPath).name
 		exportsObject[entryPoint.sourcePath] = {
-			types: `./${entryPointFileName}.d.ts`,
+			types:
+				entryPoint.sourcePath === '.'
+					? './bundle.d.ts'
+					: `./${entryPointFileName}.d.ts`,
 			import: `./${entryPointFileName}.js`,
 			require: `./${entryPointFileName}.cjs`,
 		}

@@ -3,6 +3,8 @@ import path from 'node:path'
 
 import { execa } from 'execa'
 import { getProjectDir } from 'lion-utils'
+import { rollup } from 'rollup'
+import dts from 'rollup-plugin-dts'
 import { replaceTscAliasPaths } from 'tsc-alias'
 
 /**
@@ -44,4 +46,18 @@ export async function tsc(options?: { tsConfigPath?: string }) {
 			configFile: options.tsConfigPath,
 		})
 	}
+
+	// Bundle declaration files with rollup-plugin-dts
+	const bundle = await rollup({
+		plugins: [dts()],
+		input: './dist/index.d.ts',
+		output: {
+			file: './dist/bundle.d.ts',
+			format: 'es',
+		},
+	})
+
+	await bundle.write({
+		file: './dist/bundle.d.ts',
+	})
 }
