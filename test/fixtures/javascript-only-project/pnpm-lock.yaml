@@ -1,0 +1,6 @@
+lockfileVersion: '6.0'
+
+dependencies:
+  lionconfig:
+    specifier: link:../../../dist
+    version: link:../../../dist

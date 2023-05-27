@@ -1,0 +1,6 @@
+lockfileVersion: '6.0'
+
+dependencies:
+  subpackage2:
+    specifier: link:../subpackage2
+    version: link:../subpackage2
