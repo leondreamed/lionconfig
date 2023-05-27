@@ -210,11 +210,20 @@ export function createPackageBuilder(
 		packageJsonPath: string
 	}
 ) {
-	packageJsonPath = path.resolve(fileURLToPath(importMeta.url), packageJsonPath)
+	packageJsonPath = path.resolve(
+		path.dirname(fileURLToPath(importMeta.url)),
+		packageJsonPath
+	)
 	tsconfigPath =
 		tsconfigPath === undefined
 			? path.join(path.dirname(packageJsonPath), 'tsconfig.json')
-			: path.resolve(fileURLToPath(importMeta.url), tsconfigPath)
+			: path.resolve(path.dirname(fileURLToPath(importMeta.url)), tsconfigPath)
+
+	if (!fs.existsSync(packageJsonPath)) {
+		throw new Error(
+			`The package.json file at ${packageJsonPath} does not exist`
+		)
+	}
 
 	return new PackageBuilder({
 		packageJsonPath,
