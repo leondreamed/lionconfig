@@ -92,6 +92,7 @@ export async function generateCommonjsBundles({
 						destinationPath: exportsValue,
 					})
 				} else if (
+					exportsValue !== undefined &&
 					'import' in exportsValue &&
 					typeof exportsValue.import === 'string'
 				) {
@@ -124,8 +125,8 @@ export async function generateCommonjsBundles({
 	// Weird typing for `plugins` comes from rollup
 	const plugins: Array<false | null | undefined | Plugin> = [
 		workspaceImports(),
-		bundleESM(),
-		depsExternal({ packagePath: packageJsonPath }),
+		(bundleESM as any)(),
+		(depsExternal as any)({ packagePath: packageJsonPath }),
 		(alias.default ?? alias)({
 			entries: [
 				{
