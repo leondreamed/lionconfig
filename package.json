@@ -45,6 +45,7 @@
 		"@leondreamed/ts-node": "^10.10.7",
 		"@pnpm/find-workspace-packages": "^5.0.21",
 		"@pnpm/logger": "^5.0.0",
+		"@rollup/plugin-alias": "^5.0.0",
 		"@rollup/plugin-commonjs": "^24.0.0",
 		"@rollup/plugin-json": "^6.0.0",
 		"@rollup/plugin-node-resolve": "^15.0.1",

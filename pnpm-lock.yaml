@@ -28,6 +28,9 @@ importers:
       '@pnpm/logger':
         specifier: ^5.0.0
         version: 5.0.0
+      '@rollup/plugin-alias':
+        specifier: ^5.0.0
+        version: 5.0.0(rollup@3.9.1)
       '@rollup/plugin-commonjs':
         specifier: ^24.0.0
         version: 24.0.0(rollup@3.9.1)
@@ -2164,6 +2167,19 @@ packages:
       json5: 2.2.3
       write-file-atomic: 5.0.0
       write-yaml-file: 4.2.0
+    dev: false
+
+  /@rollup/plugin-alias@5.0.0(rollup@3.9.1):
+    resolution: {integrity: sha512-l9hY5chSCjuFRPsnRm16twWBiSApl2uYFLsepQYwtBuAxNMQ/1dJqADld40P0Jkqm65GRTLy/AC6hnpVebtLsA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      rollup: 3.9.1
+      slash: 4.0.0
     dev: false
 
   /@rollup/plugin-commonjs@24.0.0(rollup@3.9.1):

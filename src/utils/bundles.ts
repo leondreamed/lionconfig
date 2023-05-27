@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import { builtinModules } from 'node:module'
 import path from 'node:path'
 
+import alias from '@rollup/plugin-alias'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
@@ -125,6 +126,14 @@ export async function generateCommonjsBundles({
 		workspaceImports(),
 		bundleESM(),
 		depsExternal({ packagePath: packageJsonPath }),
+		(alias.default ?? alias)({
+			entries: [
+				{
+					find: 'string_decoder/',
+					replacement: 'string_decoder',
+				},
+			],
+		}),
 		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Typings for @rollup/plugin-json are broken
 		(json.default ?? json)(),
 		browser
