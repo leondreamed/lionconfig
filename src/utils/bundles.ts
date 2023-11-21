@@ -152,7 +152,7 @@ export async function generateCommonjsBundles({
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Typings for @rollup/plugin-commonjs are broken
     (commonjs.default ?? commonjs)(),
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- Typings for rollup-plugin-esbuild are broken
-    (esbuildPlugin.default ?? esbuildPlugin)({
+    esbuildPlugin({
       tsconfig: tsconfigPath,
     }),
   ];
